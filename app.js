@@ -369,20 +369,20 @@ async function syncLiveFrom90Minut(manualClick = false) {
 // 3. Pełna oficjalna kadra LKS Naprzód Świbie (32 zawodników + Trener Kamil Giera + Kierownik Rafał Leksy)
 // Treningi Seniorów: Wtorek, czwartek 19:15 – 20:45 (boisko w Świbiu)
 const SWIBIE_SQUAD = [
-  // BRAMKARZE (3)
+  // BRAMKARZE (4)
   { id: "m_musiol", num: 12, name: "Marcin Musioł", shortName: "M. Musioł", pos: "Bramkarz", role: "Bramkarz • Wyjściowa 11" },
   { id: "v_mykhailiuk", num: 25, name: "Volodymyr Mykhailiuk", shortName: "V. Mykhailiuk", pos: "Bramkarz", role: "Bramkarz • Pewny punkt na linii" },
+  { id: "p_chodkiewicz", num: null, name: "Piotr Chodkiewicz", shortName: "P. Chodkiewicz", pos: "Bramkarz", role: "Bramkarz • Wiceprezes Zarządu (tel. 796 129 276)" },
   { id: "k_grochla", num: null, name: "Krzysztof Grochla", shortName: "K. Grochla", pos: "Bramkarz", role: "Bramkarz • Doświadczenie w bramce" },
 
-  // OBROŃCY (9)
+  // OBROŃCY (8)
   { id: "m_szostok", num: 2, name: "Michał Szostok", shortName: "M. Szostok", pos: "Obrońca", role: "Środkowy obrońca • Wyjściowa 11" },
   { id: "t_jendrysik", num: 6, name: "Tomasz Jendrysik", shortName: "T. Jendrysik", pos: "Obrońca", role: "Lewy obrońca • Wyjściowa 11" },
   { id: "p_kokoszka", num: 15, name: "Paweł Kokoszka", shortName: "P. Kokoszka", pos: "Obrońca", role: "Środkowy obrońca • Wyjściowa 11" },
   { id: "d_sosna", num: 17, name: "Dawid Sosna", shortName: "D. Sosna", pos: "Obrońca", role: "Prawy obrońca • Wyjściowa 11" },
   { id: "m_kravchuk", num: 13, name: "Mykola Kravchuk", shortName: "M. Kravchuk", pos: "Obrońca", role: "Obrońca • Nieustępliwość w defensywie" },
-  { id: "a_dudek", num: null, name: "Artur Dudek", shortName: "A. Dudek", pos: "Obrońca", role: "Obrońca • Pewna gra w defensywie" },
-  { id: "m_dudek", num: null, name: "Marcin Dudek", shortName: "M. Dudek", pos: "Obrońca", role: "Obrońca • Członek Zarządu" },
   { id: "g_lasak", num: null, name: "Grzegorz Lasak", shortName: "G. Lasak", pos: "Obrońca", role: "Środkowy obrońca • Gra w powietrzu" },
+  { id: "w_marszalek", num: null, name: "Wojciech Marszałek", shortName: "W. Marszałek", pos: "Obrońca", role: "Obrońca • Wsparcie defensywy" },
   { id: "y_pozdniakov", num: null, name: "Yevhenii Pozdniakov", shortName: "Y. Pozdniakov", pos: "Obrońca", role: "Obrońca • Waleczność w obronie" },
 
   // POMOCNICY (15)
@@ -393,10 +393,10 @@ const SWIBIE_SQUAD = [
   { id: "t_janoszka", num: 4, name: "Tomasz Janoszka", shortName: "T. Janoszka", pos: "Pomocnik", role: "Pomocnik • Koordynator Szkółki (tel. 511 956 923)" },
   { id: "m_krzykawski", num: 16, name: "Mateusz Krzykawski", shortName: "M. Krzykawski", pos: "Pomocnik", role: "Pomocnik • Kreatywność w rozegraniu" },
   { id: "w_bujara", num: 18, name: "Wojciech Bujara", shortName: "W. Bujara", pos: "Pomocnik", role: "Pomocnik • Dynamika na skrzydle" },
+  { id: "a_dudek", num: null, name: "Artur Dudek", shortName: "A. Dudek", pos: "Pomocnik", role: "Pomocnik • Pewna gra w drugiej linii" },
   { id: "p_john", num: null, name: "Patryk John", shortName: "P. John", pos: "Pomocnik", role: "Pomocnik • Zaangażowanie w walce o piłkę" },
   { id: "a_koziolek", num: null, name: "Artur Koziołek", shortName: "A. Koziołek", pos: "Pomocnik", role: "Pomocnik • Przegląd pola" },
   { id: "k_krupa", num: null, name: "Kacper Krupa", shortName: "K. Krupa", pos: "Pomocnik", role: "Ofensywny pomocnik • Kreator akcji" },
-  { id: "w_marszalek", num: null, name: "Wojciech Marszałek", shortName: "W. Marszałek", pos: "Pomocnik", role: "Pomocnik • Wsparcie środkowej strefy" },
   { id: "p_mazalik", num: null, name: "Patryk Mazalik", shortName: "P. Mazalik", pos: "Pomocnik", role: "Pomocnik • Druga linia" },
   { id: "sz_musiol", num: null, name: "Szymon Musioł", shortName: "Sz. Musioł", pos: "Pomocnik", role: "Pomocnik • Precyzja podań" },
   { id: "o_mysza", num: null, name: "Oliwier Mysza", shortName: "O. Mysza", pos: "Pomocnik", role: "Pomocnik • Młody talent środka pola" },
@@ -405,7 +405,7 @@ const SWIBIE_SQUAD = [
   // NAPASTNICY (5)
   { id: "m_chowaniec", num: 8, name: "Marek Chowaniec", shortName: "M. Chowaniec", pos: "Napastnik", role: "Napastnik • Wyjściowa 11" },
   { id: "p_giera", num: 9, name: "Patryk Giera", shortName: "P. Giera", pos: "Napastnik", role: "Napastnik • Wyjściowa 11" },
-  { id: "p_chodkiewicz", num: null, name: "Piotr Chodkiewicz", shortName: "P. Chodkiewicz", pos: "Napastnik", role: "Napastnik • Wiceprezes Zarządu (tel. 796 129 276)" },
+  { id: "m_dudek", num: null, name: "Marcin Dudek", shortName: "M. Dudek", pos: "Napastnik", role: "Napastnik • Członek Zarządu" },
   { id: "j_tomaszek", num: null, name: "Jakub Tomaszek", shortName: "J. Tomaszek", pos: "Napastnik", role: "Napastnik • Instynkt strzelecki" },
   { id: "a_zienc", num: null, name: "Andrzej Zieńć", shortName: "A. Zieńć", pos: "Napastnik", role: "Napastnik • Doświadczenie w ataku" },
 
