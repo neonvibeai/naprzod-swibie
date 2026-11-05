@@ -1,0 +1,2094 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LKS Naprzód Świbie — Oficjalny Portal Klubu & Szkółki Piłkarskiej (Zał. 1952)</title>
+  <meta name="description" content="Oficjalna strona internetowa LKS Naprzód Świbie (zał. 13 kwietnia 1952). Drużyna seniorów (Klasa B Zabrze), Szkółka Piłkarska (Skrzaty, Żaki, Orliki, Młodziki), turniej Kids Cup oraz Stadion Kęp Noł przy ul. Sportowej 51." />
+  <!-- Google Fonts: Teko (Athletic Display) & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/logo-klub.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="mode-club">
+
+  <!-- TOP SCROLL PITCH PROGRESS BAR -->
+  <div class="scroll-pitch-progress" aria-hidden="true">
+    <div class="scroll-pitch-bar" id="scrollPitchBar">
+      <span class="scroll-pitch-ball" id="scrollPitchBall">⚽</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       GLOBAL SCROLL-DRIVEN STADIUM & ROLLING FOOTBALL BACKGROUND
+       ======================================================================== -->
+  <div class="global-sport-bg" id="globalSportBg" aria-hidden="true">
+    <!-- Bright Stadium Floodlights -->
+    <div class="bg-floodlight bg-floodlight--left"></div>
+    <div class="bg-floodlight bg-floodlight--right"></div>
+    <div class="bg-floodlight bg-floodlight--center"></div>
+
+    <!-- Tactical Pitch Lines & Trajectory SVG -->
+    <svg class="bg-pitch-blueprint" id="bgPitchBlueprint" viewBox="0 0 1440 1000" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer pitch boundary & halfway line -->
+      <rect x="70" y="36" width="1300" height="928" rx="18" stroke="rgba(255,255,255,0.15)" stroke-width="2.5" />
+      <line x1="70" y1="500" x2="1370" y2="500" stroke="rgba(163,230,53,0.24)" stroke-width="2.5" stroke-dasharray="12 10" />
+      <!-- Center Circle & Spot -->
+      <circle cx="720" cy="500" r="150" stroke="rgba(163,230,53,0.28)" stroke-width="2.5" />
+      <circle cx="720" cy="500" r="22" stroke="rgba(255,255,255,0.16)" stroke-width="1.5" />
+      <circle cx="720" cy="500" r="7" fill="rgba(163,230,53,0.45)" />
+      <!-- Top & Bottom Penalty Areas -->
+      <rect x="430" y="36" width="580" height="175" stroke="rgba(255,255,255,0.14)" stroke-width="2.2" />
+      <rect x="550" y="36" width="340" height="70" stroke="rgba(163,230,53,0.18)" stroke-width="2" />
+      <rect x="430" y="789" width="580" height="175" stroke="rgba(255,255,255,0.14)" stroke-width="2.2" />
+      <rect x="550" y="894" width="340" height="70" stroke="rgba(163,230,53,0.18)" stroke-width="2" />
+      <!-- Tactical X and O chalk markers -->
+      <g stroke="rgba(163,230,53,0.32)" stroke-width="3.5" stroke-linecap="round">
+        <line x1="190" y1="230" x2="220" y2="260" /><line x1="220" y1="230" x2="190" y2="260" />
+        <line x1="1210" y1="310" x2="1240" y2="340" /><line x1="1240" y1="310" x2="1210" y2="340" />
+        <line x1="230" y1="730" x2="260" y2="760" /><line x1="260" y1="730" x2="230" y2="760" />
+      </g>
+      <circle cx="1180" cy="700" r="18" stroke="rgba(255,255,255,0.24)" stroke-width="3.5" />
+      <circle cx="280" cy="430" r="18" stroke="rgba(255,255,255,0.24)" stroke-width="3.5" />
+      <!-- Dynamic Scroll Ball Flight Trajectory Curve -->
+      <path id="bgBallTrajectory" d="M 1180 40 C 1320 280, 140 380, 240 640 C 320 860, 1140 820, 1200 970" stroke="rgba(163,230,53,0.32)" stroke-width="3.5" stroke-dasharray="14 12" fill="none" />
+    </svg>
+
+    <!-- Giant Parallax Watermark Typography -->
+    <div class="bg-watermark-text" id="bgWatermarkText">NAPRZÓD • 1952</div>
+
+    <!-- Main 3D-Styled Vector Football (Scrolls, weaves & rotates down the page) -->
+    <div class="bg-rolling-ball bg-rolling-ball--main" id="bgRollingBallMain">
+      <div class="bg-ball-glow"></div>
+      <svg class="bg-ball-svg" id="bgRollingBallMainSvg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="ballShade" cx="35%" cy="30%" r="70%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
+            <stop offset="55%" stop-color="#cbd5e1" stop-opacity="0.82" />
+            <stop offset="100%" stop-color="#1e293b" stop-opacity="0.92" />
+          </radialGradient>
+        </defs>
+        <!-- Outer 3D Pearl-White Sphere -->
+        <circle cx="100" cy="100" r="90" fill="url(#ballShade)" stroke="#a3e635" stroke-width="4" />
+        <circle cx="100" cy="100" r="83" stroke="rgba(9,10,15,0.35)" stroke-width="1.5" stroke-dasharray="6 4" />
+        <!-- Seam Lines connecting Pentagons -->
+        <g stroke="#090a0f" stroke-width="3.2">
+          <line x1="100" y1="68" x2="100" y2="22" />
+          <line x1="130" y1="90" x2="174" y2="68" />
+          <line x1="119" y1="126" x2="155" y2="164" />
+          <line x1="81" y1="126" x2="45" y2="164" />
+          <line x1="70" y1="90" x2="26" y2="68" />
+          <path d="M 65 30 Q 100 42 135 30" fill="none" />
+          <path d="M 168 55 Q 152 95 172 132" fill="none" />
+          <path d="M 140 172 Q 100 156 60 172" fill="none" />
+          <path d="M 32 55 Q 48 95 28 132" fill="none" />
+        </g>
+        <!-- Classic Pitch-Black Pentagon Panels with Neon Turf Rim -->
+        <polygon points="100,68 130,90 119,126 81,126 70,90" fill="#090a0f" stroke="#a3e635" stroke-width="2.5" />
+        <polygon points="100,11 128,25 117,43 83,43 72,25" fill="#090a0f" stroke="#a3e635" stroke-width="2" />
+        <polygon points="185,61 179,95 161,88 155,63 170,47" fill="#090a0f" stroke="#a3e635" stroke-width="2" />
+        <polygon points="163,159 135,179 129,160 147,141 167,144" fill="#090a0f" stroke="#a3e635" stroke-width="2" />
+        <polygon points="37,159 65,179 71,160 53,141 33,144" fill="#090a0f" stroke="#a3e635" stroke-width="2" />
+        <polygon points="15,61 21,95 39,88 45,63 30,47" fill="#090a0f" stroke="#a3e635" stroke-width="2" />
+      </svg>
+    </div>
+
+    <!-- Secondary Depth Parallax Football (Opposite side) -->
+    <div class="bg-rolling-ball bg-rolling-ball--secondary" id="bgRollingBallSecondary">
+      <svg class="bg-ball-svg" id="bgRollingBallSecondarySvg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="88" fill="rgba(248,250,252,0.22)" stroke="#a3e635" stroke-width="3" />
+        <g stroke="rgba(255,255,255,0.48)" stroke-width="2.5">
+          <line x1="100" y1="68" x2="100" y2="14" />
+          <line x1="130" y1="90" x2="182" y2="64" />
+          <line x1="119" y1="126" x2="160" y2="168" />
+          <line x1="81" y1="126" x2="40" y2="168" />
+          <line x1="70" y1="90" x2="18" y2="64" />
+        </g>
+        <polygon points="100,68 130,90 119,126 81,126 70,90" fill="#090a0f" stroke="#a3e635" stroke-width="2.5" />
+        <polygon points="100,12 126,26 116,42 84,42 74,26" fill="#090a0f" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" />
+        <polygon points="184,62 178,94 162,88 156,64 170,48" fill="#090a0f" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" />
+        <polygon points="162,158 136,178 130,160 148,142 166,144" fill="#090a0f" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" />
+        <polygon points="38,158 64,178 70,160 52,142 34,144" fill="#090a0f" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" />
+        <polygon points="16,62 22,94 38,88 44,64 30,48" fill="#090a0f" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       INTERACTIVE SPLIT-SCREEN PORTAL GATEWAY ("WYBIERZ ŚWIAT: KLUB ALBO SZKÓŁKA")
+       ======================================================================== -->
+  <section class="portal-gateway" id="portalGateway" aria-label="Wybór strefy: Klub Piłkarski lub Szkółka Piłkarska">
+    <!-- Left Side: KLUB PIŁKARSKI (Seniorzy / Klasa B) -->
+    <div class="portal-side portal-side--club" onclick="enterWorld('club')" role="button" tabindex="0">
+      <div class="portal-bg"></div>
+      <div class="portal-stripes"></div>
+      <div class="portal-content">
+        <img src="assets/logo-klub.png" alt="Herb LKS Naprzód Świbie" class="portal-side-logo" />
+        <div class="portal-kicker">
+          <span class="pulse-dot"></span>
+          ŚLZPN • Podokręg Zabrze • Klasa B
+        </div>
+        <h1 class="portal-title">
+          KLUB PIŁKARSKI
+          <span>PIERWSZY ZESPÓŁ</span>
+        </h1>
+        <p class="portal-desc">
+          Biało-czarna duma gminy Wielowieś od <strong>13 kwietnia 1952 roku</strong>. Sprawdź terminarz i wyniki w Klasie B, interaktywną kadrę na boisku „Kęp Noł”, zarząd oraz historię LKS Naprzód Świbie.
+        </p>
+        <div class="portal-tags">
+          <span class="portal-tag">⚽ Seniorzy (Klasa B Zabrze)</span>
+          <span class="portal-tag">🏟️ Twierdza „Kęp Noł” (500 miejsc)</span>
+          <span class="portal-tag">📊 Centrum Meczowe & Kadra</span>
+        </div>
+        <button class="portal-cta" type="button">
+          Wejdź do Strefy Klubu <span>→</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Center Floating Crest Badge -->
+    <div class="portal-center-badge">
+      <img src="assets/logo-klub.png" alt="Herb LKS Naprzód Świbie" class="crest-shield" />
+      <div class="portal-vs-pill">WYBIERZ SWOJĄ STREFĘ</div>
+    </div>
+
+    <!-- Right Side: SZKÓŁKA PIŁKARSKA (Akademia / Kids Cup) -->
+    <div class="portal-side portal-side--academy" onclick="enterWorld('academy')" role="button" tabindex="0">
+      <div class="portal-bg"></div>
+      <div class="portal-stripes"></div>
+      <div class="portal-content">
+        <img src="assets/logo-szkolka.png" alt="Logo Szkółki Piłkarskiej LKS Naprzód Świbie" class="portal-side-logo portal-side-logo--academy" />
+        <div class="portal-kicker">
+          <span>🌟</span> Nabór Otwarty • Chłopcy i Dziewczęta
+        </div>
+        <h2 class="portal-title">
+          SZKÓŁKA PIŁKARSKA
+          <span>AKADEMIA & KIDS CUP</span>
+        </h2>
+        <p class="portal-desc">
+          Szkolimy przyszłe pokolenia piłkarzy na obiektach w Świbiu! Grupy <strong>Skrzatów, Żaków, Orlików i Młodzików</strong>, wykwalifikowani trenerzy oraz słynny regionalny turniej <strong>Naprzód Świbie Kids Cup</strong>.
+        </p>
+        <div class="portal-tags">
+          <span class="portal-tag">🏃 Skrzaty • Żaki • Orliki • Młodziki</span>
+          <span class="portal-tag">🏆 Turniej Naprzód Świbie Kids Cup</span>
+          <span class="portal-tag">🎯 Kalkulator Grupy dla Rodzica</span>
+        </div>
+        <button class="portal-cta" type="button">
+          <span>←</span> Wejdź do Szkółki
+        </button>
+      </div>
+    </div>
+
+    <div class="portal-skip-bottom">
+      <span>ul. Sportowa 51, 44-187 Świbie (Gm. Wielowieś)</span>
+      <span>•</span>
+      <span>KRS: 0000294473 (OPP 1,5%)</span>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       STICKY NAVBAR WITH INSTANT WORLD SWITCHER
+       ======================================================================== -->
+  <header class="navbar" id="mainNavbar">
+    <div class="navbar-inner">
+      <a href="#top" class="brand" onclick="openPortalGateway(); return false;" title="Wróć do ekranu wyboru Klub / Szkółka">
+        <img class="brand-crest club-only" src="assets/logo-klub.png" alt="Herb LKS Naprzód Świbie" />
+        <img class="brand-crest brand-crest--academy academy-only" src="assets/logo-szkolka.png" alt="Logo Szkółki Piłkarskiej LKS Naprzód Świbie" />
+        <div class="brand-text">
+          <span class="brand-name">LKS Naprzód Świbie</span>
+        </div>
+      </a>
+
+      <!-- Instant World Switcher -->
+      <div class="world-switcher" role="tablist" aria-label="Przełącznik trybu strony">
+        <button type="button" class="world-btn active-club" id="btnSwitchClub" onclick="switchMode('club')">
+          ⚽ Klub (Seniorzy)
+        </button>
+        <button type="button" class="world-btn" id="btnSwitchAcademy" onclick="switchMode('academy')">
+          🌟 Szkółka Piłkarska
+        </button>
+        <button type="button" class="world-btn world-btn--portal" onclick="openPortalGateway()" title="Pokaż ekran powitalny (Split Screen)">
+          🔀 Ekran Wyboru
+        </button>
+      </div>
+
+      <ul class="nav-links" id="mainNavLinks">
+        <!-- Linki widoczne wyłącznie na stronie Klubu Seniorów -->
+        <li class="club-only"><a href="#centrum-meczowe" onclick="closeMobileMenu()">Tabela</a></li>
+        <li class="club-only"><a href="#kadra" onclick="closeMobileMenu()">Kadra</a></li>
+        <li class="club-only"><a href="#kep-nol" onclick="closeMobileMenu()">Historia</a></li>
+
+        <!-- Linki widoczne wyłącznie na stronie Szkółki Piłkarskiej -->
+        <li class="academy-only"><a href="#akademia-start" onclick="closeMobileMenu()">Nabór</a></li>
+        <li class="academy-only"><a href="#szkolka" onclick="closeMobileMenu()">Grupy</a></li>
+        <li class="academy-only"><a href="#akademia-metodologia" onclick="closeMobileMenu()">Metodologia</a></li>
+        <li class="academy-only"><a href="#akademia-kidscup" onclick="closeMobileMenu()">Kids Cup</a></li>
+        <li class="academy-only"><a href="#akademia-harmonogram" onclick="closeMobileMenu()">Grafik</a></li>
+
+        <!-- Linki wspólne -->
+        <li><a href="#darczyncy" onclick="closeMobileMenu()">Darczyńcy</a></li>
+        <li><a href="#zarzad-opp" onclick="closeMobileMenu()">1,5% OPP & Darowizny</a></li>
+        <li><a href="#dojazd-kontakt" onclick="closeMobileMenu()">Kontakt</a></li>
+      </ul>
+
+      <div class="nav-social-Icons">
+        <a href="https://www.facebook.com/share/19Av1ne13c/" target="_blank" rel="noopener noreferrer" class="social-pill-link">
+          <span>f</span> <span class="fb-text-lbl">Facebook</span>
+        </a>
+        <button type="button" class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()" aria-label="Otwórz menu nawigacji" aria-expanded="false">
+          <span id="mobileMenuIcon">☰</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- FLOATING SOCIAL & QUICK NAVIGATION DOCK -->
+  <aside class="floating-social-dock" aria-label="Szybki dostęp do Social Media i profili">
+    <a href="https://www.facebook.com/share/19Av1ne13c/" target="_blank" rel="noopener noreferrer" class="dock-item">
+      <span>f</span>
+      <span class="dock-tooltip">Oficjalny Facebook LKS Naprzód Świbie</span>
+    </a>
+    <a href="http://www.90minut.pl/skarb.php?id_klub=5257&id_sezon=109" target="_blank" rel="noopener noreferrer" class="dock-item club-only">
+      <span>90'</span>
+      <span class="dock-tooltip">Profil w bazie 90minut.pl (Eurotech Klasa B)</span>
+    </a>
+    <a href="#akademia-start" class="dock-item academy-only" style="border-color: var(--turf-bright); color: var(--turf-bright);">
+      <span>⚽</span>
+      <span class="dock-tooltip">2 Treningi Próbne GRATIS – Zobacz jak dołączyć!</span>
+    </a>
+    <a href="https://slzpn.pl" target="_blank" rel="noopener noreferrer" class="dock-item">
+      <span>ŚL</span>
+      <span class="dock-tooltip">Śląski ZPN (Podokręg Zabrze)</span>
+    </a>
+    <a href="#zarzad-opp" class="dock-item">
+      <span>1.5%</span>
+      <span class="dock-tooltip">Przekaż 1,5% podatku (KRS 0000294473)</span>
+    </a>
+    <a href="#oferta-strony" class="dock-item" style="border-color: var(--turf-bright); color: var(--turf-bright);">
+      <span>💻</span>
+      <span class="dock-tooltip">Zamów taką stronę dla swojego klubu!</span>
+    </a>
+  </aside>
+
+  <!-- ========================================================================
+       DYNAMIC HERO SECTION (CHANGES CONTENT & VIBE FOR KLUB VS SZKÓŁKA)
+       ======================================================================== -->
+  <section class="hero" id="top">
+    <div class="hero-bg-layer" id="heroBgLayer"></div>
+    <div class="hero-stripes-accent"></div>
+
+    <div class="hero-container">
+      <!-- Left Hero Column -->
+      <div class="hero-left">
+        <div class="hero-badge-row">
+          <span class="status-badge" id="heroBadgeMain">
+            <span class="pulse-dot"></span>
+            <span id="heroBadgeText">KLASA B • PODOKRĘG ZABRZE (ŚLZPN)</span>
+          </span>
+          <span class="status-badge" style="background: rgba(255,255,255,0.06); color: #e2e8f0;">
+            📍 ul. Sportowa 51, 44-187 Świbie
+          </span>
+        </div>
+
+        <h1 class="hero-headline" id="heroHeadline">
+          LKS NAPRZÓD <span class="accent-text">ŚWIBIE</span>
+        </h1>
+
+        <p class="hero-lead" id="heroLead">
+          Od 13 kwietnia 1952 roku budujemy piłkarską historię na naszym legendarnym boisku <strong>„Kęp Noł”</strong>. Sprawdź aktualną tabelę, wyniki i kadrę pierwszego zespołu LKS Naprzód Świbie.
+        </p>
+
+        <div class="hero-actions academy-only" id="heroActions">
+          <a href="#szkolka" class="btn btn-primary" id="heroPrimaryBtn">
+            🎯 Dobierz Grupę Wiekową Dziecka
+          </a>
+        </div>
+
+        <!-- Statystyki Hero dla Klubu Seniorów -->
+        <div class="hero-stats-grid club-only">
+          <div class="stat-box">
+            <div class="stat-value"><span class="counter" data-target="1952">1952</span></div>
+            <div class="stat-label">Rok założenia (13.04)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value"><span>32</span><span> GRACZY</span></div>
+            <div class="stat-label">Kadra Seniorów (Klasa B)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value"><span>19:15</span></div>
+            <div class="stat-label">Treningi: Wt, Czw (Świbie)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">100<span>×60m</span></div>
+            <div class="stat-label">Wymiary płyty boiska</div>
+          </div>
+        </div>
+
+        <!-- Statystyki Hero dla Szkółki Piłkarskiej -->
+        <div class="hero-stats-grid academy-only">
+          <div class="stat-box">
+            <div class="stat-value">4–14<span> LAT</span></div>
+            <div class="stat-label">Skrzaty • Żaki • Orliki • Młodziki</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">0<span> ZŁ</span></div>
+            <div class="stat-label">Pierwsze 2 treningi próbne</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">100<span>% GRY</span></div>
+            <div class="stat-label">Radość z piłki • Zero presji</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value">KIDS<span> CUP</span></div>
+            <div class="stat-label">Nasz flagowy turniej w Świbiu</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Hero Interactive Spotlight Card -->
+      <div class="hero-spotlight-card" id="heroSpotlightCard">
+        <!-- Dynamic Content: Club Match Countdown OR Academy Enrollment Card -->
+        <div id="spotlightClubContent" class="club-only">
+          <div class="spotlight-header" style="margin-bottom: 0.55rem;">
+            <span>⏱️ ODLICZANIE DO NASTĘPNEGO MECZU</span>
+            <span style="color: var(--turf-bright);">KOLEJKA 12 • 24.10, 14:00</span>
+          </div>
+
+          <div class="countdown-grid" id="matchCountdown" style="margin: 0 0 1rem 0;">
+            <div class="cd-cell">
+              <div class="cd-num" id="cdDays">05</div>
+              <div class="cd-lbl">Dni</div>
+            </div>
+            <div class="cd-cell">
+              <div class="cd-num" id="cdHours">18</div>
+              <div class="cd-lbl">Godz</div>
+            </div>
+            <div class="cd-cell">
+              <div class="cd-num" id="cdMins">35</div>
+              <div class="cd-lbl">Min</div>
+            </div>
+            <div class="cd-cell">
+              <div class="cd-num" id="cdSecs">00</div>
+              <div class="cd-lbl">Sek</div>
+            </div>
+          </div>
+
+          <div class="match-teams-versus" style="padding: 0.85rem 0; margin-bottom: 0.9rem;">
+            <div>
+              <div class="team-badge-circle" style="width: 56px; height: 56px; font-size: 1.15rem;">ZT</div>
+              <div style="font-weight: 800; font-size: 0.9rem;" id="nextMatchHome">Zamkowiec Toszek</div>
+              <div style="font-size: 0.7rem; color: var(--text-muted);">Gospodarz (11. msc)</div>
+            </div>
+            <div>
+              <div class="vs-score-box" style="font-size: 1.8rem; padding: 0.2rem 0.75rem;">VS</div>
+              <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem;" id="nextMatchDateBadge">24 paź, 14:00</div>
+            </div>
+            <div>
+              <div class="team-badge-circle team-badge-logo" style="width: 56px; height: 56px;">
+                <img src="assets/logo-klub.png" alt="Herb LKS Naprzód Świbie" />
+              </div>
+              <div style="font-weight: 800; font-size: 0.9rem;" id="nextMatchAway">Naprzód Świbie</div>
+              <div style="font-size: 0.7rem; color: var(--turf-bright);">Goście (9. msc • 16 pkt)</div>
+            </div>
+          </div>
+
+          <div style="background: rgba(16, 185, 129, 0.14); border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 10px; padding: 0.65rem 0.9rem; font-size: 0.8rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem;">
+            <span>🏆 <strong>Ostatni mecz (11. kolejka • 18.10):</strong></span>
+            <a href="https://www.laczynaspilka.pl/rozgrywki/mecz/1c51f445-4f28-44b2-9307-ec3d863821db" target="_blank" rel="noopener noreferrer" style="color: var(--turf-bright); font-weight: 800; text-decoration: none;">Naprzód Świbie 2:0 Naprzód Łubie ↗</a>
+          </div>
+        </div>
+
+        <!-- Academy Spotlight (visible when switched to Szkółka mode) -->
+        <div id="spotlightAcademyContent" class="academy-only">
+          <div class="spotlight-header">
+            <span>🌟 AKADEMIA PIŁKARSKA NAPRZÓD ŚWIBIE</span>
+            <span style="color: var(--turf-bright);">TRWA NABÓR 2026/2027!</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem;">
+            <img src="assets/logo-szkolka.png" alt="Logo Szkółki Piłkarskiej Naprzód Świbie" class="spotlight-academy-logo" />
+            <h3 style="font-family: var(--font-display); font-size: 2.1rem; line-height: 0.98; text-transform: uppercase; margin: 0;">
+              2 PIERWSZE TRENINGI <span style="color: var(--turf-bright);">CAŁKOWICIE BEZPŁATNE!</span>
+            </h3>
+          </div>
+          <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1.25rem;">
+            Zapraszamy chłopców i dziewczynki (roczniki 2012–2022) z gminy Wielowieś, Świbia i okolic! Treningi na naturalnej murawie „Kęp Noł”, zimą w hali sportowej oraz nasz flagowy turniej <strong>Naprzód Świbie Kids Cup</strong>!
+          </p>
+          <div class="spotlight-academy-mini-grid">
+            <div class="cd-cell" style="text-align: left; padding: 0.75rem;">
+              <div style="color: var(--turf-bright); font-weight: 800; font-size: 0.85rem;">🐣 Skrzaty & Żaki</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Wiek 4–8 lat • Zabawa, drybling i koordynacja</div>
+            </div>
+            <div class="cd-cell" style="text-align: left; padding: 0.75rem;">
+              <div style="color: var(--turf-bright); font-weight: 800; font-size: 0.85rem;">🦅 Orliki & Młodziki</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Wiek 9–14 lat • Technika i rozgrywki ŚLZPN</div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary" style="width: 100%;" onclick="openEnrollModal('Szkółka Piłkarska - Zgłoszenie na 2 Bezpłatne Treningi Próbne')">
+            📝 Zgłoś Dziecko na Trening Próbny (0 zł)
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KINETIC DIAGONAL MARQUEE TICKER -->
+  <div class="kinetic-ticker-wrap" aria-hidden="true">
+    <!-- Ticker dla Klubu Seniorów -->
+    <div class="kinetic-ticker club-only">
+      <div class="ticker-item">⚽ LKS NAPRZÓD ŚWIBIE • ZAŁ. 13 KWIETNIA 1952</div>
+      <div class="ticker-item">🏆 DERBY DLA ŚWIBIA: NAPRZÓD ŚWIBIE 2:0 NAPRZÓD ŁUBIE (18.10)</div>
+      <div class="ticker-item">🏟️ TWIERDZA „KĘP NOŁ” • UL. SPORTOWA 51, ŚWIBIE</div>
+      <div class="ticker-item">📊 EUROTECH KLASA B 2026/2027 • GRUPA ZABRZE (LIVE 90MINUT.PL)</div>
+      <div class="ticker-item">❤️ ORGANIZACJA POŻYTKU PUBLICZNEGO • KRS 0000294473</div>
+      <div class="ticker-item">⚽ LKS NAPRZÓD ŚWIBIE • ZAŁ. 13 KWIETNIA 1952</div>
+      <div class="ticker-item">🏆 DERBY DLA ŚWIBIA: NAPRZÓD ŚWIBIE 2:0 NAPRZÓD ŁUBIE (18.10)</div>
+      <div class="ticker-item">🏟️ TWIERDZA „KĘP NOŁ” • UL. SPORTOWA 51, ŚWIBIE</div>
+      <div class="ticker-item">📊 EUROTECH KLASA B 2026/2027 • GRUPA ZABRZE (LIVE 90MINUT.PL)</div>
+      <div class="ticker-item">❤️ ORGANIZACJA POŻYTKU PUBLICZNEGO • KRS 0000294473</div>
+    </div>
+    <!-- Ticker dla Szkółki Piłkarskiej (0 wzmianek o seniorach!) -->
+    <div class="kinetic-ticker academy-only">
+      <div class="ticker-item">🌟 SZKÓŁKA PIŁKARSKA NAPRZÓD ŚWIBIE • NABÓR ROCZNIKÓW 2012–2022</div>
+      <div class="ticker-item">🎁 PIERWSZE 2 TRENINGI PRÓBNE CAŁKOWICIE BEZPŁATNE (0 ZŁ)!</div>
+      <div class="ticker-item">🐣 KATEGORIE: SKRZATY (4–6 LAT) • ŻAKI (7–8 LAT) • ORLIKI (9–10 LAT) • MŁODZIKI (11–14 LAT)</div>
+      <div class="ticker-item">🏆 FESTIWAL PIŁKARSKI NAPRZÓD ŚWIBIE KIDS CUP – ZŁOTY MEDAL DLA KAŻDEGO DZIECKA!</div>
+      <div class="ticker-item">🛡️ BEZPIECZNA AKADEMIA • STANDARDY OCHRONY MAŁOLETNICH PZPN</div>
+      <div class="ticker-item">🌟 SZKÓŁKA PIŁKARSKA NAPRZÓD ŚWIBIE • NABÓR ROCZNIKÓW 2012–2022</div>
+      <div class="ticker-item">🎁 PIERWSZE 2 TRENINGI PRÓBNE CAŁKOWICIE BEZPŁATNE (0 ZŁ)!</div>
+      <div class="ticker-item">🐣 KATEGORIE: SKRZATY (4–6 LAT) • ŻAKI (7–8 LAT) • ORLIKI (9–10 LAT) • MŁODZIKI (11–14 LAT)</div>
+      <div class="ticker-item">🏆 FESTIWAL PIŁKARSKI NAPRZÓD ŚWIBIE KIDS CUP – ZŁOTY MEDAL DLA KAŻDEGO DZIECKA!</div>
+      <div class="ticker-item">🛡️ BEZPIECZNA AKADEMIA • STANDARDY OCHRONY MAŁOLETNICH PZPN</div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODULE 1: "GRAJĄ Z NAMI" - DARCZYŃCY I PARTNERZY (KLUB 100 & DAROWIZNY)
+       ======================================================================== -->
+  <section class="sponsors-strip-section" id="darczyncy">
+    <div class="container reveal">
+      <div class="sponsors-header-bar">
+        <div>
+          <div class="section-kicker" style="margin-bottom: 0.2rem;">🤝 DARCZYŃCY KLUBU, SZKÓŁKI & TURNIEJU KIDS CUP</div>
+          <h2 class="sponsors-title-tag">GRAJĄ Z NAMI: <span>DARCZYŃCY I PARTNERZY</span></h2>
+        </div>
+        <div style="display: flex; gap: 0.65rem; flex-wrap: wrap;">
+          <a href="https://zrzutka.pl/3bsndj" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.55rem 1.15rem; font-size: 0.78rem;">
+            💛 Wesprzyj nas na Zrzutka.pl ↗
+          </a>
+          <button type="button" class="btn btn-outline" style="padding: 0.55rem 1.1rem; font-size: 0.78rem;" onclick="toggleKlub100Packages()">
+            💎 Pakiety Darczyńców & Klub 100
+          </button>
+          <button type="button" class="btn btn-outline" style="padding: 0.55rem 1.15rem; font-size: 0.78rem;" onclick="openEnrollModal('Dołączenie do grona Darczyńców LKS Naprzód Świbie')">
+            ➕ Dołącz jako Darczyńca
+          </button>
+        </div>
+      </div>
+
+      <!-- Szybki pasek wsparcia finansowego dla darczyńców -->
+      <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(163, 230, 53, 0.35); border-radius: 14px; padding: 1.1rem 1.4rem; margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+        <div>
+          <span class="status-badge" style="margin-bottom: 0.35rem;">🏦 RACHUNEK BANKOWY NA DAROWIZNY STATUTOWE</span>
+          <div style="font-family: var(--font-display); font-size: clamp(1.4rem, 2.5vw, 1.9rem); color: #fff; letter-spacing: 0.04em;">
+            18 2490 0005 0000 4500 3814 1133
+          </div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;">
+            Odbiorca: <strong>LKS Naprzód Świbie</strong>, ul. Sportowa 51, 44-187 Świbie • Tytuł: <em>Darowizna na cele statutowe</em>
+          </div>
+        </div>
+        <div style="display: flex; gap: 0.65rem; flex-wrap: wrap;">
+          <button type="button" class="btn btn-primary" style="font-size: 0.8rem; padding: 0.6rem 1.1rem;" onclick="copyBankAccount()">
+            📋 <span id="copyAccountBtnText">Kopiuj nr konta</span>
+          </button>
+          <a href="https://zrzutka.pl/3bsndj" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="font-size: 0.8rem; padding: 0.6rem 1.1rem;">
+            💛 Zrzutka.pl ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Infinite Logo Carousel ("Grają z nami:") -->
+      <div class="sponsors-carousel-viewport" aria-label="Karuzela logotypów darczyńców i partnerów">
+        <div class="sponsors-carousel-track" id="sponsorsCarouselTrack">
+          <!-- Populated & duplicated seamlessly by app.js -->
+        </div>
+      </div>
+
+      <!-- Expandable / Visible Klub 100 & Sponsorship Tiers -->
+      <div class="klub100-packages-grid" id="klub100PackagesGrid">
+        <div class="klub100-card">
+          <div>
+            <span class="group-age-pill">PAKIET SPOŁECZNOŚCIOWY</span>
+            <h3 style="font-family: var(--font-display); font-size: 1.85rem; text-transform: uppercase; margin-bottom: 0.35rem;">
+              🏴🏳️ DARCZYŃCA „KLUBU 100”
+            </h3>
+            <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 0.9rem;">
+              Dla mieszkańców, kibiców i lokalnych przedsiębiorców przekazujących regularne darowizny na rozwój Naprzodu Świbie i szkolenie dzieci.
+            </p>
+            <ul style="list-style: none; font-size: 0.8rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1.1rem;">
+              <li>✔️ Nazwisko lub logo w karuzeli „Grają z nami”</li>
+              <li>✔️ Imienna Karta Darczyńcy „Klubu 100”</li>
+              <li>✔️ Certyfikat Wsparcia i podziękowania na Facebooku</li>
+            </ul>
+          </div>
+          <button type="button" class="btn btn-outline" style="width: 100%; padding: 0.65rem; font-size: 0.8rem;" onclick="openEnrollModal('Pakiet: Darczyńca Klubu 100')">
+            Dołącz do Klubu 100 →
+          </button>
+        </div>
+
+        <div class="klub100-card featured-tier">
+          <div>
+            <span class="group-age-pill" style="background: var(--turf-bright); color: #090a0f;">NAJCZĘŚCIEJ WYBIERANY</span>
+            <h3 style="font-family: var(--font-display); font-size: 1.85rem; text-transform: uppercase; margin-bottom: 0.35rem; color: var(--turf-bright);">
+              🌟 DARCZYŃCA SZKÓŁKI & KIDS CUP
+            </h3>
+            <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 0.9rem;">
+              Wsparcie bezpośrednie dla najmłodszych grup (Skrzaty, Żaki, Orliki, Młodziki) oraz regionalnego turnieju <strong>Naprzód Świbie Kids Cup</strong>!
+            </p>
+            <ul style="list-style: none; font-size: 0.8rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1.1rem;">
+              <li>✔️ Tablica darczyńców przy boisku „Kęp Noł”</li>
+              <li>✔️ Ekspozycja logotypu / nazwiska na plakatach Kids Cup</li>
+              <li>✔️ Dedykowany post z podziękowaniami w Social Media</li>
+            </ul>
+          </div>
+          <button type="button" class="btn btn-primary" style="width: 100%; padding: 0.65rem; font-size: 0.8rem;" onclick="openEnrollModal('Pakiet: Darczyńca Szkółki & Kids Cup')">
+            Wesprzyj Szkółkę →
+          </button>
+        </div>
+
+        <div class="klub100-card">
+          <div>
+            <span class="group-age-pill">GŁÓWNY PARTNER</span>
+            <h3 style="font-family: var(--font-display); font-size: 1.85rem; text-transform: uppercase; margin-bottom: 0.35rem;">
+              🏆 STRATEGICZNY DARCZYŃCA KLUBU
+            </h3>
+            <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 0.9rem;">
+              Dla firm i instytucji pragnących mocno zaznaczyć swoją obecność w życiu sportowym gminy Wielowieś i Klasy B.
+            </p>
+            <ul style="list-style: none; font-size: 0.8rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 0.35rem; margin-bottom: 1.1rem;">
+              <li>✔️ Baner reklamowy na stadionie „Kęp Noł”</li>
+              <li>✔️ Logo na dresach lub strojach zawodników</li>
+              <li>✔️ Komunikaty spikera podczas domowych meczów ligowych</li>
+            </ul>
+          </div>
+          <button type="button" class="btn btn-outline" style="width: 100%; padding: 0.65rem; font-size: 0.8rem;" onclick="openEnrollModal('Pakiet: Strategiczny Darczyńca / Partner')">
+            Zostań Strategicznym Darczyńcą →
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 1 (TYLKO SENIORZY): CENTRUM MECZOWE & TABELA EUROTECH KLASY B
+       ======================================================================== -->
+  <section class="section club-only" id="centrum-meczowe">
+    <div class="container reveal">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">
+            <span class="pulse-dot"></span>
+            SYNCHRONIZACJA Z 90MINUT.PL • EUROTECH KLASA B 2026/2027 (GRUPA: ZABRZE)
+          </div>
+          <h2 class="section-title">TABELA LIGOWA & TERMINARZ SPOTKAŃ</h2>
+        </div>
+        <div class="sync-header-actions">
+          <div style="display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap;">
+            <span id="syncStatusBadge" style="font-size: 0.78rem; color: var(--turf-bright); background: rgba(163,230,53,0.12); border: 1px solid rgba(163,230,53,0.35); padding: 0.4rem 0.85rem; border-radius: 999px; font-weight: 700;">
+              ✅ Dane zgodne z 90minut.pl (Po 11. kolejce)
+            </span>
+            <button type="button" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.76rem;" onclick="syncLiveFrom90Minut(true)">
+              🔄 Odśwież z 90minut.pl
+            </button>
+          </div>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">
+            Źródło oficjalne: <a href="http://www.90minut.pl/liga/1/liga15135.html" target="_blank" rel="noopener noreferrer" style="color: #60a5fa; text-decoration: none;">90minut.pl/liga/1/liga15135.html ↗</a>
+          </span>
+        </div>
+      </div>
+
+      <div class="match-center-grid">
+        <!-- FULL 16-TEAM LEAGUE TABLE CARD -->
+        <div class="panel-card">
+          <div class="panel-card-title" style="flex-wrap: wrap; gap: 0.75rem;">
+            <span>📊 Eurotech Klasa B – Grupa Zabrze</span>
+            <div class="filter-tabs" style="gap: 0.35rem;">
+              <button type="button" class="filter-tab active" style="padding: 0.32rem 0.8rem; font-size: 0.74rem;" onclick="setTableMode('all', this)">Razem</button>
+              <button type="button" class="filter-tab" style="padding: 0.32rem 0.8rem; font-size: 0.74rem;" onclick="setTableMode('home', this)">Dom</button>
+              <button type="button" class="filter-tab" style="padding: 0.32rem 0.8rem; font-size: 0.74rem;" onclick="setTableMode('away', this)">Wyjazd</button>
+            </div>
+          </div>
+
+          <div class="table-scroll-wrap">
+            <table class="league-table" id="liveLeagueTable">
+              <thead>
+                <tr>
+                  <th>Poz.</th>
+                  <th>Drużyna (16 zespołów)</th>
+                  <th>M</th>
+                  <th>Pkt</th>
+                  <th>Z-R-P</th>
+                  <th>Bramki</th>
+                </tr>
+              </thead>
+              <tbody id="leagueTableBody">
+                <!-- Populated dynamically by app.js with all 16 teams from 90minut.pl -->
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: 1.1rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--text-muted);">
+            <span>Bilans u siebie na „Kęp Noł”: <strong>3 zwycięstwa, 1 remis, 1 porażka (bramki 13:9)</strong></span>
+            <a href="http://www.90minut.pl/skarb.php?id_klub=5257&id_sezon=109" target="_blank" rel="noopener noreferrer" style="color: var(--turf-bright); text-decoration: none; font-weight: 700;">Skarb klubu w 90minut.pl →</a>
+          </div>
+        </div>
+
+        <!-- CHRONOLOGICAL RESULTS, UPCOMING SCHEDULE & ROUND EXPLORER CARD -->
+        <div class="panel-card">
+          <div class="panel-card-title" style="flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.85rem;">
+            <span>⚡ Mecze Naprzodu Świbie</span>
+            <div class="filter-tabs" style="gap: 0.35rem;">
+              <button type="button" class="filter-tab active" style="padding: 0.32rem 0.8rem; font-size: 0.74rem;" id="tabPlayedMatches" onclick="setMatchesTab('played', this)">Rozegrane (1–11)</button>
+              <button type="button" class="filter-tab" style="padding: 0.32rem 0.8rem; font-size: 0.74rem;" id="tabUpcomingMatches" onclick="setMatchesTab('upcoming', this)">Terminarz (12–30)</button>
+              <button type="button" class="filter-tab" style="padding: 0.32rem 0.8rem; font-size: 0.74rem;" id="tabAllLeagueRound" onclick="setMatchesTab('round', this)">Cała Kolejka Ligi</button>
+            </div>
+          </div>
+
+          <!-- Sub-toolbar: Sort order for Swibie matches OR Round selector for full league -->
+          <div id="matchesSubToolbar" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; font-size: 0.78rem; color: var(--text-muted); background: rgba(9,10,15,0.55); padding: 0.55rem 0.85rem; border-radius: 10px;">
+            <span id="matchesSubInfo">Kolejność: <strong>Od najnowszego (Kolejka 11 → 1)</strong></span>
+            <button type="button" id="btnToggleSortOrder" onclick="togglePlayedSortOrder()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); color: #fff; padding: 0.28rem 0.7rem; border-radius: 6px; font-size: 0.74rem; font-weight: 700; cursor: pointer;">
+              ⇅ Odwróć kolejność (1 → 11)
+            </button>
+            <select id="roundSelectorDropdown" onchange="renderSelectedLeagueRound(this.value)" style="display: none; background: #090a0f; color: #fff; border: 1px solid var(--turf-bright); padding: 0.3rem 0.65rem; border-radius: 6px; font-size: 0.78rem; font-weight: 700;">
+              <!-- Options 1..30 populated by JS -->
+            </select>
+          </div>
+
+          <div class="match-list" id="matchesListContainer" style="max-height: 520px; overflow-y: auto; padding-right: 0.35rem;">
+            <!-- Populated dynamically by app.js with exact 90minut.pl matches & laczynaspilka.pl links -->
+          </div>
+
+          <div style="margin-top: 1.15rem; padding: 0.9rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem;">
+            <div>
+              <div style="font-weight: 800; font-size: 0.86rem;">Kliknij w wynik meczu, aby otworzyć oficjalny protokół PZPN!</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Bezpośrednie odnośniki do Łączy Nas Piłka oraz 90minut.pl</div>
+            </div>
+            <a href="http://www.90minut.pl/liga/1/liga15135.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding: 0.55rem 0.95rem; font-size: 0.75rem; white-space: nowrap;">
+              90minut.pl ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 2 (TYLKO SENIORZY): INTERAKTYWNA KADRA ZESPOŁU & BOISKO 1-4-4-2
+       ======================================================================== -->
+  <section class="section section--alt club-only" id="kadra">
+    <div class="container reveal">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">👕 BIAŁO-CZARNA KADRA • TRENER: KAMIL GIERA (UEFA C) • KIEROWNIK: RAFAŁ LEKSY</div>
+          <h2 class="section-title">KADRA SENIORÓW & INTERAKTYWNA WYJŚCIOWA 11</h2>
+          <div style="font-size: 0.85rem; color: var(--turf-bright); font-weight: 700; margin-top: 0.35rem;">
+            ⚽ Treningi: Wtorek, czwartek 19:15 – 20:45 (boisko w Świbiu)
+          </div>
+        </div>
+        <div class="filter-tabs" role="tablist" aria-label="Filtr pozycji zawodników">
+          <button type="button" class="filter-tab active" onclick="filterSquad('all', this)">Wszyscy (34)</button>
+          <button type="button" class="filter-tab" onclick="filterSquad('starter', this)">Wyjściowa 11</button>
+          <button type="button" class="filter-tab" onclick="filterSquad('bench', this)">Rezerwowi (21)</button>
+          <button type="button" class="filter-tab" onclick="filterSquad('Bramkarz', this)">Bramkarze (3)</button>
+          <button type="button" class="filter-tab" onclick="filterSquad('Obrońca', this)">Obrońcy (9)</button>
+          <button type="button" class="filter-tab" onclick="filterSquad('Pomocnik', this)">Pomocnicy (15)</button>
+          <button type="button" class="filter-tab" onclick="filterSquad('Napastnik', this)">Napastnicy (5)</button>
+          <button type="button" class="filter-tab" onclick="filterSquad('staff', this)">Sztab (2)</button>
+        </div>
+      </div>
+
+      <div class="squad-layout">
+        <!-- Interactive Tactical Pitch (1-4-4-2 with Live Substitutions) -->
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.75rem;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: var(--turf-bright);" id="pitchInstructionText">
+              ⚡ Ustawienie <strong>1-4-4-2</strong> — kliknij zawodnika na boisku lub przeciągnij z listy, aby dokonać zmiany!
+            </span>
+            <button type="button" onclick="resetStartingEleven()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.32rem 0.75rem; border-radius: 6px; font-size: 0.74rem; font-weight: 700; cursor: pointer;">
+              ↺ Domyślna Wyjściowa 11
+            </button>
+          </div>
+
+          <div class="tactical-pitch" id="tacticalPitch">
+            <div class="pitch-box-top"></div>
+            <div class="pitch-line-half"></div>
+            <div class="pitch-circle-center"></div>
+            <div class="pitch-box-bottom"></div>
+            <!-- Dynamic 1-4-4-2 nodes rendered by app.js -->
+            <div id="pitchNodesContainer"></div>
+          </div>
+
+          <!-- Coach & Formation Info Bar under pitch -->
+          <div style="margin-top: 0.85rem; padding: 0.85rem 1.1rem; border-radius: 12px; background: linear-gradient(90deg, rgba(245, 158, 11, 0.14), rgba(22, 25, 37, 0.9)); border: 1px solid rgba(245, 158, 11, 0.4); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.65rem;">
+              <span style="font-size: 1.35rem;">📋</span>
+              <div>
+                <div style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: #fbbf24; font-weight: 800;">Sztab Szkoleniowy • Treningi: Wt, Czw 19:15–20:45</div>
+                <div style="font-weight: 800; font-size: 0.96rem; color: #fff;">Trener: Kamil Giera (UEFA C) • Kierownik drużyny: Rafał Leksy</div>
+              </div>
+            </div>
+            <span style="font-size: 0.76rem; color: var(--text-muted);">Boisko w Świbiu (100m × 60m)</span>
+          </div>
+        </div>
+
+        <!-- Full Squad Cards Grid (Populated via JS with all 32 players + 2 staff members) -->
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; background: rgba(9,10,15,0.6); padding: 0.65rem 0.95rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.08);">
+            <span style="font-size: 0.84rem; color: #e2e8f0;" id="selectedPlayerBanner">
+              💡 <strong>Jak zmieniać skład?</strong> Kliknij pozycję na boisku po lewej, a potem zawodnika z listy (lub przeciągnij kartę na boisko).
+            </span>
+          </div>
+          <div class="players-grid" id="playersGrid"></div>
+        </div>
+      </div>
+
+      <!-- Callout Banner on Senior Page to Switch to Academy Portal -->
+      <div style="margin-top: 3rem; padding: 1.75rem 2rem; border-radius: 18px; background: linear-gradient(125deg, rgba(16, 185, 129, 0.14) 0%, rgba(15, 18, 28, 0.96) 100%); border: 1px solid rgba(163, 230, 53, 0.4); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.25rem;">
+        <div>
+          <span class="status-badge" style="margin-bottom: 0.5rem;">🌟 SZKÓŁKA PIŁKARSKA NAPRZÓD ŚWIBIE • NABÓR ROCZNIKÓW 2012–2022</span>
+          <h3 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; line-height: 1;">
+            SZUKASZ INFORMACJI O TRENINGACH DLA DZIECI I TURNIEJU KIDS CUP?
+          </h3>
+          <p style="font-size: 0.9rem; color: #cbd5e1; margin-top: 0.25rem;">
+            Przełącz się na dedykowaną stronę naszej <strong>Szkółki Piłkarskiej</strong> (Skrzaty, Żaki, Orliki, Młodziki, grafik treningów i kalkulator grupy).
+          </p>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="switchMode('academy'); window.scrollTo({top:0, behavior:'smooth'});">
+          🌟 Wejdź na Stronę Szkółki Piłkarskiej →
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       PORTAL SZKÓŁKI PIŁKARSKIEJ — CZĘŚĆ 1: JAK DOŁĄCZYĆ (4 KROKI) & WIRTUALNA TORBA
+       (WIDOCZNE WYŁĄCZNIE W TRYBIE SZKÓŁKI PIŁKARSKIEJ: .academy-only)
+       ======================================================================== -->
+  <section class="section academy-only" id="akademia-start">
+    <div class="container reveal">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">🚀 PIERWSZY TRENING BEZ STRESU • PRZEWODNIK DLA RODZICA</div>
+          <h2 class="section-title">JAK DOŁĄCZYĆ DO SZKÓŁKI? 4 PROSTE KROKI</h2>
+        </div>
+        <p class="section-subtitle">
+          Dołączenie do Akademii LKS Naprzód Świbie jest proste i nie wymaga żadnych opłat na starcie. Pierwsze <strong>2 treningi zapoznawcze są w 100% bezpłatne</strong>!
+        </p>
+      </div>
+
+      <!-- 4 STEPS GRID -->
+      <div class="steps-4-grid">
+        <div class="step-card">
+          <div>
+            <div class="step-number-badge">01</div>
+            <h3 style="font-family: var(--font-display); font-size: 1.75rem; text-transform: uppercase; margin-bottom: 0.45rem;">
+              ZGŁOSZENIE ONLINE LUB TELEFON
+            </h3>
+            <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Wypełnij krótki formularz na stronie lub przyjdź 15 minut przed treningiem swojej grupy wiekowej na boisko przy ul. Sportowej 51.
+            </p>
+          </div>
+          <span style="font-size: 0.76rem; color: var(--turf-bright); font-weight: 800;">⏱️ Zajmuje tylko 1 minutę</span>
+        </div>
+
+        <div class="step-card">
+          <div>
+            <div class="step-number-badge">02</div>
+            <h3 style="font-family: var(--font-display); font-size: 1.75rem; text-transform: uppercase; margin-bottom: 0.45rem;">
+              2 TRENINGI PRÓBNE GRATIS (0 ZŁ)
+            </h3>
+            <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Dziecko bierze udział w 2 pełnych zajęciach z rówieśnikami bez żadnych zobowiązań. Sprawdzacie atmosferę i podejście trenera!
+            </p>
+          </div>
+          <span style="font-size: 0.76rem; color: var(--turf-bright); font-weight: 800;">🎁 0 zł – bez umowy na start</span>
+        </div>
+
+        <div class="step-card">
+          <div>
+            <div class="step-number-badge">03</div>
+            <h3 style="font-family: var(--font-display); font-size: 1.75rem; text-transform: uppercase; margin-bottom: 0.45rem;">
+              DECYZJA & PROFIL PZPN
+            </h3>
+            <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Gdy dziecku się spodoba, wypełniasz deklarację członkowską, a trener pomaga w rejestracji w systemie PZPN (<em>Łączy Nas Piłka</em>).
+            </p>
+          </div>
+          <span style="font-size: 0.76rem; color: var(--turf-bright); font-weight: 800;">📋 Pomoc trenera krok po kroku</span>
+        </div>
+
+        <div class="step-card">
+          <div>
+            <div class="step-number-badge">04</div>
+            <h3 style="font-family: var(--font-display); font-size: 1.75rem; text-transform: uppercase; margin-bottom: 0.45rem;">
+              BIAŁO-CZARNY STRÓJ I TURNIEJE!
+            </h3>
+            <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Młody piłkarz otrzymuje wyprawkę treningową i reprezentuje Naprzód Świbie w turniejach ŚLZPN oraz festiwalu <strong>Kids Cup</strong>!
+            </p>
+          </div>
+          <span style="font-size: 0.76rem; color: var(--turf-bright); font-weight: 800;">🏆 Witamy w drużynie!</span>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE "SPAKUJ TORBĘ NA PIERWSZY TRENING" CHECKLIST -->
+      <div class="bag-checklist-box">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+          <div>
+            <span class="status-badge" style="margin-bottom: 0.5rem;">🎒 INTERAKTYWNA LISTA DLA RODZICA I DZIECKA</span>
+            <h3 style="font-family: var(--font-display); font-size: 2.1rem; text-transform: uppercase; line-height: 1;">
+              CO ZABRAĆ NA PIERWSZY TRENING? KLIKNIJ, ABY SPAKOWAĆ TORBĘ!
+            </h3>
+            <p style="font-size: 0.88rem; color: #cbd5e1; margin-top: 0.25rem;">
+              Klikaj kolejne kafelki wspólnie z dzieckiem przed wyjściem na trening na „Kęp Noł” lub halę:
+            </p>
+          </div>
+          <div style="text-align: right; min-width: 210px;">
+            <div style="font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; font-weight: 800;">Gotowość plecaka:</div>
+            <div style="font-family: var(--font-display); font-size: 2.2rem; color: var(--turf-bright); line-height: 1;" id="bagProgressText">2 / 5 (40%)</div>
+          </div>
+        </div>
+
+        <div class="bag-items-grid" id="bagChecklistGrid">
+          <button type="button" class="bag-item-btn packed" onclick="toggleBagItem(this)">
+            <span style="font-size: 1.65rem;">👟</span>
+            <div style="font-weight: 800; font-size: 0.9rem;">Obuwie sportowe</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Korki/lanki na trawę „Kęp Noł” lub halówki zimą</div>
+          </button>
+
+          <button type="button" class="bag-item-btn packed" onclick="toggleBagItem(this)">
+            <span style="font-size: 1.65rem;">👕</span>
+            <div style="font-weight: 800; font-size: 0.9rem;">Wygodny strój</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Koszulka, spodenki sportowe i getry/skarpety</div>
+          </button>
+
+          <button type="button" class="bag-item-btn" onclick="toggleBagItem(this)">
+            <span style="font-size: 1.65rem;">💧</span>
+            <div style="font-weight: 800; font-size: 0.9rem;">Woda niegazowana</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Minimum 0,5–0,7l podpisany bidon lub butelka</div>
+          </button>
+
+          <button type="button" class="bag-item-btn" onclick="toggleBagItem(this)">
+            <span style="font-size: 1.65rem;">🧥</span>
+            <div style="font-weight: 800; font-size: 0.9rem;">Bluza / Ortalion</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Na chłodniejsze popołudnia wiosną i jesienią</div>
+          </button>
+
+          <button type="button" class="bag-item-btn" onclick="toggleBagItem(this)">
+            <span style="font-size: 1.65rem;">😄</span>
+            <div style="font-weight: 800; font-size: 0.9rem;">Dużo uśmiechu!</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Resztę sprzętu i piłki zapewnia nasza Szkółka!</div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       PORTAL SZKÓŁKI PIŁKARSKIEJ — CZĘŚĆ 2: KALKULATOR WIEKU I 4 GRUPY SZKOLENIOWE
+       (WIDOCZNE WYŁĄCZNIE W TRYBIE SZKÓŁKI PIŁKARSKIEJ: .academy-only)
+       ======================================================================== -->
+  <section class="section section--alt academy-only" id="szkolka">
+    <div class="container reveal">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">🎯 PODZIAŁ NA ROCZNIKI (4–14 LAT) • KATEGORIE ŚLZPN</div>
+          <h2 class="section-title">GRUPY SZKOLENIOWE & KALKULATOR WIEKU</h2>
+        </div>
+        <p class="section-subtitle">
+          Każde dziecko trenuje w grupie dopasowanej do swojego wieku i etapu rozwoju biologicznego. Prowadzimy nabór chłopców i dziewczynek do 4 kategorii wiekowych!
+        </p>
+      </div>
+
+      <!-- INTERACTIVE AGE GROUP CALCULATOR FOR PARENTS -->
+      <div class="academy-finder-box">
+        <div>
+          <span class="status-badge" style="margin-bottom: 0.85rem;">🎯 KALKULATOR GRUPY DLA RODZICA</span>
+          <h3 style="font-family: var(--font-display); font-size: 2.4rem; line-height: 1; text-transform: uppercase; margin-bottom: 0.65rem;">
+            SPRAWDŹ, DO KTÓREJ GRUPY PASUJE TWOJE DZIECKO
+          </h3>
+          <p style="color: #cbd5e1; font-size: 0.95rem;">
+            Przesuń suwak z wiekiem dziecka (od 4 do 14 lat), aby od razu zobaczyć dedykowaną kategorię szkoleniową ŚLZPN, charakter zajęć oraz dni treningowe.
+          </p>
+
+          <div class="age-slider-wrap">
+            <div style="display: flex; justify-content: space-between; font-weight: 800; margin-bottom: 0.5rem;">
+              <span>Wiek zawodnika / zawodniczki:</span>
+              <span style="color: var(--turf-bright); font-size: 1.25rem;" id="ageSliderValueLabel">8 lat (Kategoria: Żak F1/F2)</span>
+            </div>
+            <input type="range" min="4" max="14" value="8" class="age-range-input" id="childAgeSlider" oninput="updateAcademyFinder(this.value)" />
+            <div style="display: flex; justify-content: space-between; font-size: 0.74rem; color: var(--text-muted); margin-top: 0.35rem;">
+              <span>4 lata (Skrzat)</span>
+              <span>7-8 lat (Żak)</span>
+              <span>9-10 lat (Orlik)</span>
+              <span>11-14 lat (Młodzik)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="age-recommendation-result" id="ageFinderResult">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem;">
+            <span class="group-age-pill" style="margin: 0;" id="recBadge">KATEGORIA: ŻAKI (F1 / F2) • 7–8 LAT</span>
+            <span style="font-size: 0.8rem; color: var(--turf-bright); font-weight: 700;">Nabór Otwarty ✅</span>
+          </div>
+          <h4 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 0.4rem;" id="recTitle">
+            GRUPA ŻAK – TECHNIKA, DRYBLING I RADOŚĆ Z GRY
+          </h4>
+          <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1rem;" id="recDesc">
+            Zajęcia ukierunkowane na czucie piłki, pojedynki 1v1, małe gry 4v4 / 5v5 oraz udział w bezwynikowych turniejach ŚLZPN i naszym domowym turnieju Naprzód Świbie Kids Cup.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between; padding-top: 0.85rem; border-top: 1px solid rgba(255,255,255,0.1);">
+            <span style="font-size: 0.82rem; color: var(--text-muted);" id="recSchedule">📍 Miejsce: Boisko „Kęp Noł” (ul. Sportowa 51, Świbie)</span>
+            <button type="button" class="btn btn-primary" style="padding: 0.65rem 1.25rem; font-size: 0.82rem;" onclick="openEnrollModal(document.getElementById('recBadge').innerText)">
+              Zapisz do tej grupy →
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 ACADEMY AGE GROUPS GRID -->
+      <div class="academy-groups-grid">
+        <div class="group-card" id="groupCardSkrzat">
+          <div>
+            <span class="group-age-pill">4 – 6 LAT • ROCZNIKI 2020–2022 (G1/G2)</span>
+            <h3 class="group-title">🐣 SKRZATY</h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Pierwszy krok na boisku! Bajkowe gry i zabawy ruchowe z piłką, ogólna koordynacja, równowaga i integracja z rówieśnikami w bezpiecznej atmosferze.
+            </p>
+          </div>
+          <ul style="list-style: none; font-size: 0.8rem; color: #cbd5e1; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.85rem; display: flex; flex-direction: column; gap: 0.35rem;">
+            <li>⚽ <strong>System gry:</strong> 3v3 na małe bramki</li>
+            <li>⏱️ <strong>Treningi:</strong> 2× w tygodniu po 60 minut</li>
+            <li>😊 <strong>Cel:</strong> 100% uśmiechu, smykałka ruchowa</li>
+            <li>🏆 <strong>Rozgrywki:</strong> Festiwale Skrzatów & Kids Cup</li>
+          </ul>
+        </div>
+
+        <div class="group-card active-group" id="groupCardZak">
+          <div>
+            <span class="group-age-pill">7 – 8 LAT • ROCZNIKI 2018–2019 (F1/F2)</span>
+            <h3 class="group-title">⚡ ŻAKI</h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Złoty wiek nauki prowadzenia piłki, zwodów 1v1, podań oraz strzałów. Regularne turnieje pod egidą Podokręgu Zabrze ŚLZPN bez presji wyniku.
+            </p>
+          </div>
+          <ul style="list-style: none; font-size: 0.8rem; color: #cbd5e1; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.85rem; display: flex; flex-direction: column; gap: 0.35rem;">
+            <li>⚽ <strong>System gry:</strong> 4v4 + bramkarz (5v5)</li>
+            <li>⏱️ <strong>Treningi:</strong> 2× w tygodniu po 75 minut</li>
+            <li>⚡ <strong>Cel:</strong> Drybling, odwaga i czucie piłki</li>
+            <li>🏆 <strong>Rozgrywki:</strong> Turnieje ŚLZPN & Kids Cup</li>
+          </ul>
+        </div>
+
+        <div class="group-card" id="groupCardOrlik">
+          <div>
+            <span class="group-age-pill">9 – 10 LAT • ROCZNIKI 2016–2017 (E1/E2)</span>
+            <h3 class="group-title">🦅 ORLIKI</h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Rozwój rozumienia gry zespołowej, współpraca w trójkątach, przyjęcie kierunkowe i mecze 7v7 w rozgrywkach Śląskiego Związku Piłki Nożnej.
+            </p>
+          </div>
+          <ul style="list-style: none; font-size: 0.8rem; color: #cbd5e1; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.85rem; display: flex; flex-direction: column; gap: 0.35rem;">
+            <li>⚽ <strong>System gry:</strong> 6v6 + bramkarz (7v7)</li>
+            <li>⏱️ <strong>Treningi:</strong> 3× w tygodniu po 90 minut</li>
+            <li>🧠 <strong>Cel:</strong> Technika użytkowa i gra zespołowa</li>
+            <li>🏆 <strong>Rozgrywki:</strong> Liga Orlika ŚLZPN Zabrze</li>
+          </ul>
+        </div>
+
+        <div class="group-card" id="groupCardMlodzik">
+          <div>
+            <span class="group-age-pill">11 – 14 LAT • ROCZNIKI 2012–2015 (D1/D2)</span>
+            <h3 class="group-title">🦁 MŁODZIKI</h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Wprowadzenie do piłki 9-osobowej i 11-osobowej, fundamenty taktyczne, kształtowanie motoryki oraz budowanie boiskowego charakteru!
+            </p>
+          </div>
+          <ul style="list-style: none; font-size: 0.8rem; color: #cbd5e1; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.85rem; display: flex; flex-direction: column; gap: 0.35rem;">
+            <li>⚽ <strong>System gry:</strong> 9v9 / 11v11 na dużej płycie</li>
+            <li>⏱️ <strong>Treningi:</strong> 3× w tygodniu po 90 minut</li>
+            <li>💪 <strong>Cel:</strong> Taktyka, motoryka i charakter</li>
+            <li>🏆 <strong>Rozgrywki:</strong> Rozgrywki ligowe ŚLZPN</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       PORTAL SZKÓŁKI PIŁKARSKIEJ — CZĘŚĆ 3: METODOLOGIA SZKOLENIA & ŚCIEŻKA ROZWOJU
+       (WIDOCZNE WYŁĄCZNIE W TRYBIE SZKÓŁKI PIŁKARSKIEJ: .academy-only)
+       ======================================================================== -->
+  <section class="section academy-only" id="akademia-metodologia">
+    <div class="container reveal">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">📘 PROGRAM SZKOLENIA ZGODNY Z WYTYCZNYMI PZPN</div>
+          <h2 class="section-title">METODOLOGIA & ŚCIEŻKA ROZWOJU MŁODEGO PIŁKARZA</h2>
+        </div>
+        <p class="section-subtitle">
+          W Szkółce LKS Naprzód Świbie stawiamy na długofalowy rozwój dziecka, a nie przypadkowy wynik najbliższego meczu. Zobacz, jak krok po kroku szkolimy młodych zawodników!
+        </p>
+      </div>
+
+      <!-- 4-STAGE PLAYER DEVELOPMENT PATHWAY -->
+      <div class="pathway-grid">
+        <div class="pathway-card">
+          <div style="font-family: var(--font-display); font-size: 1.8rem; color: var(--turf-bright); line-height: 1; margin-bottom: 0.35rem;">
+            ETAP 1 • WIEK 4–6 LAT
+          </div>
+          <div style="font-weight: 800; font-size: 1.05rem; margin-bottom: 0.5rem;">Odkrywanie & Koordynacja</div>
+          <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 0.85rem;">
+            Dziecko zakochuje się w ruchu i piłce poprzez gry fabularne, berki, tory przeszkód i zabawy orientacyjno-porządkowe.
+          </p>
+          <div style="font-size: 0.76rem; color: #e2e8f0; background: rgba(255,255,255,0.05); padding: 0.5rem 0.75rem; border-radius: 8px;">
+            🎯 Priorytet: <strong>Zwinność, równowaga i 1 ball = 1 dziecko</strong>
+          </div>
+        </div>
+
+        <div class="pathway-card">
+          <div style="font-family: var(--font-display); font-size: 1.8rem; color: var(--turf-bright); line-height: 1; margin-bottom: 0.35rem;">
+            ETAP 2 • WIEK 7–8 LAT
+          </div>
+          <div style="font-weight: 800; font-size: 1.05rem; margin-bottom: 0.5rem;">Złoty Wiek Techniki & 1v1</div>
+          <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 0.85rem;">
+            Intensywna nauka prowadzenia piłki obiema nogami, zwodów, nawrotów z piłką i odwagi w pojedynkach 1 na 1.
+          </p>
+          <div style="font-size: 0.76rem; color: #e2e8f0; background: rgba(255,255,255,0.05); padding: 0.5rem 0.75rem; border-radius: 8px;">
+            🎯 Priorytet: <strong>Swoboda dryblingu i celny strzał</strong>
+          </div>
+        </div>
+
+        <div class="pathway-card">
+          <div style="font-family: var(--font-display); font-size: 1.8rem; color: var(--turf-bright); line-height: 1; margin-bottom: 0.35rem;">
+            ETAP 3 • WIEK 9–10 LAT
+          </div>
+          <div style="font-weight: 800; font-size: 1.05rem; margin-bottom: 0.5rem;">Małe Gry & Współpraca</div>
+          <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 0.85rem;">
+            Przejście od „ja i piłka” do „ja, partner i piłka”. Nauka gry w przewadze 2v1, 3v2, podania i wyjścia na wolną pozycję.
+          </p>
+          <div style="font-size: 0.76rem; color: #e2e8f0; background: rgba(255,255,255,0.05); padding: 0.5rem 0.75rem; border-radius: 8px;">
+            🎯 Priorytet: <strong>Decyzyjność i gra zespołowa 7v7</strong>
+          </div>
+        </div>
+
+        <div class="pathway-card">
+          <div style="font-family: var(--font-display); font-size: 1.8rem; color: var(--turf-bright); line-height: 1; margin-bottom: 0.35rem;">
+            ETAP 4 • WIEK 11–14 LAT
+          </div>
+          <div style="font-weight: 800; font-size: 1.05rem; margin-bottom: 0.5rem;">Taktyka & Motoryka</div>
+          <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 0.85rem;">
+            Zrozumienie faz gry (atakowanie, bronienie, fazy przejściowe), kształtowanie szybkości i wytrzymałości na dużym boisku.
+          </p>
+          <div style="font-size: 0.76rem; color: #e2e8f0; background: rgba(255,255,255,0.05); padding: 0.5rem 0.75rem; border-radius: 8px;">
+            🎯 Priorytet: <strong>Kompletny młody zawodnik 9v9 / 11v11</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 PILLARS OF NAPRZÓD ŚWIBIE ACADEMY -->
+      <div class="pillars-6-grid">
+        <div class="pillar-box">
+          <div style="color: var(--turf-bright); font-weight: 800; font-size: 0.95rem; margin-bottom: 0.35rem;">😊 1. Rozwój ważniejszy niż tabela</div>
+          <p style="font-size: 0.82rem; color: var(--text-muted);">W grupach dziecięcych nie wywieramy presji na wynik. Chwalimy odważne próby dryblingu, kreatywność i zaangażowanie.</p>
+        </div>
+        <div class="pillar-box">
+          <div style="color: var(--turf-bright); font-weight: 800; font-size: 0.95rem; margin-bottom: 0.35rem;">⏱️ 2. Równy czas gry dla każdego</div>
+          <p style="font-size: 0.82rem; color: var(--text-muted);">Podczas turniejów ŚLZPN i Kids Cup każde powołane dziecko spędza na murawie porównywalną liczbę minut.</p>
+        </div>
+        <div class="pillar-box">
+          <div style="color: var(--turf-bright); font-weight: 800; font-size: 0.95rem; margin-bottom: 0.35rem;">🤝 3. Wychowanie i Fair Play</div>
+          <p style="font-size: 0.82rem; color: var(--text-muted);">Uczymy punktualności, dbania o sprzęt, szacunku do kolegów z drużyny, rywali oraz sędziego.</p>
+        </div>
+        <div class="pillar-box">
+          <div style="color: var(--turf-bright); font-weight: 800; font-size: 0.95rem; margin-bottom: 0.35rem;">🏃 4. Zdrowie z dala od smartfonów</div>
+          <p style="font-size: 0.82rem; color: var(--text-muted);">Aktywność na świeżym powietrzu na murawie „Kęp Noł” buduje odporność, prawidłową postawę ciała i relacje rówieśnicze.</p>
+        </div>
+        <div class="pillar-box">
+          <div style="color: var(--turf-bright); font-weight: 800; font-size: 0.95rem; margin-bottom: 0.35rem;">👏 5. Pozytywny doping rodziców</div>
+          <p style="font-size: 0.82rem; color: var(--text-muted);">Tworzymy kulturę wspierających trybun: rodzice nagradzają brawami każdą akcję, zostawiając podpowiedzi taktyczne trenerowi.</p>
+        </div>
+        <div class="pillar-box">
+          <div style="color: var(--turf-bright); font-weight: 800; font-size: 0.95rem; margin-bottom: 0.35rem;">🛡️ 6. Certyfikowane bezpieczeństwo</div>
+          <p style="font-size: 0.82rem; color: var(--text-muted);">Stosujemy pełne Standardy Ochrony Małoletnich PZPN, bezpieczny atestowany sprzęt treningowy i opiekę wykwalifikowanej kadry.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       PORTAL SZKÓŁKI PIŁKARSKIEJ — CZĘŚĆ 4: SZTAB TRENERSKI I KOORDYNATORZY AKADEMII
+       (WIDOCZNE WYŁĄCZNIE W TRYBIE SZKÓŁKI PIŁKARSKIEJ: .academy-only)
+       ======================================================================== -->
+  <section class="section section--alt academy-only" id="akademia-trenerzy">
+    <div class="container reveal">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">👨‍🏫 LICENCJONOWANI TRENERZY • PODEJŚCIE PEDAGOGICZNE</div>
+          <h2 class="section-title">KTO SZKOLI TWOJE DZIECKO? SZTAB SZKÓŁKI</h2>
+        </div>
+        <p class="section-subtitle">
+          Nasi trenerzy łączą wiedzę piłkarską zdobytą na kursach PZPN/UEFA z cierpliwością i pasją do pracy z dziećmi.
+        </p>
+      </div>
+
+      <div class="coaches-grid">
+        <div class="coach-card">
+          <div>
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+              <div class="coach-avatar-badge" style="background: rgba(163,230,53,0.18); color: var(--turf-bright); font-weight: 800;">UEFA B</div>
+              <div>
+                <span class="group-age-pill" style="margin-bottom: 0.25rem;">ROCZNIKI 2017/2018 ORAZ 2019 I MŁODSI</span>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #fff;">Mateusz Jarząb</h3>
+                <div style="font-size: 0.78rem; color: var(--turf-bright); font-weight: 700;">Trener (licencja UEFA B) • Asystent: Rafał Leksy</div>
+              </div>
+            </div>
+            <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Szkolenie najmłodszych adeptów piłki nożnej (grupy Skrzatów i Żaków). Gry koordynacyjne, oswajanie z piłką, pierwsze mecze i bezstresowa zabawa.
+            </p>
+            <ul style="list-style: none; font-size: 0.8rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.25rem;">
+              <li>🐣 <strong>Roczniki 2019 i młodsi:</strong> środa, piątek 16:45 – 17:45</li>
+              <li>⚡ <strong>Roczniki 2017/2018:</strong> środa, piątek 17:45 – 19:00</li>
+              <li>📍 Boisko „Kęp Noł” (do końca listopada)</li>
+            </ul>
+          </div>
+          <button type="button" class="btn btn-outline" style="width: 100%; font-size: 0.8rem;" onclick="openEnrollModal('Kontakt z Trenerem Mateuszem Jarząbem (Roczniki 2017–2019 i młodsi)')">
+            ✉️ Zapisz do grup 2017–2019 i młodszych
+          </button>
+        </div>
+
+        <div class="coach-card">
+          <div>
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+              <div class="coach-avatar-badge" style="background: rgba(56,189,248,0.18); color: #38bdf8; font-weight: 800;">UEFA C</div>
+              <div>
+                <span class="group-age-pill" style="margin-bottom: 0.25rem;">ROCZNIKI 2013–2016</span>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #fff;">Kamil Giera & Rafał Leksy</h3>
+                <div style="font-size: 0.78rem; color: #38bdf8; font-weight: 700;">Trener: Kamil Giera (UEFA C) • Asystent: Rafał Leksy</div>
+              </div>
+            </div>
+            <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Zespoły Orlików i Młodzików. Doskonalenie techniki użytkowej, współpraca w małych grach, mecze ligowe ŚLZPN i festiwal Naprzód Świbie Kids Cup.
+            </p>
+            <ul style="list-style: none; font-size: 0.8rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.25rem;">
+              <li>🦅 <strong>Roczniki 2013–2016:</strong> wtorek, czwartek 17:30 – 19:00</li>
+              <li>📍 Boisko „Kęp Noł” (do końca listopada)</li>
+              <li>👔 <strong>Asystent trenera:</strong> Rafał Leksy</li>
+            </ul>
+          </div>
+          <button type="button" class="btn btn-outline" style="width: 100%; font-size: 0.8rem;" onclick="openEnrollModal('Kontakt z Trenerem Kamilem Gierą (Roczniki 2013–2016)')">
+            ✉️ Zapisz do grup 2013–2016
+          </button>
+        </div>
+
+        <div class="coach-card featured-coach">
+          <div>
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+              <div class="coach-avatar-badge coach-avatar-logo">
+                <img src="assets/logo-szkolka.png" alt="Logo Szkółki Piłkarskiej Naprzód Świbie" />
+              </div>
+              <div>
+                <span class="group-age-pill" style="margin-bottom: 0.25rem; background: var(--turf-bright); color: #090a0f;">KOORDYNACJA SZKÓŁKI</span>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #fff;">Tomasz Janoszka</h3>
+                <div style="font-size: 0.78rem; color: var(--turf-bright); font-weight: 700;">Koordynator Szkółki Piłkarskiej</div>
+              </div>
+            </div>
+            <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Punkt kontaktowy dla rodziców: zapisy, deklaracje członkowskie, terminy zajęć oraz organizacja turnieju <strong>Naprzód Świbie Kids Cup</strong>.
+            </p>
+            <ul style="list-style: none; font-size: 0.8rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.25rem;">
+              <li>📞 <strong>Telefon bezpośredni:</strong> <a href="tel:+48511956923" style="color: var(--turf-bright); font-weight: 800; text-decoration: none;">511 956 923</a></li>
+              <li>✉️ <strong>E-mail:</strong> <a href="mailto:naprzodswibie@o2.pl" style="color: var(--turf-bright); font-weight: 800; text-decoration: none;">naprzodswibie@o2.pl</a></li>
+              <li>🎁 <strong>Pierwsze 2 treningi są całkowicie bezpłatne (0 zł)!</strong></li>
+              <li>🎉 <strong>Do końca 2026 roku brak składki członkowskiej!</strong></li>
+            </ul>
+          </div>
+          <a href="tel:+48511956923" class="btn btn-primary" style="width: 100%; font-size: 0.8rem; text-align: center; text-decoration: none;">
+            📞 Zadzwoń do Koordynatora: 511 956 923
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       PORTAL SZKÓŁKI PIŁKARSKIEJ — CZĘŚĆ 5: TURNIEJ KIDS CUP & KALENDARZ CAŁOROCZNY
+       (WIDOCZNE WYŁĄCZNIE W TRYBIE SZKÓŁKI PIŁKARSKIEJ: .academy-only)
+       ======================================================================== -->
+  <section class="section academy-only" id="akademia-kidscup">
+    <div class="container reveal">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">🏆 FESTIWAL PIŁKARSKI W ŚWIBIU • CAŁY ROK EMOCJI</div>
+          <h2 class="section-title">TURNIEJ „NAPRZÓD ŚWIBIE KIDS CUP” & KALENDARZ</h2>
+        </div>
+        <p class="section-subtitle">
+          Nasza Szkółka słynie w całym powiecie gliwickim i podokręgu zabrzańskim z organizacji wielkiego festiwalu piłkarskiego <strong>Naprzód Świbie Kids Cup</strong>!
+        </p>
+      </div>
+
+      <!-- TURNiej NAPRZÓD ŚWIBIE KIDS CUP SHOWCASE -->
+      <div class="kids-cup-banner" style="margin-top: 0;">
+        <div>
+          <span class="status-badge" style="margin-bottom: 1rem;">🏆 DUMA NASZEJ SZKÓŁKI • WYDARZENIE CYKLICZNE</span>
+          <div style="display: flex; align-items: center; gap: 1.15rem; flex-wrap: wrap; margin-bottom: 1rem;">
+            <img src="assets/logo-szkolka.png" alt="Logo Szkółki Piłkarskiej LKS Naprzód Świbie" class="kidscup-banner-logo" />
+            <h3 style="font-family: var(--font-display); font-size: clamp(2.4rem, 4vw, 3.6rem); line-height: 0.95; text-transform: uppercase; margin: 0;">
+              TURNIEJ PIŁKARSKI <br />
+              <span style="color: var(--turf-bright);">NAPRZÓD ŚWIBIE KIDS CUP</span>
+            </h3>
+          </div>
+          <p style="color: #e2e8f0; font-size: 1rem; margin-bottom: 1.5rem; max-width: 620px;">
+            Cykliczny festiwal piłkarski na boisku przy ul. Sportowej 51 w Świbiu! Co roku gościmy dziesiątki drużyn dziecięcych ze Śląska i Opolszczyzny w kategoriach Skrzat, Żak, Orlik i Młodzik. Pamiątkowe medale dla każdego uczestnika, strefa gastronomiczna rodziców i niezapomniane emocje!
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+            <button type="button" class="btn btn-primary" onclick="openEnrollModal('Zgłoszenie drużyny na turniej Naprzód Świbie Kids Cup')">
+              🏆 Zgłoś Drużynę na Kolejną Edycję Kids Cup
+            </button>
+            <a href="https://www.facebook.com/share/19Av1ne13c/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+              📸 Zobacz fotorelacje na Facebooku
+            </a>
+          </div>
+        </div>
+        <div style="background: rgba(9, 10, 15, 0.88); border: 1px solid rgba(255,255,255,0.16); border-radius: 16px; padding: 1.75rem;">
+          <h4 style="font-family: var(--font-display); font-size: 1.6rem; color: var(--turf-bright); text-transform: uppercase; margin-bottom: 0.85rem;">
+            CO WYRÓŻNIA NASZ TURNIEJ KIDS CUP?
+          </h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.88rem; color: #cbd5e1;">
+            <li>🥇 <strong>Złoty medal dla każdego dziecka</strong> – doceniamy wysiłek wszystkich młodych sportowców</li>
+            <li>🏟️ <strong>Gra na kilku boiskach równocześnie</strong> na przygotowanej murawie 100×60m</li>
+            <li>🍰 <strong>Strefa Rodzinna i Gastronomiczna</strong> przygotowana wspólnie z rodzicami ze Świbia</li>
+            <li>🔊 <strong>Profesjonalna oprawa spikerska</strong> i nagłośnienie jak na wielkim stadionie</li>
+            <li>🤝 <strong>Integracja akademii</strong> z powiatu gliwickiego, tarnogórskiego, Zabrza i Opolszczyzny</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4 SEASONS OF ACADEMY CALENDAR -->
+      <div class="calendar-seasons-grid">
+        <div class="season-card">
+          <div style="color: var(--turf-bright); font-family: var(--font-display); font-size: 1.65rem; line-height: 1; margin-bottom: 0.35rem;">
+            🌱 WIOSNA (KWIECIEŃ – CZERWIEC)
+          </div>
+          <div style="font-weight: 800; font-size: 0.95rem; margin-bottom: 0.45rem;">Runda Wiosenna ŚLZPN & Kids Cup</div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">
+            Wyjście na naturalną murawę „Kęp Noł”, cotygodniowe turnieje i mecze ligowe w Podokręgu Zabrze oraz wielki letni festiwal <strong>Naprzód Świbie Kids Cup</strong>!
+          </p>
+        </div>
+
+        <div class="season-card">
+          <div style="color: #fbbf24; font-family: var(--font-display); font-size: 1.65rem; line-height: 1; margin-bottom: 0.35rem;">
+            ☀️ LATO (LIPIEC – SIERPIEŃ)
+          </div>
+          <div style="font-weight: 800; font-size: 0.95rem; margin-bottom: 0.45rem;">Wakacyjne Treningi & Integracja</div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">
+            Zajęcia techniczne na słonecznej murawie, gry kontrolne z zaprzyjaźnionymi szkółkami, piknik rodzinny oraz sierpniowy nabór nowych roczników.
+          </p>
+        </div>
+
+        <div class="season-card">
+          <div style="color: #38bdf8; font-family: var(--font-display); font-size: 1.65rem; line-height: 1; margin-bottom: 0.35rem;">
+            🍂 JESIEŃ (WRZESIEŃ – LISTOPAD)
+          </div>
+          <div style="font-weight: 800; font-size: 0.95rem; margin-bottom: 0.45rem;">Runda Jesienna & Pasowanie</div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">
+            Start nowego sezonu szkoleniowego po pierwszym dzwonku! Turnieje jesienne ŚLZPN dla Żaków, Orlików i Młodzików oraz przyjęcie nowych Skrzatów.
+          </p>
+        </div>
+
+        <div class="season-card">
+          <div style="color: #c084fc; font-family: var(--font-display); font-size: 1.65rem; line-height: 1; margin-bottom: 0.35rem;">
+            ❄️ ZIMA (GRUDZIEŃ – MARZEC)
+          </div>
+          <div style="font-weight: 800; font-size: 0.95rem; margin-bottom: 0.45rem;">Hala, Turniej Mikołajkowy & Sparingi</div>
+          <p style="font-size: 0.8rem; color: var(--text-muted);">
+            Przenosimy się do ciepłej hali sportowej! Zimowe turnieje halowe, Mikołajkowy Mecz Dzieci kontra Rodzice oraz halowa edycja <strong>Kids Cup</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       PORTAL SZKÓŁKI PIŁKARSKIEJ — CZĘŚĆ 6: SKŁADKI (0 ZŁ DO KOŃCA 2026) & DAROWIZNY
+       (WIDOCZNE WYŁĄCZNIE W TRYBIE SZKÓŁKI PIŁKARSKIEJ: .academy-only)
+       ======================================================================== -->
+  <section class="section section--alt academy-only" id="akademia-skladki">
+    <div class="container reveal">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">💎 PRZEJRZYSTE ZASADY DLA RODZICÓW • 0 ZŁ SKŁADKI CZŁONKOWSKIEJ</div>
+          <h2 class="section-title">SKŁADKI CZŁONKOWSKIE & DOBROWOLNE DAROWIZNY</h2>
+        </div>
+        <p class="section-subtitle">
+          <strong>Do końca 2026 roku nie pobieramy składki członkowskiej</strong> za udział dzieci w treningach Szkółki LKS Naprzód Świbie. Chętni rodzice, darczyńcy i sympatycy mogą przekazywać dobrowolne darowizny na cele statutowe klubu.
+        </p>
+      </div>
+
+      <div class="tuition-grid">
+        <div class="tuition-card">
+          <div>
+            <span class="group-age-pill">BEZPŁATNY UDZIAŁ W ZAJĘCIACH</span>
+            <h3 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 0.25rem;">
+              SKŁADKA CZŁONKOWSKA
+            </h3>
+            <div style="font-family: var(--font-display); font-size: 2.8rem; color: var(--turf-bright); line-height: 1; margin-bottom: 0.75rem;">
+              0 ZŁ <span style="font-size: 1.1rem; color: var(--text-muted);">/ DO KOŃCA 2026 ROKU</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Wszystkie dzieci trenujące w grupach Skrzatów, Żaków, Orlików i Młodzików są zwolnione ze składek członkowskich do końca 2026 roku.
+            </p>
+            <ul style="list-style: none; font-size: 0.82rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.25rem;">
+              <li>✔️ 0 zł opłaty miesięcznej za zajęcia</li>
+              <li>✔️ Bezpłatne treningi 2 razy w tygodniu</li>
+              <li>✔️ Udział w meczach, turniejach i festiwalu Kids Cup</li>
+              <li>✔️ Brak jakichkolwiek umów wiążących</li>
+            </ul>
+          </div>
+          <button type="button" class="btn btn-primary" style="width: 100%;" onclick="openEnrollModal('Zapisy do Szkółki Piłkarskiej (Brak składki członkowskiej do końca 2026)')">
+            📝 Zapisz Dziecko (0 zł) →
+          </button>
+        </div>
+
+        <div class="tuition-card highlight-tuition">
+          <div>
+            <span class="group-age-pill" style="background: var(--turf-bright); color: #090a0f;">DLA CHĘTNYCH • STATUT KLUBU</span>
+            <h3 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 0.25rem;">
+              DAROWIZNY STATUTOWE
+            </h3>
+            <div style="font-family: var(--font-display); font-size: 2.2rem; color: #fff; line-height: 1.05; margin-bottom: 0.75rem;">
+              DOWOLNA WPŁATA <span style="color: var(--turf-bright); display: block; font-size: 1.2rem;">100% NA SPRZĘT I BOISKO</span>
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.9rem;">
+              Chętni rodzice i sympatycy mogą przekazywać darowizny na cele statutowe klubu na rachunek bankowy lub poprzez zbiórkę na Zrzutka.pl:
+            </p>
+            <div style="background: rgba(9,10,15,0.7); border: 1px dashed var(--turf-bright); border-radius: 10px; padding: 0.75rem 0.9rem; margin-bottom: 1rem;">
+              <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">Nr rachunku bankowego:</div>
+              <div style="font-family: var(--font-display); font-size: 1.25rem; color: #fff; letter-spacing: 0.03em;">18 2490 0005 0000 4500 3814 1133</div>
+              <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.2rem;">Tytuł: <em>Darowizna na cele statutowe</em></div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button type="button" class="btn btn-outline" style="flex: 1; font-size: 0.8rem; padding: 0.6rem;" onclick="copyBankAccount()">
+              📋 Kopiuj konto
+            </button>
+            <a href="https://zrzutka.pl/3bsndj" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex: 1; font-size: 0.8rem; padding: 0.6rem; text-align: center; text-decoration: none;">
+              💛 Zrzutka.pl ↗
+            </a>
+          </div>
+        </div>
+
+        <div class="tuition-card">
+          <div>
+            <span class="group-age-pill">WSPARCIE BEZ KOSZTÓW</span>
+            <h3 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; margin-bottom: 0.25rem;">
+              1,5% PODATKU (OPP)
+            </h3>
+            <div style="font-family: var(--font-display); font-size: 2.8rem; color: #fbbf24; line-height: 1; margin-bottom: 0.75rem;">
+              KRS 0000294473
+            </div>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Przekaż 1,5% podatku dochodowego w dorocznym rozliczeniu PIT. Środki przeznaczamy w całości na dzieci trenujące w naszej Szkółce!
+            </p>
+            <ul style="list-style: none; font-size: 0.82rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.25rem;">
+              <li>✔️ Nic Cię to nie kosztuje (odpis z PIT)</li>
+              <li>✔️ Zakup piłek, pachołków, narzutek i bramek</li>
+              <li>✔️ Organizacja bezpłatnego turnieju Kids Cup</li>
+            </ul>
+          </div>
+          <button type="button" class="btn btn-outline" style="width: 100%;" onclick="copyKrsNumber()">
+            📋 Kopiuj KRS: 0000294473
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       PORTAL SZKÓŁKI PIŁKARSKIEJ — CZĘŚĆ 7: GRAFIK TRENINGÓW SZKÓŁKI & STREFA RODZICA
+       (WIDOCZNE WYŁĄCZNIE W TRYBIE SZKÓŁKI PIŁKARSKIEJ: .academy-only)
+       ======================================================================== -->
+  <section class="section academy-only" id="akademia-harmonogram">
+    <div class="container reveal">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">📅 GRAFIK ZAJĘĆ GRUP MŁODZIEŻOWYCH & DOKUMENTY</div>
+          <h2 class="section-title">HARMONOGRAM TRENINGÓW & NIEZBĘDNIK RODZICA</h2>
+        </div>
+        <p class="section-subtitle">
+          Sprawdź dni i godziny treningów poszczególnych roczników na boisku „Kęp Noł” (wiosna/jesień) oraz w hali sportowej (zima), a także pobierz dokumenty klubowe.
+        </p>
+      </div>
+
+      <div class="parent-zone-grid" style="margin-top: 0;">
+        <!-- Left: Weekly Training Schedule (Youth Groups ONLY!) -->
+        <div class="panel-card">
+          <div class="panel-card-title" style="flex-wrap: wrap; gap: 0.6rem;">
+            <span>📅 Harmonogram Treningów Szkółki</span>
+            <div class="filter-tabs" style="gap: 0.35rem;">
+              <button type="button" class="filter-tab active" style="padding: 0.3rem 0.75rem; font-size: 0.72rem;" onclick="setScheduleSeason('outdoor', this)">☀️ Boisko „Kęp Noł”</button>
+              <button type="button" class="filter-tab" style="padding: 0.3rem 0.75rem; font-size: 0.72rem;" onclick="setScheduleSeason('winter', this)">❄️ Zima (Hala / Orlik)</button>
+            </div>
+          </div>
+
+          <div style="overflow-x: auto;">
+            <table class="schedule-table" id="trainingScheduleTable">
+              <thead>
+                <tr>
+                  <th>Grupa / Rocznik</th>
+                  <th>Dni treningowe</th>
+                  <th>Godziny</th>
+                  <th>Obiekt</th>
+                </tr>
+              </thead>
+              <tbody id="trainingScheduleBody">
+                <!-- Populated dynamically by app.js with ONLY the 4 youth groups -->
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: 1.15rem; padding: 0.85rem 1rem; border-radius: 12px; background: rgba(163, 230, 53, 0.08); border: 1px solid rgba(163, 230, 53, 0.3); font-size: 0.8rem; color: #e2e8f0;">
+            💡 <strong>Wskazówka dla rodziców:</strong> Prosimy o przybycie na obiekt ok. <strong>10–15 minut przed rozpoczęciem zajęć</strong>, aby dzieci mogły spokojnie przebrać obuwie w szatni i punktualnie wyjść z trenerem na murawę.
+          </div>
+        </div>
+
+        <!-- Right: Expanded Parent FAQ Accordion & Downloadable Documents -->
+        <div class="panel-card">
+          <div class="panel-card-title">
+            <span>📂 Niezbędnik Rodzica: FAQ & Dokumenty</span>
+            <span style="font-size: 0.74rem; color: var(--turf-bright); font-family: var(--font-sans);">Strefa Rodzica</span>
+          </div>
+
+          <div id="parentFaqContainer">
+            <div class="faq-item is-open">
+              <button type="button" class="faq-question" onclick="toggleFaqItem(this)">
+                <span>1. Jak zapisać dziecko do Szkółki Naprzód Świbie?</span>
+                <span>▾</span>
+              </button>
+              <div class="faq-answer">
+                Wystarczy zgłosić dziecko przez formularz na stronie lub przyjść bezpośrednio 15 minut przed treningiem danej grupy wiekowej na boisko przy ul. Sportowej 51 w Świbiu. Pierwsze 2 treningi są całkowicie bezpłatne!
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-question" onclick="toggleFaqItem(this)">
+                <span>2. Czy dziewczynki również mogą trenować w grupach dziecięcych?</span>
+                <span>▾</span>
+              </button>
+              <div class="faq-answer">
+                Oczywiście! Nabór do naszych grup Skrzatów, Żaków, Orlików i Młodzików jest otwarty zarówno dla chłopców, jak i dziewczynek.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-question" onclick="toggleFaqItem(this)">
+                <span>3. Czy moje dziecko poradzi sobie, jeśli nigdy wcześniej nie trenowało?</span>
+                <span>▾</span>
+              </button>
+              <div class="faq-answer">
+                Tak! Nasza szkółka jest otwarta dla każdego dziecka – bez testów selekcyjnych. Trenerzy indywidualizują ćwiczenia tak, aby zarówno początkujący, jak i bardziej zaawansowani czerpali radość z treningu.
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-question" onclick="toggleFaqItem(this)">
+                <span>4. Czy wymagane są badania lekarskie i profil PZPN?</span>
+                <span>▾</span>
+              </button>
+              <div class="faq-answer">
+                Na pierwszych treningach próbnych wystarczy zgoda rodzica. Do udziału w oficjalnych turniejach ŚLZPN potrzebne będzie zaświadczenie od lekarza POZ (rodzinnego) lub sportowego oraz bezpłatne konto w portalu <em>Łączy Nas Piłka</em> (pomagamy w założeniu!).
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button type="button" class="faq-question" onclick="toggleFaqItem(this)">
+                <span>5. Gdzie odbywają się treningi zimą i podczas złej pogody?</span>
+                <span>▾</span>
+              </button>
+              <div class="faq-answer">
+                W sezonie jesienno-zimowym (listopad – marzec) oraz w przypadku ulewnego deszczu zajęcia przenoszone są do hali sportowej oraz na oświetlone boiska ze sztuczną nawierzchnią w gminie Wielowieś.
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 1.1rem;">
+            <div style="font-size: 0.76rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.5rem;">
+              📄 Dokumenty Szkółki i Standardy PZPN (Podgląd / Druk):
+            </div>
+            <div class="docs-download-grid">
+              <a href="assets/deklaracja-czlonkowska.pdf" download="Deklaracja_uczestnictwa_w_LKS_Naprzod_Swibie.pdf" target="_blank" rel="noopener noreferrer" class="doc-pill-card" style="border-color: rgba(163,230,53,0.55); text-decoration: none;">
+                <span style="font-size: 0.78rem; font-weight: 700; color: #fff;">📝 Deklaracja Członkowska (PDF)</span>
+                <span style="color: var(--turf-bright); font-size: 0.75rem; font-weight: 800;">Pobierz PDF ⬇</span>
+              </a>
+              <div class="doc-pill-card" onclick="openDocumentPreview('Zgoda Rodzica / Opiekuna Prawnego na Treningi i Turnieje')">
+                <span style="font-size: 0.78rem; font-weight: 700;">✅ Zgoda Rodzica (RODO)</span>
+                <span style="color: var(--turf-bright); font-size: 0.75rem;">PDF ↗</span>
+              </div>
+              <div class="doc-pill-card" onclick="openDocumentPreview('Regulamin Szkółki Piłkarskiej LKS Naprzód Świbie')">
+                <span style="font-size: 0.78rem; font-weight: 700;">📘 Regulamin Szkółki</span>
+                <span style="color: var(--turf-bright); font-size: 0.75rem;">PDF ↗</span>
+              </div>
+              <div class="doc-pill-card" style="border-color: rgba(163,230,53,0.4);" onclick="openDocumentPreview('Standardy Ochrony Małoletnich w LKS Naprzód Świbie (Wymóg PZPN / Ustawa Kamilka)')">
+                <span style="font-size: 0.78rem; font-weight: 800; color: var(--turf-bright);">🛡️ Ochrona Małoletnich</span>
+                <span style="color: var(--turf-bright); font-size: 0.75rem;">PZPN ↗</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 4: TWIERDZA "KĘP NOŁ", OŚ CZASU (1952–2026), GALERIA & 1,5% OPP
+       ======================================================================== -->
+  <section class="section section--alt" id="kep-nol">
+    <div class="container reveal">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">🏟️ NASZ DOM OD 13 KWIETNIA 1952 • UL. SPORTOWA 51, 44-187 ŚWIBIE</div>
+          <h2 class="section-title">
+            <span class="club-only">HISTORIA KLUBU, STADION „KĘP NOŁ” & GALERIA</span>
+            <span class="academy-only">BAZA TRENINGOWA „KĘP NOŁ”, 1,5% OPP & GALERIA</span>
+          </h2>
+        </div>
+        <p class="section-subtitle club-only">
+          Ponad 74 lata biało-czarnej historii w gminie Wielowieś. Od założycielskiego meczu w 1952 roku, przez awanse do Klasy A, aż po dzisiejszą modernizację „Kęp Noł”.
+        </p>
+        <p class="section-subtitle academy-only">
+          Nowoczesna i bezpieczna baza treningowa dla dzieci i młodzieży przy ul. Sportowej 51 w Świbiu oraz wsparcie szkolenia z odpisów 1,5% podatku (KRS 0000294473).
+        </p>
+      </div>
+
+      <!-- MODULE 5A: OŚ CZASU HISTORII KLUBU SENIORÓW (WIDOCZNA TYLKO NA STRONIE SENIORÓW) -->
+      <div class="timeline-track club-only">
+        <div class="timeline-step">
+          <div class="timeline-year">13.04.1952</div>
+          <div style="font-weight: 800; font-size: 0.88rem; margin-bottom: 0.25rem;">Założenie Klubu</div>
+          <p style="font-size: 0.76rem; color: var(--text-muted);">Powstaje LKS Naprzód Świbie. Przyjęcie biało-czarnych barw klubowych w sołectwie Świbie.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-year">2007</div>
+          <div style="font-weight: 800; font-size: 0.88rem; margin-bottom: 0.25rem;">Rejestracja KRS & OPP</div>
+          <p style="font-size: 0.76rem; color: var(--text-muted);">Stowarzyszenie w KRS (0000294473) i status Organizacji Pożytku Publicznego (1,5% podatku).</p>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-year">2020/2021</div>
+          <div style="font-weight: 800; font-size: 0.88rem; margin-bottom: 0.25rem;">Mistrzostwo B-Klasy!</div>
+          <p style="font-size: 0.76rem; color: var(--text-muted);">Triumf w rozgrywkach Klasy B Podokręgu Zabrze i historyczny awans do zabrzańskiej Klasy A.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-year">2021–2024</div>
+          <div style="font-weight: 800; font-size: 0.88rem; margin-bottom: 0.25rem;">Gra w Majer Klasie A</div>
+          <p style="font-size: 0.76rem; color: var(--text-muted);">Trzy sezony zaciętej rywalizacji na szczeblu Klasy A Podokręgu Zabrze i Pucharu Polski ŚLZPN.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-year">KIDS CUP</div>
+          <div style="font-weight: 800; font-size: 0.88rem; margin-bottom: 0.25rem;">Rozkwit Szkółki</div>
+          <p style="font-size: 0.76rem; color: var(--text-muted);">Szkolenie Skrzatów, Żaków, Orlików i Młodzików oraz organizacja turnieju Naprzód Świbie Kids Cup.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-year">2026/2027</div>
+          <div style="font-weight: 800; font-size: 0.88rem; margin-bottom: 0.25rem;">Nowoczesne „Kęp Noł”</div>
+          <p style="font-size: 0.76rem; color: var(--text-muted);">Granty na infrastrukturę, nagłośnienie, projekt nowych szatni i zwycięskie derby w Eurotech Klasie B!</p>
+        </div>
+      </div>
+
+      <div class="kep-nol-grid">
+        <div class="panel-card">
+          <div class="panel-card-title">
+            <span>🏗️ Rozwój Bazy Sportowej „Kęp Noł”</span>
+            <span style="font-size: 0.78rem; color: var(--turf-bright); font-family: var(--font-sans);">Świbie, gm. Wielowieś</span>
+          </div>
+          <p style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 1.25rem;">
+            Boisko LKS Naprzód Świbie o wymiarach <strong>100 m × 60 m</strong> i pojemności ok. <strong>500 miejsc</strong> to bezpieczne centrum szkolenia i życia sportowego sołectwa Świbie.
+          </p>
+          <div class="kep-nol-features-grid">
+            <div style="background: rgba(9,10,15,0.65); padding: 1.1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.07);">
+              <div style="color: var(--turf-bright); font-weight: 800; font-size: 0.88rem; margin-bottom: 0.3rem;">⚡ Grant „Wzmocnij Swoje Otoczenie”</div>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Pozyskanie dofinansowania (24 000 zł) oraz inicjatywy związane z magazynem energii i modernizacją zaplecza na terenie „Kęp Noł”.</p>
+            </div>
+            <div style="background: rgba(9,10,15,0.65); padding: 1.1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.07);">
+              <div style="color: var(--turf-bright); font-weight: 800; font-size: 0.88rem; margin-bottom: 0.3rem;">🏢 Nowoczesne Zaplecze Szatniowe</div>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Projekt nowoczesnego budynku szatniowo-sanitarnego (GBD Architektura) z salą klubową i komfortowym zapleczem dla dzieci.</p>
+            </div>
+            <div style="background: rgba(9,10,15,0.65); padding: 1.1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.07);">
+              <div style="color: var(--turf-bright); font-weight: 800; font-size: 0.88rem; margin-bottom: 0.3rem;">🔊 Nagłośnienie i Oprawa Turniejów</div>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Doposażenie obiektu w profesjonalny sprzęt nagłaśniający przy wsparciu radnych Gminy Wielowieś oraz lokalnych darczyńców.</p>
+            </div>
+            <div style="background: rgba(9,10,15,0.65); padding: 1.1rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.07);">
+              <div style="color: var(--turf-bright); font-weight: 800; font-size: 0.88rem; margin-bottom: 0.3rem;">📅 Ponad 74 Lata Tradycji</div>
+              <p style="font-size: 0.8rem; color: var(--text-muted);">Założony 13 kwietnia 1952 roku klub łączy pokolenia mieszkańców Świbia i całej gminy Wielowieś.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive 1.5% Tax OPP Calculator & Zarząd -->
+        <div class="tax-calculator-card" id="zarzad-opp">
+          <span class="status-badge" style="margin-bottom: 0.75rem;">❤️ ORGANIZACJA POŻYTKU PUBLICZNEGO (OPP)</span>
+          <h3 style="font-family: var(--font-display); font-size: 2.2rem; line-height: 1; text-transform: uppercase; margin-bottom: 0.5rem;">
+            PRZEKAŻ 1,5% PODATKU NA NAPRZÓD ŚWIBIE!
+          </h3>
+          <p style="font-size: 0.88rem; color: #cbd5e1;">
+            Posiadamy status OPP! Twoje 1,5% w PIT nic Cię nie kosztuje, a finansuje zakup piłek, bramek i sprzętu dla dzieci ze Szkółki Piłkarskiej oraz utrzymanie boiska „Kęp Noł”.
+          </p>
+
+          <div class="krs-copy-box">
+            <div>
+              <div style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted);">Numer KRS do wpisania w PIT:</div>
+              <div class="krs-Digits" id="krsNumberText">0000294473</div>
+            </div>
+            <button type="button" class="btn btn-primary" style="padding: 0.65rem 1.15rem; font-size: 0.8rem;" onclick="copyKrsNumber()">
+              📋 <span id="copyKrsBtnText">Kopiuj KRS</span>
+            </button>
+          </div>
+
+          <!-- Interactive 1.5% simulator -->
+          <div style="background: rgba(9,10,15,0.65); padding: 1rem; border-radius: 12px; margin-bottom: 1.15rem;">
+            <label for="taxInput" style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 0.4rem;">
+              Oblicz swoje wsparcie 1,5% (wpisz kwotę należnego podatku z PIT w zł):
+            </label>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center;">
+              <input type="number" id="taxInput" class="form-control" value="3000" min="0" step="100" oninput="calculateOnePointFive(this.value)" style="max-width: 160px;" />
+              <div style="font-size: 0.9rem;">
+                Twoje 1,5% dla klubu = <strong style="color: var(--turf-bright); font-size: 1.25rem;" id="taxResultValue">45,00 zł</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rachunek bankowy na darowizny statutowe & Zrzutka -->
+          <div style="background: rgba(16, 185, 129, 0.12); border: 1px dashed var(--turf-bright); border-radius: 12px; padding: 0.95rem 1.1rem; margin-bottom: 1.15rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.35rem;">
+              <span style="font-size: 0.76rem; font-weight: 800; text-transform: uppercase; color: var(--turf-bright);">🏦 Dobrowolne Darowizny Statutowe:</span>
+              <a href="https://zrzutka.pl/3bsndj" target="_blank" rel="noopener noreferrer" style="color: #fff; font-weight: 800; font-size: 0.78rem; text-decoration: underline;">💛 Zbiórka na Zrzutka.pl ↗</a>
+            </div>
+            <div style="font-family: var(--font-display); font-size: 1.25rem; color: #fff; letter-spacing: 0.04em;">
+              18 2490 0005 0000 4500 3814 1133
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.4rem;">
+              <span style="font-size: 0.74rem; color: var(--text-muted);">Tytuł: Darowizna na cele statutowe</span>
+              <button type="button" class="btn btn-outline" style="padding: 0.3rem 0.75rem; font-size: 0.74rem;" onclick="copyBankAccount()">
+                📋 Kopiuj nr konta
+              </button>
+            </div>
+          </div>
+
+          <div style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.6; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.85rem;">
+            <strong>Władze Klubu – Zarząd LKS „Naprzód” Świbie (KRS 0000294473 • NIP 9691241833 • REGON 276742236):</strong><br />
+            • <strong>Prezes Zarządu:</strong> Piotr Klencz<br />
+            • <strong>Wiceprezesi:</strong> Krzysztof Latta, Piotr Chodkiewicz (tel. <a href="tel:+48796129276" style="color:var(--turf-bright); text-decoration:none;">796 129 276</a>)<br />
+            • <strong>Sekretarz:</strong> Dariusz Dereziński<br />
+            • <strong>Członkowie Zarządu:</strong> Adam John, Patrycja Klencz, Marcin Dudek<br />
+            • <strong>Koordynator Szkółki Piłkarskiej:</strong> Tomasz Janoszka (tel. <a href="tel:+48511956923" style="color:var(--turf-bright); text-decoration:none;">511 956 923</a>)<br />
+            • <strong>Oficjalny E-mail:</strong> <a href="mailto:naprzodswibie@o2.pl" style="color:var(--turf-bright); text-decoration:none;">naprzodswibie@o2.pl</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODULE 5B: INTERAKTYWNA GALERIA FOTO (LIGHTBOX) -->
+      <div style="margin-top: 3rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem;">
+          <div>
+            <div class="section-kicker" style="margin-bottom: 0.2rem;">📸 OBIEKTYW „KĘP NOŁ” • POWIĘKSZ ZDJĘCIE (LIGHTBOX)</div>
+            <h3 style="font-family: var(--font-display); font-size: 2.3rem; text-transform: uppercase; line-height: 1;">
+              <span class="club-only">GALERIA KLUBU & STADIONU „KĘP NOŁ”</span>
+              <span class="academy-only">GALERIA SZKÓŁKI PIŁKARSKIEJ & TURNIEJU KIDS CUP</span>
+            </h3>
+          </div>
+          <div class="filter-tabs" id="galleryFilterTabs">
+            <button type="button" class="filter-tab active club-only" onclick="filterGallery('all', this)">Wszystkie</button>
+            <button type="button" class="filter-tab club-only" onclick="filterGallery('senior', this)">⚽ Mecze Seniorów</button>
+            <button type="button" class="filter-tab" id="galleryTabAcademy" onclick="filterGallery('academy', this)">🌟 Szkółka & Kids Cup</button>
+            <button type="button" class="filter-tab" onclick="filterGallery('stadium', this)">🏟️ Boisko „Kęp Noł”</button>
+          </div>
+        </div>
+
+        <div class="gallery-grid" id="photoGalleryGrid">
+          <!-- Populated dynamically by app.js -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       MODULE 6: MAPA DOJAZDU NA STADION "KĘP NOŁ", DANE KONTAKTOWE I RACHUNEK
+       ======================================================================== -->
+  <section class="section section--alt" id="dojazd-kontakt">
+    <div class="container reveal">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">📍 KONTAKT, DOJAZD GPS & DANE FINANSOWE KLUBU</div>
+          <h2 class="section-title">KONTAKT & JAK DOJECHAĆ NA BOISKO W ŚWIBIU?</h2>
+        </div>
+        <div style="display: flex; gap: 0.65rem; flex-wrap: wrap;">
+          <a href="https://www.google.com/maps/search/?api=1&query=Sportowa+51,+44-187+%C5%9Awibie" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            🧭 Nawigacja Google Maps
+          </a>
+          <a href="https://zrzutka.pl/3bsndj" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+            💛 Wesprzyj na Zrzutka.pl ↗
+          </a>
+        </div>
+      </div>
+
+      <div class="map-contact-grid">
+        <div class="map-frame-wrap">
+          <iframe
+            title="Mapa dojazdu na Stadion LKS Naprzód Świbie - ul. Sportowa 51"
+            src="https://www.google.com/maps?q=Sportowa+51,+44-187+%C5%9Awibie&output=embed"
+            width="100%"
+            height="100%"
+            style="border: 0; min-height: 380px; filter: invert(90%) hue-rotate(180deg) contrast(95%);"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <div class="panel-card" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="panel-card-title">
+              <span>🏟️ Dane Kontaktowe & Informacje dla Gości</span>
+            </div>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.9rem; color: #cbd5e1; margin-bottom: 1.25rem;">
+              <li>
+                📞 <strong>Telefon Zarząd / ogólny:</strong><br />
+                <a href="tel:+48796129276" style="color: var(--turf-bright); font-weight: 800; font-size: 1.05rem; text-decoration: none;">796 129 276</a>
+                <span style="font-size: 0.8rem; color: var(--text-muted);"> — Piotr Chodkiewicz (Wiceprezes)</span>
+              </li>
+              <li>
+                ⚽ <strong>Zapisy do Szkółki Piłkarskiej:</strong><br />
+                <a href="tel:+48511956923" style="color: var(--turf-bright); font-weight: 800; font-size: 1.05rem; text-decoration: none;">511 956 923</a>
+                <span style="font-size: 0.8rem; color: var(--text-muted);"> — Tomasz Janoszka (Koordynator Szkółki)</span>
+              </li>
+              <li>
+                ✉️ <strong>Oficjalny adres e-mail:</strong><br />
+                <a href="mailto:naprzodswibie@o2.pl" style="color: var(--turf-bright); font-weight: 700; text-decoration: none;">naprzodswibie@o2.pl</a>
+              </li>
+              <li>
+                🏦 <strong>Numer rachunku bankowego (Darowizny):</strong><br />
+                <div style="font-family: var(--font-display); font-size: 1.15rem; color: #fff; letter-spacing: 0.03em;">
+                  18 2490 0005 0000 4500 3814 1133
+                </div>
+              </li>
+              <li>
+                📍 <strong>Adres boiska:</strong> ul. Sportowa 51, 44-187 Świbie (Gmina Wielowieś)
+              </li>
+              <li class="club-only">
+                👔 <strong>Prezes:</strong> Piotr Klencz • <strong>Trener:</strong> Kamil Giera (UEFA C) • <strong>Kierownik:</strong> Rafał Leksy<br />
+                ⏱️ <strong>Treningi seniorów:</strong> Wtorek, czwartek 19:15 – 20:45
+              </li>
+              <li class="academy-only">
+                🌟 <strong>Szkółka:</strong> Roczniki 2012–2022 • <strong>Treningi:</strong> 2× w tygodniu • <strong>Składka do końca 2026:</strong> 0 zł!
+              </li>
+            </ul>
+          </div>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <button type="button" class="btn btn-primary" style="flex: 1;" onclick="openEnrollModal('Kontakt bezpośredni z LKS Naprzód Świbie')">
+              ✉️ Napisz do Klubu
+            </button>
+            <button type="button" class="btn btn-outline" onclick="copyBankAccount()">
+              📋 Kopiuj konto
+            </button>
+            <a href="https://www.facebook.com/share/19Av1ne13c/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+              f Facebook ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 5: POŁĄCZONE SOCIAL MEDIA (KLUB / SZKÓŁKA + KIDS CUP)
+       ======================================================================== -->
+  <section class="section" id="social-wall">
+    <div class="container reveal">
+      <div class="section-header">
+        <div>
+          <div class="section-kicker">📱 AKTUALNOŚCI NA ŻYWO • SOCIAL MEDIA HUB</div>
+          <h2 class="section-title">
+            <span class="club-only">PULS KLUBU W SOCIAL MEDIA</span>
+            <span class="academy-only">ŻYCIE SZKÓŁKI & KIDS CUP W SOCIAL MEDIA</span>
+          </h2>
+        </div>
+        <div class="filter-tabs" id="socialFilterTabs">
+          <button type="button" class="filter-tab active club-only" onclick="filterSocial('all', this)">Wszystkie wpisy</button>
+          <button type="button" class="filter-tab club-only" onclick="filterSocial('club', this)">⚽ Pierwszy Zespół</button>
+          <button type="button" class="filter-tab" onclick="filterSocial('academy', this)">🌟 Szkółka & Kids Cup</button>
+          <button type="button" class="filter-tab" onclick="filterSocial('kepnol', this)">🏟️ Obiekt „Kęp Noł”</button>
+        </div>
+      </div>
+
+      <div class="social-wall-grid" id="socialWallGrid">
+        <!-- Card 1 (Seniorzy - ukryty w trybie Szkółki!) -->
+        <article class="social-post-card club-only" data-category="club">
+          <div>
+            <div class="social-post-head">
+              <span class="social-platform-badge">f Facebook • Pierwszy Zespół</span>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Stadion „Kęp Noł”</span>
+            </div>
+            <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem;">
+              🔥 DERBY DLA ŚWIBIA! Zwycięstwo 2:0 z Naprzodem Łubie!
+            </h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Komplet punktów zostaje przy ul. Sportowej 51! Dziękujemy wszystkim kibicom za głośny doping na „Kęp Noł”. Biało-czarne charaktery pokazane na boisku! 🏴🏳️⚽
+            </p>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 0.85rem; font-size: 0.8rem;">
+            <span style="color: var(--turf-bright);">❤️ 96 reakcji • 💬 18 komentarzy</span>
+            <a href="https://www.facebook.com/share/19Av1ne13c/" target="_blank" rel="noopener noreferrer" style="color: #60a5fa; text-decoration: none; font-weight: 700;">Zobacz post →</a>
+          </div>
+        </article>
+
+        <!-- Card 1B (Szkółka - widoczny w trybie Szkółki zamiast wpisu seniorów!) -->
+        <article class="social-post-card academy-only" data-category="academy">
+          <div>
+            <div class="social-post-head">
+              <span class="social-platform-badge" style="background: rgba(163, 230, 53, 0.16); color: var(--turf-bright);">🌟 Szkółka Piłkarska • Nabór</span>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Roczniki 2012–2022</span>
+            </div>
+            <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem;">
+              ⚽ DOŁĄCZ DO BIAŁO-CZARNEJ AKADEMII! Pierwsze 2 treningi GRATIS!
+            </h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Zapraszamy chłopców i dziewczynki w wieku od 4 do 14 lat na zajęcia naszych grup Skrzat, Żak, Orlik i Młodzik na murawie „Kęp Noł” przy ul. Sportowej 51!
+            </p>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 0.85rem; font-size: 0.8rem;">
+            <span style="color: var(--turf-bright);">❤️ 118 reakcji • 🔄 34 udostępnienia</span>
+            <a href="#akademia-start" style="color: var(--turf-bright); text-decoration: none; font-weight: 700;">Zapisz dziecko →</a>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="social-post-card" data-category="academy">
+          <div>
+            <div class="social-post-head">
+              <span class="social-platform-badge" style="background: rgba(163, 230, 53, 0.16); color: var(--turf-bright);">🌟 Szkółka Piłkarska • Kids Cup</span>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Turniej Dzieci</span>
+            </div>
+            <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem;">
+              🏆 NAPRZÓD ŚWIBIE KIDS CUP – Setki uśmiechów i grad bramek!
+            </h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Nasze Skrzaty, Żaki, Orliki i Młodziki dały prawdziwy popis umiejętności! Dziękujemy rodzicom za przygotowanie strefy gastronomicznej, a trenerom za organizację turnieju!
+            </p>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 0.85rem; font-size: 0.8rem;">
+            <span style="color: var(--turf-bright);">❤️ 142 reakcje • 🔄 29 udostępnień</span>
+            <a href="https://www.facebook.com/share/19Av1ne13c/" target="_blank" rel="noopener noreferrer" style="color: #60a5fa; text-decoration: none; font-weight: 700;">Galeria zdjęć →</a>
+          </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="social-post-card" data-category="kepnol">
+          <div>
+            <div class="social-post-head">
+              <span class="social-platform-badge" style="background: rgba(245, 158, 11, 0.16); color: #fbbf24;">🏟️ Społeczność • „Kęp Noł”</span>
+              <span style="font-size: 0.75rem; color: var(--text-muted);">Inwestycje & Granty</span>
+            </div>
+            <h3 style="font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem;">
+              ⚡ Razem rozwijamy nasze „Kęp Noł” w Świbiu!
+            </h3>
+            <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Dzięki programowi „Wzmocnij Swoje Otoczenie”, zbiórkom społecznościowym i odpisom 1,5% podatku (KRS 0000294473) nasza baza przy ul. Sportowej 51 zyskuje nowe oblicze!
+            </p>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 0.85rem; font-size: 0.8rem;">
+            <span style="color: var(--turf-bright);">❤️ 110 reakcji • 🙌 Wspieraj nas</span>
+            <a href="#zarzad-opp" style="color: var(--turf-bright); text-decoration: none; font-weight: 700;">Przekaż 1,5% →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       SECTION 6: WIZYTÓWKA & OFERTA DLA INNYCH KLUBÓW ("ZAMÓW TAKĄ STRONĘ!")
+       ======================================================================== -->
+  <section class="section section--alt" id="oferta-strony">
+    <div class="container reveal">
+      <div class="agency-showcase-banner">
+        <div class="agency-showcase-grid">
+          <div>
+            <span class="status-badge" style="margin-bottom: 0.85rem;">🚀 NOWOCZESNE STRONY DLA KLUBÓW I AKADEMII PIŁKARSKICH</span>
+            <h2 style="font-family: var(--font-display); font-size: clamp(2.3rem, 4vw, 3.5rem); line-height: 0.95; text-transform: uppercase; margin-bottom: 0.85rem;">
+              PROWADZISZ KLUB LUB SZKÓŁKĘ PIŁKARSKĄ? <br />
+              <span style="color: var(--turf-bright);">ZAMÓW TAKĄ STRONĘ DLA SWOJEJ DRUŻYNY!</span>
+            </h2>
+            <p style="color: #cbd5e1; font-size: 1rem; max-width: 680px;">
+              Ten interaktywny portal 2-w-1 (<strong>Klub Seniorów + Szkółka Piłkarska</strong>) to nasza autorska realizacja. Przyciągnij nowych sponsorów, ułatw rodzicom zapisy na treningi i zwiększ wpływy z 1,5% podatku dzięki nowoczesnej wizytówce w barwach Twojego klubu!
+            </p>
+
+            <div class="agency-features-pills">
+              <span class="agency-pill">🔀 Ekran Wyboru: Klub + Szkółka</span>
+              <span class="agency-pill">⚽ Interaktywne Boisko & Kadra</span>
+              <span class="agency-pill">🎯 Kalkulator Grupy dla Rodziców</span>
+              <span class="agency-pill">💰 Kalkulator 1,5% KRS dla OPP</span>
+              <span class="agency-pill">📱 Integracja Social Media & Wyników</span>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem;">
+              <button type="button" class="btn btn-primary" onclick="openEnrollModal('Zamówienie strony internetowej dla Klubu / Akademii Piłkarskiej')">
+                💻 Zapytaj o Wycenę Strony dla Twojego Klubu
+              </button>
+              <button type="button" class="btn btn-outline" onclick="openPortalGateway()">
+                🎬 Zobacz Ponownie Efekt Wejścia (Split-Screen)
+              </button>
+            </div>
+          </div>
+
+          <div style="background: rgba(9, 10, 15, 0.88); border: 1px solid rgba(163, 230, 53, 0.35); border-radius: 18px; padding: 1.75rem;">
+            <div style="font-size: 0.75rem; font-weight: 800; color: var(--turf-bright); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">
+              PAKIET „KLUB + AKADEMIA PRO”
+            </div>
+            <h3 style="font-family: var(--font-display); font-size: 1.85rem; text-transform: uppercase; margin-bottom: 0.85rem;">
+              CO ZYSKUJE TWÓJ KLUB?
+            </h3>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.86rem; color: #cbd5e1; margin-bottom: 1.25rem;">
+              <li>🔥 <strong>Efekt WOW od pierwszej sekundy</strong> – podział na Pierwszy Zespół i Akademię</li>
+              <li>📈 <strong>Więcej dzieci w szkółce</strong> dzięki interaktywnemu formularzowi naboru</li>
+              <li>🤝 <strong>Prestiż dla lokalnych sponsorów</strong> i samorządu gminnego</li>
+              <li>⚡ <strong>Szybkość działania na telefonach</strong> kibiców i rodziców</li>
+            </ul>
+            <div style="font-size: 0.78rem; color: var(--text-muted); text-align: center; padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.1);">
+              Wdrożenie pod klucz z herbem, barwami i kadrą Twojego klubu!
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logos-row">
+          <img src="assets/logo-klub.png" alt="Herb LKS Naprzód Świbie" class="footer-brand-logo" />
+          <img src="assets/logo-szkolka.png" alt="Logo Szkółki Piłkarskiej Naprzód Świbie" class="footer-brand-logo footer-brand-logo--academy" />
+        </div>
+        <div class="footer-title">LKS NAPRZÓD ŚWIBIE (ZAŁ. 1952)</div>
+        <p style="margin-bottom: 1rem;">
+          Ludowy Klub Sportowy „Naprzód” Świbie. Tradycja biało-czarnych barw od 13 kwietnia 1952 roku w Gminie Wielowieś.
+        </p>
+        <p style="font-size: 0.8rem; color: #e2e8f0; margin-bottom: 0.85rem;">
+          📍 <strong>Adres boiska „Kęp Noł”:</strong> ul. Sportowa 51, 44-187 Świbie (Gmina Wielowieś, Powiat Gliwicki, Woj. Śląskie)
+        </p>
+        <a href="https://www.facebook.com/share/19Av1ne13c/" target="_blank" rel="noopener noreferrer" class="social-pill-link" style="display: inline-flex;">
+          <span>f</span> Oficjalny Facebook LKS Naprzód Świbie ↗
+        </a>
+      </div>
+
+      <div>
+        <div class="footer-title">PRZEŁĄCZ STREFĘ PORTALU</div>
+        <ul class="footer-links">
+          <li><a href="#top" onclick="switchMode('club')">⚽ Strefa Klubu (Drużyna Seniorów)</a></li>
+          <li><a href="#top" onclick="switchMode('academy')">🌟 Strefa Szkółki Piłkarskiej & Kids Cup</a></li>
+          <li><a href="#top" onclick="openPortalGateway(); return false;">🔀 Powrót do Ekranu Wyboru (Split-Screen)</a></li>
+          <li><a href="#darczyncy">🤝 Grają z nami (Darczyńcy & Klub 100)</a></li>
+          <li><a href="https://zrzutka.pl/3bsndj" target="_blank" rel="noopener noreferrer" style="color: var(--turf-bright); font-weight: 700;">💛 Wesprzyj nas na Zrzutka.pl ↗</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-title">SZKÓŁKA PIŁKARSKA</div>
+        <ul class="footer-links">
+          <li><a href="#akademia-start" onclick="switchMode('academy')">Jak dołączyć? (2 treningi próbne 0 zł)</a></li>
+          <li><a href="#szkolka" onclick="switchMode('academy')">Kalkulator Grupy Wiekowej (4–14 lat)</a></li>
+          <li><a href="#akademia-trenerzy" onclick="switchMode('academy')">Sztab Trenerski & Koordynator</a></li>
+          <li><a href="#akademia-skladki" onclick="switchMode('academy')">Brak składki do końca 2026 r.!</a></li>
+          <li><a href="#akademia-kidscup" onclick="switchMode('academy')">Turniej Naprzód Świbie Kids Cup</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-title">DANE KLUBU & KONTAKT</div>
+        <ul class="footer-links">
+          <li><strong>KRS:</strong> 0000294473 (OPP 1,5%)</li>
+          <li><strong>NIP:</strong> 9691241833 • <strong>REGON:</strong> 276742236</li>
+          <li><strong>Konto:</strong> 18 2490 0005 0000 4500 3814 1133</li>
+          <li><strong>E-mail:</strong> <a href="mailto:naprzodswibie@o2.pl" style="color:var(--turf-bright);">naprzodswibie@o2.pl</a></li>
+          <li><strong>Zarząd:</strong> 796 129 276 • <strong>Szkółka:</strong> 511 956 923</li>
+          <li><span style="font-size:0.75rem; color:var(--text-muted);">Zarząd: P. Klencz, K. Latta, P. Chodkiewicz, D. Dereziński, A. John, P. Klencz, M. Dudek</span></li>
+          <li style="margin-top: 0.35rem;">
+            <a href="#oferta-strony" style="color: var(--turf-bright); font-weight: 700;">💻 Chcesz taką stronę dla swojego klubu? →</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="max-width: 1320px; margin: 2rem auto 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; font-size: 0.8rem;">
+      <span>© 1952–2026 Ludowy Klub Sportowy „Naprzód” Świbie. Wszelkie prawa zastrzeżone.</span>
+      <span>Projekt & Interaktywne Wdrożenie Sportowe — <strong>Oferta Stron dla Klubów Piłkarskich & Akademii</strong></span>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       INTERACTIVE ENROLLMENT / INQUIRY MODAL
+       ======================================================================== -->
+  <div class="modal-backdrop" id="enrollModal" aria-hidden="true">
+    <div class="modal-box">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+        <h3 style="font-family: var(--font-display); font-size: 2rem; text-transform: uppercase; color: var(--turf-bright);" id="modalTitle">
+          ZGŁOSZENIE ONLINE
+        </h3>
+        <button type="button" onclick="closeEnrollModal()" style="background: transparent; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">✕</button>
+      </div>
+
+      <form id="interactiveForm" onsubmit="handleFormSubmit(event)">
+        <div class="form-group">
+          <label for="formTopic">Wybrany temat zgłoszenia:</label>
+          <input type="text" id="formTopic" class="form-control" readonly />
+        </div>
+        <div class="form-group">
+          <label for="formName">Imię i nazwisko (Rodzica / Zawodnika / Prezesa Klubu):</label>
+          <input type="text" id="formName" class="form-control" placeholder="np. Jan Kowalski" required />
+        </div>
+        <div class="form-group">
+          <label for="formPhone">Numer telefonu lub e-mail kontaktowy:</label>
+          <input type="text" id="formPhone" class="form-control" placeholder="np. 600 000 000" required />
+        </div>
+        <div class="form-group">
+          <label for="formNotes">Dodatkowe informacje (np. rocznik dziecka / nazwa klubu):</label>
+          <textarea id="formNotes" class="form-control" rows="3" placeholder="Wpisz wiadomość..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">
+          🚀 Wyślij Zgłoszenie
+        </button>
+      </form>
+      <div id="formSuccessMsg" style="display: none; margin-top: 1rem; padding: 1rem; border-radius: 10px; background: rgba(16, 185, 129, 0.2); border: 1px solid var(--turf-bright); color: #fff; text-align: center; font-weight: 700;">
+        ✅ Dziękujemy! Twoje zgłoszenie zostało zapisane. Skontaktujemy się z Tobą najszybciej jak to możliwe!
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX & DOCUMENT PREVIEW MODAL -->
+  <div class="modal-backdrop" id="lightboxModal" aria-hidden="true" onclick="closeLightboxModal()">
+    <div class="modal-box" style="max-width: 780px;" onclick="event.stopPropagation()">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3 style="font-family: var(--font-display); font-size: 1.85rem; text-transform: uppercase; color: var(--turf-bright);" id="lightboxTitle">
+          PODGLĄD
+        </h3>
+        <button type="button" onclick="closeLightboxModal()" style="background: transparent; border: none; color: #fff; font-size: 1.5rem; cursor: pointer;">✕</button>
+      </div>
+      <div id="lightboxBody"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
