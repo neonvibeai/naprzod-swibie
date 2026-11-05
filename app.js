@@ -1393,11 +1393,62 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
-  // Odliczanie czasu do rzeczywistego meczu 12. kolejki: Zamkowiec Toszek - Naprzód Świbie (24 października 2026, godz. 14:00)
-  const targetMatchDate = new Date("2026-10-24T14:00:00+02:00").getTime();
+  // Dynamiczne odliczanie do najbliższego meczu ligowego Eurotech Klasy B
+  const UPCOMING_FIXTURES = [
+    {
+      roundNum: 14,
+      targetDate: new Date("2026-11-07T14:00:00+01:00").getTime(),
+      headerBadge: "KOLEJKA 14 • 07.11, 14:00",
+      dateBadge: "7 lis, 14:00",
+      home: "Leśnik Łącza",
+      homeBadge: "LŁ",
+      homeDesc: "Gospodarz (15. msc)",
+      away: "Naprzód Świbie",
+      awayDesc: "Goście (9. msc • 16 pkt)"
+    },
+    {
+      roundNum: 15,
+      targetDate: new Date("2026-11-14T14:00:00+01:00").getTime(),
+      headerBadge: "KOLEJKA 15 • 14.11, 14:00",
+      dateBadge: "14 lis, 14:00",
+      home: "Naprzód Świbie",
+      homeBadge: "NŚ",
+      homeDesc: "Gospodarz • „Kęp Noł”",
+      away: "Orzeł Paczyna",
+      awayDesc: "Goście (4. msc • 21 pkt)"
+    },
+    {
+      roundNum: 16,
+      targetDate: new Date("2027-03-20T15:00:00+01:00").getTime(),
+      headerBadge: "KOLEJKA 16 • 20.03.2027",
+      dateBadge: "20 mar, 15:00",
+      home: "Naprzód Świbie",
+      homeBadge: "NŚ",
+      homeDesc: "Gospodarz • „Kęp Noł”",
+      away: "Olimpia Pławniowice",
+      awayDesc: "Goście (16. msc)"
+    }
+  ];
+
   function updateMatchCountdown() {
     const now = Date.now();
-    let diff = Math.max(0, Math.floor((targetMatchDate - now) / 1000));
+    let fixture = UPCOMING_FIXTURES.find((f) => f.targetDate > now);
+    if (!fixture) {
+      const nextSat = new Date();
+      nextSat.setDate(nextSat.getDate() + ((6 - nextSat.getDay() + 7) % 7 || 7));
+      nextSat.setHours(14, 0, 0, 0);
+      fixture = {
+        headerBadge: "NAJBLIŻSZY MECZ LIGOWY",
+        dateBadge: "Sobota, 14:00",
+        home: "Leśnik Łącza",
+        homeDesc: "Gospodarz",
+        away: "Naprzód Świbie",
+        awayDesc: "Eurotech Klasa B",
+        targetDate: nextSat.getTime()
+      };
+    }
+
+    const diff = Math.max(0, Math.floor((fixture.targetDate - now) / 1000));
     const d = Math.floor(diff / 86400);
     const h = Math.floor((diff % 86400) / 3600);
     const m = Math.floor((diff % 3600) / 60);
@@ -1411,6 +1462,19 @@ document.addEventListener("DOMContentLoaded", () => {
     if (elH) elH.textContent = String(h).padStart(2, "0");
     if (elM) elM.textContent = String(m).padStart(2, "0");
     if (elS) elS.textContent = String(s).padStart(2, "0");
+
+    const badge = document.getElementById("spotlightMatchBadge");
+    if (badge && badge.textContent !== fixture.headerBadge) badge.textContent = fixture.headerBadge;
+    const dateBadge = document.getElementById("nextMatchDateBadge");
+    if (dateBadge && dateBadge.textContent !== fixture.dateBadge) dateBadge.textContent = fixture.dateBadge;
+    const home = document.getElementById("nextMatchHome");
+    if (home && home.textContent !== fixture.home) home.textContent = fixture.home;
+    const homeDesc = document.getElementById("nextMatchHomeDesc");
+    if (homeDesc && homeDesc.textContent !== fixture.homeDesc) homeDesc.textContent = fixture.homeDesc;
+    const away = document.getElementById("nextMatchAway");
+    if (away && away.textContent !== fixture.away) away.textContent = fixture.away;
+    const awayDesc = document.getElementById("nextMatchAwayDesc");
+    if (awayDesc && awayDesc.textContent !== fixture.awayDesc) awayDesc.textContent = fixture.awayDesc;
   }
   updateMatchCountdown();
   setInterval(updateMatchCountdown, 1000);
