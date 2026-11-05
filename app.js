@@ -213,9 +213,33 @@ function getSwibieOutcomeClass(match) {
   return swibieWon ? "win" : "loss";
 }
 
+// Widok drużyny w meczach: Herb + Nazwa (flex-row, items-center, dwuwierszowy napis Naprzód / Świbie całkowicie po prawej stronie herbu)
+function renderMatchTeamUnitHTML(teamName, isHome, note = "") {
+  const isSwibie = teamName.includes("Naprzód") && teamName.includes("Świbie");
+
+  if (isSwibie) {
+    return `
+      <div class="match-team-wrap is-swibie ${isHome ? "is-home" : "is-away"}">
+        <img src="assets/logo-klub.png" alt="Herb LKS Naprzód Świbie" class="match-swibie-crest" />
+        <div class="match-swibie-text">
+          <span class="match-swibie-line1">Naprzód</span>
+          <span class="match-swibie-line2">Świbie</span>
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="match-team-wrap is-opponent ${isHome ? "is-home" : "is-away"}">
+      <div class="match-opponent-text">
+        <span class="match-opponent-name">${teamName}</span>
+        ${note ? `<span class="match-team-note">${note}</span>` : ""}
+      </div>
+    </div>
+  `;
+}
+
 function renderMatchItemHTML(m) {
-  const isHomeSwibie = m.home.includes("Naprzód Świbie");
-  const isAwaySwibie = m.away.includes("Naprzód Świbie");
   const outcome = getSwibieOutcomeClass(m);
 
   let pillStyle = "";
@@ -227,9 +251,10 @@ function renderMatchItemHTML(m) {
     pillStyle = "background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.38);";
   }
 
+  const scoreText = m.score === "-" ? "VS" : m.score.replace(":", " : ");
   const scoreBadge = m.reportUrl
-    ? `<a href="${m.reportUrl}" target="_blank" rel="noopener noreferrer" class="match-score-pill" style="${pillStyle} text-decoration: none;" title="Otwórz oficjalny protokół meczu w Łączy Nas Piłka">${m.score.replace(":", " : ")}</a>`
-    : `<span class="match-score-pill" style="${pillStyle}">${m.score === "-" ? "VS" : m.score.replace(":", " : ")}</span>`;
+    ? `<a href="${m.reportUrl}" target="_blank" rel="noopener noreferrer" class="match-score-pill" style="${pillStyle} text-decoration: none;" title="Otwórz oficjalny protokół meczu w Łączy Nas Piłka">${scoreText}</a>`
+    : `<span class="match-score-pill" style="${pillStyle}">${scoreText}</span>`;
 
   return `
     <div class="match-row-item">
@@ -237,13 +262,14 @@ function renderMatchItemHTML(m) {
         <div class="match-round-lbl" style="color: var(--turf-bright); font-weight: 800;">Kolejka ${m.roundNum}</div>
         <div>${m.date || ""}</div>
       </div>
-      <div class="match-team-home" style="text-align: right; ${isHomeSwibie ? "font-weight: 800; color: #fff;" : "color: #cbd5e1;"}">
-        ${isHomeSwibie ? `<img src="assets/logo-klub.png" alt="" class="inline-team-crest" /> ` + m.home : m.home}
+      <div class="match-team-home-cell">
+        ${renderMatchTeamUnitHTML(m.home, true)}
       </div>
-      ${scoreBadge}
-      <div class="match-team-away" style="text-align: left; ${isAwaySwibie ? "font-weight: 800; color: #fff;" : "color: #cbd5e1;"}">
-        ${isAwaySwibie ? `<img src="assets/logo-klub.png" alt="" class="inline-team-crest" /> ` + m.away : m.away}
-        ${m.note ? `<div style="font-size: 0.68rem; color: var(--text-muted);">${m.note}</div>` : ""}
+      <div class="match-score-cell">
+        ${scoreBadge}
+      </div>
+      <div class="match-team-away-cell">
+        ${renderMatchTeamUnitHTML(m.away, false, m.note)}
       </div>
     </div>
   `;
@@ -499,6 +525,16 @@ function handlePitchSlotClick(slotIdx) {
   }
 
   renderPitch442();
+  // Automatycznie rozwiń kategorię pozycji odpowiadającej wybranemu slotowi na boisku
+  if (slot.isGK) {
+    openSquadCategory = "Bramkarz";
+  } else if (slot.posLabel.includes("O")) {
+    openSquadCategory = "Obrońca";
+  } else if (slot.posLabel.includes("P")) {
+    openSquadCategory = "Pomocnik";
+  } else if (slot.posLabel === "N") {
+    openSquadCategory = "Napastnik";
+  }
   renderSquad(currentSquadFilter, currentPlayer?.name);
 }
 
@@ -771,85 +807,180 @@ function switchMode(mode) {
   }, 50);
 }
 
-// 6. Renderowanie i filtrowanie kadry zawodników + Interakcja z boiskiem 1-4-4-2
+// 6. Kategorie pozycji kadry & Interaktywny Akordeon na telefonach i komputerach
+const SQUAD_POSITION_CATEGORIES = [
+  { key: "Bramkarz", title: "Bramkarze", icon: "🧤" },
+  { key: "Obrońca", title: "Obrońcy", icon: "🛡️" },
+  { key: "Pomocnik", title: "Pomocnicy", icon: "⚙️" },
+  { key: "Napastnik", title: "Napastnicy", icon: "⚡" },
+  { key: "staff", title: "Sztab szkoleniowy", icon: "📋" }
+];
+
+let openSquadCategory = "Bramkarz"; // Domyślnie rozwinięta pierwsza kategoria (Bramkarze)
+
+function renderSinglePlayerCardHTML(p, highlightName) {
+  const inStarting11 = isPlayerInStarting11(p.id);
+  const isCoach = p.pos === "Trener";
+  const isStaff = p.isStaff || p.pos === "Trener" || p.pos === "Kierownik drużyny";
+  const isHighlighted =
+    (highlightName && p.name === highlightName) ||
+    selectedPlayerIdForSub === p.id;
+
+  const slotObj = currentPitchSlots.find((s) => s.playerId === p.id);
+  const starterBadge = inStarting11
+    ? `<span class="starter-badge">⚡ Wyjściowa 11 (${slotObj ? slotObj.posLabel : ""})</span>`
+    : "";
+
+  let subBtnLabel = inStarting11 ? "🔄 Zmień na boisku" : "🔄 Wstaw do Wyjściowej 11";
+  let subBtnExtraClass = "";
+
+  if (selectedSlotIdxForSub !== null && !isStaff) {
+    const targetSlot = currentPitchSlots[selectedSlotIdxForSub];
+    const targetPlayer = getPlayerById(targetSlot.playerId);
+    if (targetSlot.playerId === p.id) {
+      subBtnLabel = "⚠️ Zaznaczony do zejścia";
+      subBtnExtraClass = "sub-btn--active-target";
+    } else {
+      subBtnLabel = `⚡ Wstaw za: ${targetPlayer.shortName} (${targetSlot.posLabel})`;
+      subBtnExtraClass = "sub-btn--active-target";
+    }
+  } else if (selectedPlayerIdForSub === p.id) {
+    subBtnLabel = "🎯 Kliknij pozycję na boisku!";
+    subBtnExtraClass = "sub-btn--active-target";
+  }
+
+  const numBadge = isCoach ? "TR" : p.pos === "Kierownik drużyny" ? "KD" : (p.num ? "#" + p.num : "—");
+  const staffMetaHtml = isStaff && p.role ? `<div class="player-meta">${p.role}</div>` : "";
+
+  return `
+    <div class="player-card ${isHighlighted ? "highlighted" : ""} ${inStarting11 ? "is-starter" : ""} ${isStaff ? "is-coach" : ""}"
+         data-player="${p.name}"
+         draggable="${!isStaff}"
+         ondragstart="handleCardDragStart(event, '${p.id}')"
+         onclick="handlePlayerCardClick('${p.id}')">
+      <div class="player-num">${numBadge}</div>
+      <div>
+        <span class="player-pos-badge" style="${isStaff ? "background: rgba(245,158,11,0.22); color: #fbbf24;" : ""}">${p.pos}</span>
+        ${starterBadge}
+      </div>
+      <div class="player-name">${p.name}</div>
+      ${staffMetaHtml}
+      ${
+        !isStaff
+          ? `<button type="button" class="sub-btn ${subBtnExtraClass}" onclick="triggerSubFromCard(event, '${p.id}')">${subBtnLabel}</button>`
+          : ""
+      }
+    </div>
+  `;
+}
+
+// Renderowanie kadry w postaci rozwijanych kategorii (akordeon)
 function renderSquad(filterPos = "all", highlightName = null) {
   currentSquadFilter = filterPos;
   const grid = document.getElementById("playersGrid");
   if (!grid) return;
 
-  let filtered = SWIBIE_SQUAD;
+  let baseSquad = SWIBIE_SQUAD;
   if (filterPos === "starter") {
-    filtered = SWIBIE_SQUAD.filter((p) => isPlayerInStarting11(p.id));
+    baseSquad = SWIBIE_SQUAD.filter((p) => isPlayerInStarting11(p.id));
   } else if (filterPos === "bench") {
-    filtered = SWIBIE_SQUAD.filter((p) => !p.isStaff && !isPlayerInStarting11(p.id));
+    baseSquad = SWIBIE_SQUAD.filter((p) => !p.isStaff && !isPlayerInStarting11(p.id));
   } else if (filterPos === "staff") {
-    filtered = SWIBIE_SQUAD.filter((p) => p.isStaff);
+    baseSquad = SWIBIE_SQUAD.filter((p) => p.isStaff || p.pos === "Trener" || p.pos === "Kierownik drużyny");
+    openSquadCategory = "staff";
   } else if (filterPos !== "all") {
-    filtered = SWIBIE_SQUAD.filter((p) => p.pos === filterPos);
+    openSquadCategory = filterPos;
   }
 
-  grid.innerHTML = filtered
-    .map((p) => {
-      const inStarting11 = isPlayerInStarting11(p.id);
-      const isCoach = p.pos === "Trener";
-      const isStaff = p.isStaff || p.pos === "Trener" || p.pos === "Kierownik drużyny";
-      const isHighlighted =
-        (highlightName && p.name === highlightName) ||
-        selectedPlayerIdForSub === p.id;
+  const accordionHtml = SQUAD_POSITION_CATEGORIES.map((cat) => {
+    let catPlayers = [];
+    if (cat.key === "staff") {
+      catPlayers = baseSquad.filter((p) => p.isStaff || p.pos === "Trener" || p.pos === "Kierownik drużyny");
+    } else {
+      catPlayers = baseSquad.filter((p) => !p.isStaff && p.pos === cat.key);
+    }
 
-      const slotObj = currentPitchSlots.find((s) => s.playerId === p.id);
-      const starterBadge = inStarting11
-        ? `<span class="starter-badge">⚡ Wyjściowa 11 (${slotObj.posLabel})</span>`
-        : "";
+    // Jeśli filtr pozycji ukrywa daną kategorię
+    if (filterPos !== "all" && filterPos !== "starter" && filterPos !== "bench" && cat.key !== filterPos && !(filterPos === "staff" && cat.key === "staff")) {
+      return "";
+    }
+    if (catPlayers.length === 0 && (filterPos === "starter" || filterPos === "bench")) {
+      return "";
+    }
 
-      let subBtnLabel = inStarting11 ? "🔄 Zmień na boisku" : "🔄 Wstaw do Wyjściowej 11";
-      let subBtnExtraClass = "";
+    const isOpen = openSquadCategory === cat.key || (filterPos !== "all" && cat.key === filterPos);
+    const startersInCat = catPlayers.filter((p) => isPlayerInStarting11(p.id)).length;
+    const starterBadge = startersInCat > 0
+      ? `<span class="squad-cat-starter-pill">⚡ ${startersInCat} w Wyjściowej 11</span>`
+      : "";
 
-      if (selectedSlotIdxForSub !== null && !isStaff) {
-        const targetSlot = currentPitchSlots[selectedSlotIdxForSub];
-        const targetPlayer = getPlayerById(targetSlot.playerId);
-        if (targetSlot.playerId === p.id) {
-          subBtnLabel = "⚠️ Zaznaczony do zejścia";
-          subBtnExtraClass = "sub-btn--active-target";
-        } else {
-          subBtnLabel = `⚡ Wstaw za: ${targetPlayer.shortName} (${targetSlot.posLabel})`;
-          subBtnExtraClass = "sub-btn--active-target";
-        }
-      } else if (selectedPlayerIdForSub === p.id) {
-        subBtnLabel = "🎯 Kliknij pozycję na boisku po lewej!";
-        subBtnExtraClass = "sub-btn--active-target";
-      }
+    const cardsHtml = catPlayers.map((p) => renderSinglePlayerCardHTML(p, highlightName)).join("");
 
-      const numBadge = isCoach ? "📋" : p.pos === "Kierownik drużyny" ? "👔" : (p.num ? "#" + p.num : "—");
-      const staffMetaHtml = isStaff && p.role ? `<div class="player-meta">${p.role}</div>` : "";
-
-      return `
-        <div class="player-card ${isHighlighted ? "highlighted" : ""} ${inStarting11 ? "is-starter" : ""} ${isStaff ? "is-coach" : ""}"
-             data-player="${p.name}"
-             draggable="${!isStaff}"
-             ondragstart="handleCardDragStart(event, '${p.id}')"
-             onclick="handlePlayerCardClick('${p.id}')">
-          <div class="player-num">${numBadge}</div>
-          <div>
-            <span class="player-pos-badge" style="${isStaff ? "background: rgba(245,158,11,0.22); color: #fbbf24;" : ""}">${p.pos}</span>
+    return `
+      <div class="squad-accordion-item ${isOpen ? "is-open" : ""}" id="squadAccordion-${cat.key}">
+        <button type="button" class="squad-accordion-header" onclick="toggleSquadCategory('${cat.key}')" aria-expanded="${isOpen}">
+          <div class="squad-accordion-title-wrap">
+            <span class="squad-cat-icon">${cat.icon}</span>
+            <span class="squad-cat-title">${cat.title}</span>
+            <span class="squad-cat-count">(${catPlayers.length})</span>
             ${starterBadge}
           </div>
-          <div class="player-name">${p.name}</div>
-          ${staffMetaHtml}
-          ${
-            !isStaff
-              ? `<button type="button" class="sub-btn ${subBtnExtraClass}" onclick="triggerSubFromCard(event, '${p.id}')">${subBtnLabel}</button>`
-              : ""
-          }
+          <span class="squad-accordion-chevron" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        </button>
+        <div class="squad-accordion-body">
+          <div class="squad-accordion-content">
+            <div class="players-subgrid">
+              ${cardsHtml}
+            </div>
+          </div>
         </div>
-      `;
-    })
-    .join("");
+      </div>
+    `;
+  }).join("");
+
+  grid.innerHTML = accordionHtml;
+}
+
+// Kliknięcie/tapnięcie w nagłówek pozycji rozwija listę zawodników i chowa pozostałe
+function toggleSquadCategory(key) {
+  const container = document.getElementById("playersGrid");
+  if (!container) return;
+
+  const currentItem = document.getElementById(`squadAccordion-${key}`);
+  const isAlreadyOpen = currentItem && currentItem.classList.contains("is-open");
+
+  // Zwiń pozostałe kategorie
+  const allItems = container.querySelectorAll(".squad-accordion-item");
+  allItems.forEach((item) => {
+    item.classList.remove("is-open");
+    const btn = item.querySelector(".squad-accordion-header");
+    if (btn) btn.setAttribute("aria-expanded", "false");
+  });
+
+  if (isAlreadyOpen) {
+    // Jeśli była już otwarta -> zwiń
+    openSquadCategory = null;
+  } else {
+    // Rozwiń klikniętą kategorię
+    if (currentItem) {
+      currentItem.classList.add("is-open");
+      const btn = currentItem.querySelector(".squad-accordion-header");
+      if (btn) btn.setAttribute("aria-expanded", "true");
+    }
+    openSquadCategory = key;
+  }
 }
 
 function filterSquad(pos, btnEl) {
   document.querySelectorAll("#kadra .filter-tab").forEach((b) => b.classList.remove("active"));
   if (btnEl) btnEl.classList.add("active");
+  if (pos !== "all" && pos !== "starter" && pos !== "bench") {
+    openSquadCategory = pos;
+  }
   renderSquad(pos);
 }
 
