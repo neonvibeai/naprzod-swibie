@@ -117,78 +117,86 @@
   </div>
 
   <!-- ========================================================================
-       INTERACTIVE SPLIT-SCREEN PORTAL GATEWAY ("WYBIERZ ŚWIAT: KLUB ALBO SZKÓŁKA")
+       SCROLLYTELLING STICKY TRACK ("WYBIERZ ŚWIAT: KLUB ALBO SZKÓŁKA")
        ======================================================================== -->
-  <section class="portal-gateway" id="portalGateway" aria-label="Wybór strefy: Klub Piłkarski lub Szkółka Piłkarska">
-    <!-- Left Side: KLUB PIŁKARSKI (Seniorzy / Klasa B) -->
-    <div class="portal-side portal-side--club" onclick="handlePortalSideClick(event, 'club')" onkeydown="if(event.key==='Enter'||event.key===' '){handlePortalSideClick(event, 'club')}" role="button" tabindex="0" aria-label="Wybierz Strefę Klubu">
-      <div class="portal-bg"></div>
-      <div class="portal-stripes"></div>
-      <div class="portal-content">
-        <img src="assets/logo-klub.png" alt="Herb LKS Naprzód Świbie" class="portal-side-logo" />
-        <div class="portal-kicker">
-          <span class="pulse-dot"></span>
-          ŚLZPN • Podokręg Zabrze • Klasa B
+  <div class="portal-scrolly-track" id="portalScrollyTrack">
+    <section class="portal-gateway" id="portalGateway" aria-label="Wybór strefy: Klub Piłkarski lub Szkółka Piłkarska">
+      <!-- Left Side: KLUB PIŁKARSKI (Seniorzy / Klasa B) -->
+      <div class="portal-side portal-side--club" onclick="handlePortalSideClick(event, 'club')" onkeydown="if(event.key==='Enter'||event.key===' '){handlePortalSideClick(event, 'club')}" role="button" tabindex="0" aria-label="Wybierz Strefę Klubu">
+        <div class="portal-bg"></div>
+        <div class="portal-stripes"></div>
+        <div class="portal-content">
+          <img src="assets/logo-klub.png" alt="Herb LKS Naprzód Świbie" class="portal-side-logo" />
+          <div class="portal-kicker">
+            <span class="pulse-dot"></span>
+            ŚLZPN • Podokręg Zabrze • Klasa B
+          </div>
+          <h1 class="portal-title">
+            KLUB PIŁKARSKI
+            <span>PIERWSZY ZESPÓŁ</span>
+          </h1>
+          <p class="portal-desc">
+            Biało-czarna duma gminy Wielowieś od <strong>13 kwietnia 1952 roku</strong>. Sprawdź terminarz i wyniki w Klasie B, interaktywną kadrę na boisku „Kęp Noł”, zarząd oraz historię LKS Naprzód Świbie.
+          </p>
+          <div class="portal-tap-hint">👆 Dotknij lub przewiń, aby rozwinąć Klub</div>
+          <div class="portal-tags">
+            <span class="portal-tag">⚽ Seniorzy (Klasa B Zabrze)</span>
+            <span class="portal-tag">🏟️ Twierdza „Kęp Noł” (500 miejsc)</span>
+            <span class="portal-tag">📊 Centrum Meczowe & Kadra</span>
+          </div>
+          <button class="portal-cta" type="button" onclick="enterWorld('club'); event.stopPropagation();">
+            Wejdź do Strefy Klubu <span>→</span>
+          </button>
         </div>
-        <h1 class="portal-title">
-          KLUB PIŁKARSKI
-          <span>PIERWSZY ZESPÓŁ</span>
-        </h1>
-        <p class="portal-desc">
-          Biało-czarna duma gminy Wielowieś od <strong>13 kwietnia 1952 roku</strong>. Sprawdź terminarz i wyniki w Klasie B, interaktywną kadrę na boisku „Kęp Noł”, zarząd oraz historię LKS Naprzód Świbie.
-        </p>
-        <div class="portal-tap-hint">👆 Dotknij, aby rozwinąć Strefę Klubu</div>
-        <div class="portal-tags">
-          <span class="portal-tag">⚽ Seniorzy (Klasa B Zabrze)</span>
-          <span class="portal-tag">🏟️ Twierdza „Kęp Noł” (500 miejsc)</span>
-          <span class="portal-tag">📊 Centrum Meczowe & Kadra</span>
-        </div>
-        <button class="portal-cta" type="button" onclick="enterWorld('club'); event.stopPropagation();">
-          Wejdź do Strefy Klubu <span>→</span>
-        </button>
       </div>
-    </div>
 
-    <!-- Center Floating Crest Badge -->
-    <div class="portal-center-badge">
-      <img src="assets/logo-klub.png" alt="Herb LKS Naprzód Świbie" class="crest-shield" />
-      <div class="portal-vs-pill">WYBIERZ SWOJĄ STREFĘ</div>
-    </div>
-
-    <!-- Right Side: SZKÓŁKA PIŁKARSKA (Akademia / Kids Cup) -->
-    <div class="portal-side portal-side--academy" onclick="handlePortalSideClick(event, 'academy')" onkeydown="if(event.key==='Enter'||event.key===' '){handlePortalSideClick(event, 'academy')}" role="button" tabindex="0" aria-label="Wybierz Szkółkę Piłkarską">
-      <div class="portal-bg"></div>
-      <div class="portal-stripes"></div>
-      <div class="portal-content">
-        <img src="assets/logo-szkolka.png" alt="Logo Szkółki Piłkarskiej LKS Naprzód Świbie" class="portal-side-logo portal-side-logo--academy" />
-        <div class="portal-kicker">
-          <span>🌟</span> Nabór Otwarty • Chłopcy i Dziewczęta
-        </div>
-        <h2 class="portal-title">
-          SZKÓŁKA PIŁKARSKA
-          <span>AKADEMIA & KIDS CUP</span>
-        </h2>
-        <p class="portal-desc">
-          Szkolimy przyszłe pokolenia piłkarzy na obiektach w Świbiu! Grupy <strong>Skrzatów, Żaków, Orlików i Młodzików</strong>, wykwalifikowani trenerzy oraz słynny regionalny turniej <strong>Naprzód Świbie Kids Cup</strong>.
-        </p>
-        <div class="portal-tap-hint">👇 Dotknij, aby rozwinąć Szkółkę Piłkarską</div>
-        <div class="portal-tags">
-          <span class="portal-tag">🏃 Skrzaty • Żaki • Orliki • Młodziki</span>
-          <span class="portal-tag">🏆 Turniej Naprzód Świbie Kids Cup</span>
-          <span class="portal-tag">🎯 Kalkulator Grupy dla Rodzica</span>
-        </div>
-        <button class="portal-cta" type="button" onclick="enterWorld('academy'); event.stopPropagation();">
-          <span>←</span> Wejdź do Szkółki
-        </button>
+      <!-- Center Floating Crest Badge -->
+      <div class="portal-center-badge">
+        <img src="assets/logo-klub.png" alt="Herb LKS Naprzód Świbie" class="crest-shield" />
+        <div class="portal-vs-pill">WYBIERZ SWOJĄ STREFĘ</div>
       </div>
-    </div>
 
-    <div class="portal-skip-bottom">
-      <span>ul. Sportowa 51, 44-187 Świbie (Gm. Wielowieś)</span>
-      <span>•</span>
-      <span>KRS: 0000294473 (OPP 1,5%)</span>
-    </div>
-  </section>
+      <!-- Right Side: SZKÓŁKA PIŁKARSKA (Akademia / Kids Cup) -->
+      <div class="portal-side portal-side--academy" onclick="handlePortalSideClick(event, 'academy')" onkeydown="if(event.key==='Enter'||event.key===' '){handlePortalSideClick(event, 'academy')}" role="button" tabindex="0" aria-label="Wybierz Szkółkę Piłkarską">
+        <div class="portal-bg"></div>
+        <div class="portal-stripes"></div>
+        <div class="portal-content">
+          <img src="assets/logo-szkolka.png" alt="Logo Szkółki Piłkarskiej LKS Naprzód Świbie" class="portal-side-logo portal-side-logo--academy" />
+          <div class="portal-kicker">
+            <span>🌟</span> Nabór Otwarty • Chłopcy i Dziewczęta
+          </div>
+          <h2 class="portal-title">
+            SZKÓŁKA PIŁKARSKA
+            <span>AKADEMIA & KIDS CUP</span>
+          </h2>
+          <p class="portal-desc">
+            Szkolimy przyszłe pokolenia piłkarzy na obiektach w Świbiu! Grupy <strong>Skrzatów, Żaków, Orlików i Młodzików</strong>, wykwalifikowani trenerzy oraz słynny regionalny turniej <strong>Naprzód Świbie Kids Cup</strong>.
+          </p>
+          <div class="portal-tap-hint">👇 Dotknij lub przewiń, aby rozwinąć Szkółkę</div>
+          <div class="portal-tags">
+            <span class="portal-tag">🏃 Skrzaty • Żaki • Orliki • Młodziki</span>
+            <span class="portal-tag">🏆 Turniej Naprzód Świbie Kids Cup</span>
+            <span class="portal-tag">🎯 Kalkulator Grupy dla Rodzica</span>
+          </div>
+          <button class="portal-cta" type="button" onclick="enterWorld('academy'); event.stopPropagation();">
+            <span>←</span> Wejdź do Szkółki
+          </button>
+        </div>
+      </div>
+
+      <!-- Subtelny wskaźnik 'Przewiń w dół' (Scrollytelling indicator) -->
+      <div class="portal-scroll-hint" id="portalScrollHint" aria-label="Przewiń w dół" role="button" tabindex="0" onclick="window.scrollBy({ top: window.innerHeight * 0.75, behavior: 'smooth' });">
+        <span class="portal-scroll-hint-txt">Przewiń w dół</span>
+        <span class="portal-scroll-hint-arrow">↓</span>
+      </div>
+
+      <div class="portal-skip-bottom">
+        <span>ul. Sportowa 51, 44-187 Świbie (Gm. Wielowieś)</span>
+        <span>•</span>
+        <span>KRS: 0000294473 (OPP 1,5%)</span>
+      </div>
+    </section>
+  </div>
 
   <!-- ========================================================================
        STICKY NAVBAR WITH INSTANT WORLD SWITCHER
