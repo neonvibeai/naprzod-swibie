@@ -370,48 +370,48 @@ async function syncLiveFrom90Minut(manualClick = false) {
 // Treningi Seniorów: Wtorek, czwartek 19:15 – 20:45 (boisko w Świbiu)
 const SWIBIE_SQUAD = [
   // BRAMKARZE (4)
-  { id: "m_musiol", num: 12, name: "Marcin Musioł", shortName: "M. Musioł", pos: "Bramkarz", role: "Bramkarz • Wyjściowa 11" },
-  { id: "v_mykhailiuk", num: 25, name: "Volodymyr Mykhailiuk", shortName: "V. Mykhailiuk", pos: "Bramkarz", role: "Bramkarz • Pewny punkt na linii" },
-  { id: "p_chodkiewicz", num: null, name: "Piotr Chodkiewicz", shortName: "P. Chodkiewicz", pos: "Bramkarz", role: "Bramkarz • Wiceprezes Zarządu (tel. 796 129 276)" },
-  { id: "k_grochla", num: null, name: "Krzysztof Grochla", shortName: "K. Grochla", pos: "Bramkarz", role: "Bramkarz • Doświadczenie w bramce" },
+  { id: "m_musiol", num: 12, name: "Marcin Musioł", shortName: "M. Musioł", pos: "Bramkarz" },
+  { id: "v_mykhailiuk", num: 25, name: "Volodymyr Mykhailiuk", shortName: "V. Mykhailiuk", pos: "Bramkarz" },
+  { id: "p_chodkiewicz", num: null, name: "Piotr Chodkiewicz", shortName: "P. Chodkiewicz", pos: "Bramkarz" },
+  { id: "k_grochla", num: null, name: "Krzysztof Grochla", shortName: "K. Grochla", pos: "Bramkarz" },
 
   // OBROŃCY (8)
-  { id: "m_szostok", num: 2, name: "Michał Szostok", shortName: "M. Szostok", pos: "Obrońca", role: "Środkowy obrońca • Wyjściowa 11" },
-  { id: "t_jendrysik", num: 6, name: "Tomasz Jendrysik", shortName: "T. Jendrysik", pos: "Obrońca", role: "Lewy obrońca • Wyjściowa 11" },
-  { id: "p_kokoszka", num: 15, name: "Paweł Kokoszka", shortName: "P. Kokoszka", pos: "Obrońca", role: "Środkowy obrońca • Wyjściowa 11" },
-  { id: "d_sosna", num: 17, name: "Dawid Sosna", shortName: "D. Sosna", pos: "Obrońca", role: "Prawy obrońca • Wyjściowa 11" },
-  { id: "m_kravchuk", num: 13, name: "Mykola Kravchuk", shortName: "M. Kravchuk", pos: "Obrońca", role: "Obrońca • Nieustępliwość w defensywie" },
-  { id: "g_lasak", num: null, name: "Grzegorz Lasak", shortName: "G. Lasak", pos: "Obrońca", role: "Środkowy obrońca • Gra w powietrzu" },
-  { id: "w_marszalek", num: null, name: "Wojciech Marszałek", shortName: "W. Marszałek", pos: "Obrońca", role: "Obrońca • Wsparcie defensywy" },
-  { id: "y_pozdniakov", num: null, name: "Yevhenii Pozdniakov", shortName: "Y. Pozdniakov", pos: "Obrońca", role: "Obrońca • Waleczność w obronie" },
+  { id: "m_szostok", num: 2, name: "Michał Szostok", shortName: "M. Szostok", pos: "Obrońca" },
+  { id: "t_jendrysik", num: 6, name: "Tomasz Jendrysik", shortName: "T. Jendrysik", pos: "Obrońca" },
+  { id: "p_kokoszka", num: 15, name: "Paweł Kokoszka", shortName: "P. Kokoszka", pos: "Obrońca" },
+  { id: "d_sosna", num: 17, name: "Dawid Sosna", shortName: "D. Sosna", pos: "Obrońca" },
+  { id: "m_kravchuk", num: 13, name: "Mykola Kravchuk", shortName: "M. Kravchuk", pos: "Obrońca" },
+  { id: "g_lasak", num: null, name: "Grzegorz Lasak", shortName: "G. Lasak", pos: "Obrońca" },
+  { id: "w_marszalek", num: null, name: "Wojciech Marszałek", shortName: "W. Marszałek", pos: "Obrońca" },
+  { id: "y_pozdniakov", num: null, name: "Yevhenii Pozdniakov", shortName: "Y. Pozdniakov", pos: "Obrońca" },
 
   // POMOCNICY (15)
-  { id: "t_kusz", num: 5, name: "Tobiasz Kusz", shortName: "T. Kusz", pos: "Pomocnik", role: "Lewy pomocnik • Wyjściowa 11" },
-  { id: "o_bartosevych", num: 7, name: "Oleksandr Bartosevych", shortName: "O. Bartosevych", pos: "Pomocnik", role: "Środkowy pomocnik • Wyjściowa 11" },
-  { id: "k_mazalik", num: 10, name: "Kamil Mazalik", shortName: "K. Mazalik", pos: "Pomocnik", role: "Środkowy pomocnik • Wyjściowa 11" },
-  { id: "a_john", num: 11, name: "Adam John", shortName: "A. John", pos: "Pomocnik", role: "Prawy pomocnik / Wahadłowy • Wyjściowa 11 & Zarząd" },
-  { id: "t_janoszka", num: 4, name: "Tomasz Janoszka", shortName: "T. Janoszka", pos: "Pomocnik", role: "Pomocnik • Koordynator Szkółki (tel. 511 956 923)" },
-  { id: "m_krzykawski", num: 16, name: "Mateusz Krzykawski", shortName: "M. Krzykawski", pos: "Pomocnik", role: "Pomocnik • Kreatywność w rozegraniu" },
-  { id: "w_bujara", num: 18, name: "Wojciech Bujara", shortName: "W. Bujara", pos: "Pomocnik", role: "Pomocnik • Dynamika na skrzydle" },
-  { id: "a_dudek", num: null, name: "Artur Dudek", shortName: "A. Dudek", pos: "Pomocnik", role: "Pomocnik • Pewna gra w drugiej linii" },
-  { id: "p_john", num: null, name: "Patryk John", shortName: "P. John", pos: "Pomocnik", role: "Pomocnik • Zaangażowanie w walce o piłkę" },
-  { id: "a_koziolek", num: null, name: "Artur Koziołek", shortName: "A. Koziołek", pos: "Pomocnik", role: "Pomocnik • Przegląd pola" },
-  { id: "k_krupa", num: null, name: "Kacper Krupa", shortName: "K. Krupa", pos: "Pomocnik", role: "Ofensywny pomocnik • Kreator akcji" },
-  { id: "p_mazalik", num: null, name: "Patryk Mazalik", shortName: "P. Mazalik", pos: "Pomocnik", role: "Pomocnik • Druga linia" },
-  { id: "sz_musiol", num: null, name: "Szymon Musioł", shortName: "Sz. Musioł", pos: "Pomocnik", role: "Pomocnik • Precyzja podań" },
-  { id: "o_mysza", num: null, name: "Oliwier Mysza", shortName: "O. Mysza", pos: "Pomocnik", role: "Pomocnik • Młody talent środka pola" },
-  { id: "t_seifried", num: null, name: "Tomasz Seifried", shortName: "T. Seifried", pos: "Pomocnik", role: "Pomocnik • Solidność w rozegraniu" },
+  { id: "t_kusz", num: 5, name: "Tobiasz Kusz", shortName: "T. Kusz", pos: "Pomocnik" },
+  { id: "o_bartosevych", num: 7, name: "Oleksandr Bartosevych", shortName: "O. Bartosevych", pos: "Pomocnik" },
+  { id: "k_mazalik", num: 10, name: "Kamil Mazalik", shortName: "K. Mazalik", pos: "Pomocnik" },
+  { id: "a_john", num: 11, name: "Adam John", shortName: "A. John", pos: "Pomocnik" },
+  { id: "t_janoszka", num: 4, name: "Tomasz Janoszka", shortName: "T. Janoszka", pos: "Pomocnik" },
+  { id: "m_krzykawski", num: 16, name: "Mateusz Krzykawski", shortName: "M. Krzykawski", pos: "Pomocnik" },
+  { id: "w_bujara", num: 18, name: "Wojciech Bujara", shortName: "W. Bujara", pos: "Pomocnik" },
+  { id: "a_dudek", num: null, name: "Artur Dudek", shortName: "A. Dudek", pos: "Pomocnik" },
+  { id: "p_john", num: null, name: "Patryk John", shortName: "P. John", pos: "Pomocnik" },
+  { id: "a_koziolek", num: null, name: "Artur Koziołek", shortName: "A. Koziołek", pos: "Pomocnik" },
+  { id: "k_krupa", num: null, name: "Kacper Krupa", shortName: "K. Krupa", pos: "Pomocnik" },
+  { id: "p_mazalik", num: null, name: "Patryk Mazalik", shortName: "P. Mazalik", pos: "Pomocnik" },
+  { id: "sz_musiol", num: null, name: "Szymon Musioł", shortName: "Sz. Musioł", pos: "Pomocnik" },
+  { id: "o_mysza", num: null, name: "Oliwier Mysza", shortName: "O. Mysza", pos: "Pomocnik" },
+  { id: "t_seifried", num: null, name: "Tomasz Seifried", shortName: "T. Seifried", pos: "Pomocnik" },
 
   // NAPASTNICY (5)
-  { id: "m_chowaniec", num: 8, name: "Marek Chowaniec", shortName: "M. Chowaniec", pos: "Napastnik", role: "Napastnik • Wyjściowa 11" },
-  { id: "p_giera", num: 9, name: "Patryk Giera", shortName: "P. Giera", pos: "Napastnik", role: "Napastnik • Wyjściowa 11" },
-  { id: "m_dudek", num: null, name: "Marcin Dudek", shortName: "M. Dudek", pos: "Napastnik", role: "Napastnik • Członek Zarządu" },
-  { id: "j_tomaszek", num: null, name: "Jakub Tomaszek", shortName: "J. Tomaszek", pos: "Napastnik", role: "Napastnik • Instynkt strzelecki" },
-  { id: "a_zienc", num: null, name: "Andrzej Zieńć", shortName: "A. Zieńć", pos: "Napastnik", role: "Napastnik • Doświadczenie w ataku" },
+  { id: "m_chowaniec", num: 8, name: "Marek Chowaniec", shortName: "M. Chowaniec", pos: "Napastnik" },
+  { id: "p_giera", num: 9, name: "Patryk Giera", shortName: "P. Giera", pos: "Napastnik" },
+  { id: "m_dudek", num: null, name: "Marcin Dudek", shortName: "M. Dudek", pos: "Napastnik" },
+  { id: "j_tomaszek", num: null, name: "Jakub Tomaszek", shortName: "J. Tomaszek", pos: "Napastnik" },
+  { id: "a_zienc", num: null, name: "Andrzej Zieńć", shortName: "A. Zieńć", pos: "Napastnik" },
 
   // SZTAB SZKOLENIOWY (2)
-  { id: "k_giera_coach", num: "TR", name: "Kamil Giera", shortName: "K. Giera", pos: "Trener", role: "I Trener Seniorów (licencja UEFA C)", isStaff: true },
-  { id: "r_leksy_staff", num: "KD", name: "Rafał Leksy", shortName: "R. Leksy", pos: "Kierownik drużyny", role: "Kierownik drużyny seniorów & Asystent trenera szkółki", isStaff: true }
+  { id: "k_giera_coach", num: "TR", name: "Kamil Giera", shortName: "K. Giera", pos: "Trener", role: "Licencja UEFA C", isStaff: true },
+  { id: "r_leksy_staff", num: "KD", name: "Rafał Leksy", shortName: "R. Leksy", pos: "Kierownik drużyny", role: "Kierownik drużyny", isStaff: true }
 ];
 
 // Domyślne ustawienie 1-4-4-2 (Wyjściowa 11: Musioł #12, Jendrysik #6, Szostok #2, Kokoszka #15, Sosna #17, Kusz #5, Bartosevych #7, Mazalik #10, John #11, Chowaniec #8, Giera #9)
@@ -755,6 +755,7 @@ function renderSquad(filterPos = "all", highlightName = null) {
       }
 
       const numBadge = isCoach ? "📋" : p.pos === "Kierownik drużyny" ? "👔" : (p.num ? "#" + p.num : "—");
+      const staffMetaHtml = isStaff && p.role ? `<div class="player-meta">${p.role}</div>` : "";
 
       return `
         <div class="player-card ${isHighlighted ? "highlighted" : ""} ${inStarting11 ? "is-starter" : ""} ${isStaff ? "is-coach" : ""}"
@@ -768,7 +769,7 @@ function renderSquad(filterPos = "all", highlightName = null) {
             ${starterBadge}
           </div>
           <div class="player-name">${p.name}</div>
-          <div class="player-meta">${p.role}</div>
+          ${staffMetaHtml}
           ${
             !isStaff
               ? `<button type="button" class="sub-btn ${subBtnExtraClass}" onclick="triggerSubFromCard(event, '${p.id}')">${subBtnLabel}</button>`
@@ -798,8 +799,9 @@ function handlePlayerCardClick(playerId) {
 
   renderSquad(currentSquadFilter, p.name);
   const numPrefix = p.num ? `#${p.num} ` : "";
+  const staffRoleSuffix = p.isStaff && p.role ? ` — ${p.role}` : "";
   updateSubBanner(
-    `⚡ Wybrano: <strong style="color: var(--turf-bright);">${p.isStaff ? p.pos + ": " : numPrefix}${p.name}</strong> (${p.pos} — ${p.role})`
+    `⚡ Wybrano: <strong style="color: var(--turf-bright);">${p.isStaff ? p.pos + ": " : numPrefix}${p.name}</strong> (${p.pos}${staffRoleSuffix})`
   );
 }
 
