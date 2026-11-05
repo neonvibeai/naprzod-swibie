@@ -628,6 +628,67 @@ function closeMobileMenu() {
   if (iconEl) iconEl.textContent = "☰";
 }
 
+let currentActivePortalSide = null; // null | 'club' | 'academy'
+
+// Obsługa dotyku i kliknięcia w sekcję powitalną (Split Screen) na telefonach i komputerach
+function handlePortalSideClick(event, mode) {
+  const isTouchOrMobile =
+    window.innerWidth <= 1024 ||
+    window.matchMedia("(max-width: 1024px)").matches ||
+    window.matchMedia("(hover: none)").matches ||
+    ("ontouchstart" in window) ||
+    (navigator.maxTouchPoints > 0);
+
+  // Bezpośrednie kliknięcie w przycisk przejścia (CTA) natychmiast otwiera daną strefę
+  if (event && event.target && event.target.closest(".portal-cta")) {
+    enterWorld(mode);
+    return;
+  }
+
+  // Na urządzeniach dotykowych / mobilnych
+  if (isTouchOrMobile) {
+    // Jeśli dana strefa jest JUŻ powiększona (aktywna), ponowne kliknięcie wchodzi do niej
+    if (currentActivePortalSide === mode) {
+      enterWorld(mode);
+      return;
+    }
+
+    // Pierwsze kliknięcie: powiększ tę strefę, pomniejsz drugą i przesuń linię podziału
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    activatePortalSide(mode);
+    return;
+  }
+
+  // Na desktopie z myszką: bezpośrednie wejście
+  enterWorld(mode);
+}
+
+function activatePortalSide(mode) {
+  currentActivePortalSide = mode;
+  const gateway = document.getElementById("portalGateway");
+  const clubSide = document.querySelector(".portal-side--club");
+  const academySide = document.querySelector(".portal-side--academy");
+
+  if (!gateway || !clubSide || !academySide) return;
+
+  gateway.classList.remove("active-club", "active-academy");
+  clubSide.classList.remove("is-active", "is-inactive");
+  academySide.classList.remove("is-active", "is-inactive");
+
+  if (mode === "club") {
+    gateway.classList.add("active-club");
+    clubSide.classList.add("is-active");
+    academySide.classList.add("is-inactive");
+  } else if (mode === "academy") {
+    gateway.classList.add("active-academy");
+    academySide.classList.add("is-active");
+    clubSide.classList.add("is-inactive");
+  }
+}
+
 function enterWorld(mode) {
   closeMobileMenu();
   const gateway = document.getElementById("portalGateway");
@@ -643,6 +704,11 @@ function openPortalGateway() {
   const gateway = document.getElementById("portalGateway");
   if (gateway) {
     gateway.classList.remove("is-hidden");
+    // Przy ponownym otwarciu przywracamy równowagę 50/50
+    gateway.classList.remove("active-club", "active-academy");
+    document.querySelector(".portal-side--club")?.classList.remove("is-active", "is-inactive");
+    document.querySelector(".portal-side--academy")?.classList.remove("is-active", "is-inactive");
+    currentActivePortalSide = null;
   }
 }
 

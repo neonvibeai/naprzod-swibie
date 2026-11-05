@@ -121,7 +121,7 @@
        ======================================================================== -->
   <section class="portal-gateway" id="portalGateway" aria-label="Wybór strefy: Klub Piłkarski lub Szkółka Piłkarska">
     <!-- Left Side: KLUB PIŁKARSKI (Seniorzy / Klasa B) -->
-    <div class="portal-side portal-side--club" onclick="enterWorld('club')" role="button" tabindex="0">
+    <div class="portal-side portal-side--club" onclick="handlePortalSideClick(event, 'club')" onkeydown="if(event.key==='Enter'||event.key===' '){handlePortalSideClick(event, 'club')}" role="button" tabindex="0" aria-label="Wybierz Strefę Klubu">
       <div class="portal-bg"></div>
       <div class="portal-stripes"></div>
       <div class="portal-content">
@@ -137,12 +137,13 @@
         <p class="portal-desc">
           Biało-czarna duma gminy Wielowieś od <strong>13 kwietnia 1952 roku</strong>. Sprawdź terminarz i wyniki w Klasie B, interaktywną kadrę na boisku „Kęp Noł”, zarząd oraz historię LKS Naprzód Świbie.
         </p>
+        <div class="portal-tap-hint">👆 Dotknij, aby rozwinąć Strefę Klubu</div>
         <div class="portal-tags">
           <span class="portal-tag">⚽ Seniorzy (Klasa B Zabrze)</span>
           <span class="portal-tag">🏟️ Twierdza „Kęp Noł” (500 miejsc)</span>
           <span class="portal-tag">📊 Centrum Meczowe & Kadra</span>
         </div>
-        <button class="portal-cta" type="button">
+        <button class="portal-cta" type="button" onclick="enterWorld('club'); event.stopPropagation();">
           Wejdź do Strefy Klubu <span>→</span>
         </button>
       </div>
@@ -155,7 +156,7 @@
     </div>
 
     <!-- Right Side: SZKÓŁKA PIŁKARSKA (Akademia / Kids Cup) -->
-    <div class="portal-side portal-side--academy" onclick="enterWorld('academy')" role="button" tabindex="0">
+    <div class="portal-side portal-side--academy" onclick="handlePortalSideClick(event, 'academy')" onkeydown="if(event.key==='Enter'||event.key===' '){handlePortalSideClick(event, 'academy')}" role="button" tabindex="0" aria-label="Wybierz Szkółkę Piłkarską">
       <div class="portal-bg"></div>
       <div class="portal-stripes"></div>
       <div class="portal-content">
@@ -170,12 +171,13 @@
         <p class="portal-desc">
           Szkolimy przyszłe pokolenia piłkarzy na obiektach w Świbiu! Grupy <strong>Skrzatów, Żaków, Orlików i Młodzików</strong>, wykwalifikowani trenerzy oraz słynny regionalny turniej <strong>Naprzód Świbie Kids Cup</strong>.
         </p>
+        <div class="portal-tap-hint">👇 Dotknij, aby rozwinąć Szkółkę Piłkarską</div>
         <div class="portal-tags">
           <span class="portal-tag">🏃 Skrzaty • Żaki • Orliki • Młodziki</span>
           <span class="portal-tag">🏆 Turniej Naprzód Świbie Kids Cup</span>
           <span class="portal-tag">🎯 Kalkulator Grupy dla Rodzica</span>
         </div>
-        <button class="portal-cta" type="button">
+        <button class="portal-cta" type="button" onclick="enterWorld('academy'); event.stopPropagation();">
           <span>←</span> Wejdź do Szkółki
         </button>
       </div>
