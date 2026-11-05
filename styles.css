@@ -2757,68 +2757,86 @@ body.mode-club .academy-only {
     display: none;
   }
 
-  /* Split-Screen Portal Gateway on Tablet & Mobile — Fits 100dvh with zero scroll */
+  /* Split-Screen Portal Gateway on Tablet & Mobile — natural scroll flow without blocking */
   .portal-gateway {
-    flex-direction: column;
+    position: relative;
+    inset: auto;
+    width: 100%;
     height: 100vh;
     height: 100dvh;
+    z-index: 100;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    display: flex !important;
+    flex-direction: column;
     overflow: hidden;
   }
 
   .portal-side {
-    flex: 1 1 0%;
+    flex: var(--club-flex, 1) 1 0%;
     height: auto;
     min-height: 0;
     padding: 0.85rem 1.5rem;
     align-items: center !important;
     text-align: center !important;
     justify-content: center;
-    transition: flex 0.65s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease, padding 0.5s ease;
+    transition: flex 0.28s ease-out, filter 0.3s ease, padding 0.3s ease;
   }
 
   .portal-side--club {
+    flex: var(--club-flex, 1) 1 0%;
     border-right: none;
     border-bottom: 2px solid rgba(255, 255, 255, 0.2);
     padding: 0.85rem 1.5rem 2.2rem;
   }
 
   .portal-side--academy {
+    flex: var(--academy-flex, 1) 1 0%;
     border-left: none;
     border-top: 2px solid rgba(163, 230, 53, 0.35);
     padding: 2.2rem 1.5rem 0.85rem;
   }
 
-  /* Dotykowe stany aktywne (Powiększenie sekcji i przesunięcie linii podziału) */
+  .portal-center-badge {
+    top: var(--divider-top, 50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: top 0.28s ease-out;
+  }
+
+  /* Dotykowe i scrollowane stany aktywne (Powiększenie sekcji i przesunięcie linii podziału) */
   .portal-gateway.active-club .portal-side--club {
-    flex: 1.85 1 0%;
+    flex: var(--club-flex, 1.85) 1 0%;
     filter: brightness(1.06);
     padding: 1.1rem 1.5rem 2.85rem;
   }
 
   .portal-gateway.active-club .portal-side--academy {
-    flex: 0.85 1 0%;
+    flex: var(--academy-flex, 0.85) 1 0%;
     filter: brightness(0.65);
     padding: 2.4rem 1.5rem 0.85rem;
   }
 
   .portal-gateway.active-club .portal-center-badge {
-    top: 67%;
+    top: var(--divider-top, 67%);
   }
 
   .portal-gateway.active-academy .portal-side--academy {
-    flex: 1.85 1 0%;
+    flex: var(--academy-flex, 1.85) 1 0%;
     filter: brightness(1.06);
     padding: 2.85rem 1.5rem 1.1rem;
   }
 
   .portal-gateway.active-academy .portal-side--club {
-    flex: 0.85 1 0%;
+    flex: var(--club-flex, 0.85) 1 0%;
     filter: brightness(0.65);
     padding: 0.85rem 1.5rem 2.4rem;
   }
 
   .portal-gateway.active-academy .portal-center-badge {
-    top: 33%;
+    top: var(--divider-top, 33%);
   }
 
   /* Zwinięcie zbędnych elementów w nieaktywnej sekcji */

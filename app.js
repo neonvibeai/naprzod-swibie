@@ -629,15 +629,86 @@ function closeMobileMenu() {
 }
 
 let currentActivePortalSide = null; // null | 'club' | 'academy'
+let scrollSplitTicking = false;
+
+// Lekka animacja przesunięcia linii podziału w oparciu o naturalny scroll strony (scrollY)
+function updateScrollSplit() {
+  scrollSplitTicking = false;
+  const isMobile = window.innerWidth <= 1024;
+  if (!isMobile) return;
+
+  const scrollY = window.scrollY || window.pageYOffset || 0;
+  // Gdy użytkownik zjechał już głębiej w treść strony (powyżej 350px), nie obciążamy wątku
+  if (scrollY > 350) return;
+
+  const gateway = document.getElementById("portalGateway");
+  const clubSide = document.querySelector(".portal-side--club");
+  const academySide = document.querySelector(".portal-side--academy");
+  if (!gateway || !clubSide || !academySide) return;
+
+  const maxScroll = 90; // Pierwsze kilkadziesiąt/sto pikseli
+  const progress = Math.min(1, Math.max(0, scrollY / maxScroll));
+
+  if (progress <= 0.04) {
+    // 1. W punkcie początkowym (na samej górze strony) sekcje mają idealny podział 50% / 50%
+    gateway.style.setProperty("--divider-top", "50%");
+    gateway.style.setProperty("--club-flex", "1");
+    gateway.style.setProperty("--academy-flex", "1");
+    gateway.classList.remove("active-club", "active-academy", "is-scrolled");
+    clubSide.classList.remove("is-active", "is-inactive");
+    academySide.classList.remove("is-active", "is-inactive");
+  } else {
+    // 2. Gdy użytkownik przewija w dół, linia płynnie się przesuwa proporcjonalnie do scrollY
+    gateway.classList.add("is-scrolled");
+    const targetMode = currentActivePortalSide || "club";
+
+    if (targetMode === "club") {
+      const topPercent = (50 + 17 * progress).toFixed(1); // 50% -> 67%
+      const clubFlex = (1 + 0.85 * progress).toFixed(3);  // 1 -> 1.85
+      const acadFlex = (1 - 0.15 * progress).toFixed(3);  // 1 -> 0.85
+      gateway.style.setProperty("--divider-top", `${topPercent}%`);
+      gateway.style.setProperty("--club-flex", clubFlex);
+      gateway.style.setProperty("--academy-flex", acadFlex);
+      gateway.classList.add("active-club");
+      gateway.classList.remove("active-academy");
+      clubSide.classList.add("is-active");
+      clubSide.classList.remove("is-inactive");
+      academySide.classList.add("is-inactive");
+      academySide.classList.remove("is-active");
+    } else {
+      const topPercent = (50 - 17 * progress).toFixed(1); // 50% -> 33%
+      const acadFlex = (1 + 0.85 * progress).toFixed(3);  // 1 -> 1.85
+      const clubFlex = (1 - 0.15 * progress).toFixed(3);  // 1 -> 0.85
+      gateway.style.setProperty("--divider-top", `${topPercent}%`);
+      gateway.style.setProperty("--club-flex", clubFlex);
+      gateway.style.setProperty("--academy-flex", acadFlex);
+      gateway.classList.add("active-academy");
+      gateway.classList.remove("active-club");
+      academySide.classList.add("is-active");
+      academySide.classList.remove("is-inactive");
+      clubSide.classList.add("is-inactive");
+      clubSide.classList.remove("is-active");
+    }
+  }
+}
+
+window.addEventListener(
+  "scroll",
+  () => {
+    if (!scrollSplitTicking) {
+      window.requestAnimationFrame(updateScrollSplit);
+      scrollSplitTicking = true;
+    }
+  },
+  { passive: true }
+);
 
 // Obsługa dotyku i kliknięcia w sekcję powitalną (Split Screen) na telefonach i komputerach
 function handlePortalSideClick(event, mode) {
   const isTouchOrMobile =
     window.innerWidth <= 1024 ||
     window.matchMedia("(max-width: 1024px)").matches ||
-    window.matchMedia("(hover: none)").matches ||
-    ("ontouchstart" in window) ||
-    (navigator.maxTouchPoints > 0);
+    window.matchMedia("(hover: none)").matches;
 
   // Bezpośrednie kliknięcie w przycisk przejścia (CTA) natychmiast otwiera daną strefę
   if (event && event.target && event.target.closest(".portal-cta")) {
@@ -668,6 +739,7 @@ function handlePortalSideClick(event, mode) {
 
 function activatePortalSide(mode) {
   currentActivePortalSide = mode;
+  const isMobile = window.innerWidth <= 1024;
   const gateway = document.getElementById("portalGateway");
   const clubSide = document.querySelector(".portal-side--club");
   const academySide = document.querySelector(".portal-side--academy");
@@ -682,33 +754,60 @@ function activatePortalSide(mode) {
     gateway.classList.add("active-club");
     clubSide.classList.add("is-active");
     academySide.classList.add("is-inactive");
+    if (isMobile) {
+      gateway.style.setProperty("--divider-top", "67%");
+      gateway.style.setProperty("--club-flex", "1.85");
+      gateway.style.setProperty("--academy-flex", "0.85");
+    }
   } else if (mode === "academy") {
     gateway.classList.add("active-academy");
     academySide.classList.add("is-active");
     clubSide.classList.add("is-inactive");
+    if (isMobile) {
+      gateway.style.setProperty("--divider-top", "33%");
+      gateway.style.setProperty("--club-flex", "0.85");
+      gateway.style.setProperty("--academy-flex", "1.85");
+    }
   }
 }
 
 function enterWorld(mode) {
   closeMobileMenu();
-  const gateway = document.getElementById("portalGateway");
-  if (gateway) {
-    gateway.classList.add("is-hidden");
-  }
   switchMode(mode);
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  const isMobile = window.innerWidth <= 1024;
+  const gateway = document.getElementById("portalGateway");
+  if (isMobile) {
+    // Na telefonach bez blokowania scrolla: płynny scroll do zawartości wybranej strefy
+    const targetSection =
+      mode === "academy"
+        ? document.getElementById("akademia-start") || document.getElementById("top")
+        : document.getElementById("top");
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: "smooth" });
+    }
+  } else {
+    if (gateway) {
+      gateway.classList.add("is-hidden");
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 }
 
 function openPortalGateway() {
   closeMobileMenu();
+  const isMobile = window.innerWidth <= 1024;
   const gateway = document.getElementById("portalGateway");
-  if (gateway) {
-    gateway.classList.remove("is-hidden");
-    // Przy ponownym otwarciu przywracamy równowagę 50/50
-    gateway.classList.remove("active-club", "active-academy");
-    document.querySelector(".portal-side--club")?.classList.remove("is-active", "is-inactive");
-    document.querySelector(".portal-side--academy")?.classList.remove("is-active", "is-inactive");
-    currentActivePortalSide = null;
+  if (isMobile) {
+    // Płynne przewinięcie na samą górę strony do sekcji wyboru 50/50
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } else {
+    if (gateway) {
+      gateway.classList.remove("is-hidden");
+      gateway.classList.remove("active-club", "active-academy");
+      document.querySelector(".portal-side--club")?.classList.remove("is-active", "is-inactive");
+      document.querySelector(".portal-side--academy")?.classList.remove("is-active", "is-inactive");
+      currentActivePortalSide = null;
+    }
   }
 }
 
@@ -1446,6 +1545,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderPhotoGallery("all");
   updateAcademyFinder(8);
   updateScrollBackground();
+  updateScrollSplit();
   syncLiveFrom90Minut(false);
 
   const observer = new IntersectionObserver(
