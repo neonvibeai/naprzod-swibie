@@ -629,182 +629,87 @@ function closeMobileMenu() {
 }
 
 let currentActivePortalSide = null; // null | 'club' | 'academy'
-let scrollSplitTicking = false;
 
-// 1. Obliczanie proporcji podziału w oparciu o postęp scrolla (Scrollytelling sticky scroll)
-// 0%: 50/50 | 20-50%: Klub ~85% | 60-90%: Szkółka ~85% | 100%: płynne przejście
-function calculateScrollySplit(p) {
-  let dividerPercent = 50;
-  let activeSide = "none";
-
-  if (p <= 0.04) {
-    // 0% scrolla: podział ekranu 50% / 50%
-    dividerPercent = 50;
-    activeSide = "none";
-  } else if (p < 0.20) {
-    // 4% -> 20%: płynne rozszerzanie KLUBU do ~85%
-    const t = (p - 0.04) / 0.16;
-    const ease = t * (2 - t);
-    dividerPercent = 50 + 35 * ease;
-    activeSide = "club";
-  } else if (p <= 0.50) {
-    // 20% - 50% scrolla: Klub rozszerzony do ~85%, Szkółka zwinięta do paska (~15%)
-    dividerPercent = 85;
-    activeSide = "club";
-  } else if (p < 0.60) {
-    // 50% - 60% scrolla: płynne przejście linii z 85% do 15% (przełączenie ze Strefy Klubu do Szkółki)
-    const t = (p - 0.50) / 0.10;
-    const ease = t * t * (3 - 2 * t);
-    dividerPercent = 85 - 70 * ease; // 85% -> 15%
-    activeSide = t < 0.5 ? "club" : "academy";
-  } else if (p <= 0.90) {
-    // 60% - 90% scrolla: Szkółka rozszerzona do ~85%, Klub zwinięty do paska (~15%)
-    dividerPercent = 15;
-    activeSide = "academy";
-  } else {
-    // 90% - 100% scrolla: płynne wyjście i przejście do dalszej części strony
-    const t = (p - 0.90) / 0.10;
-    dividerPercent = 15 + 35 * t; // 15% -> 50%
-    activeSide = "academy";
-  }
-
-  return { dividerPercent, activeSide };
-}
-
-// 2. Lekka animacja Scrollytelling w oparciu o scrollY i sticky track
-function updateScrollSplit() {
-  scrollSplitTicking = false;
-  const track = document.getElementById("portalScrollyTrack");
-  const gateway = document.getElementById("portalGateway");
-  const clubSide = document.querySelector(".portal-side--club");
-  const academySide = document.querySelector(".portal-side--academy");
-  const hint = document.getElementById("portalScrollHint");
-
-  if (!track || !gateway || !clubSide || !academySide) return;
-
-  const rect = track.getBoundingClientRect();
-  const scrollableDist = rect.height - window.innerHeight;
-  if (scrollableDist <= 0) return;
-
-  const currentScroll = -rect.top;
-  const p = Math.min(1, Math.max(0, currentScroll / scrollableDist));
-
-  // Subtelny wskaźnik "Przewiń w dół" znika płynnie pod koniec sekcji sticky
-  if (hint) {
-    if (p > 0.85 || rect.bottom <= window.innerHeight * 0.4) {
-      hint.classList.add("is-faded");
-    } else {
-      hint.classList.remove("is-faded");
-    }
-  }
-
-  const { dividerPercent, activeSide } = calculateScrollySplit(p);
-
-  const isMobile = window.innerWidth <= 1024;
-  if (isMobile) {
-    gateway.style.setProperty("--divider-top", `${dividerPercent.toFixed(1)}%`);
-  } else {
-    gateway.style.setProperty("--divider-left", `${dividerPercent.toFixed(1)}%`);
-  }
-  gateway.style.setProperty("--club-flex", dividerPercent.toFixed(1));
-  gateway.style.setProperty("--academy-flex", (100 - dividerPercent).toFixed(1));
-
-  if (activeSide === "club") {
-    gateway.classList.add("active-club");
-    gateway.classList.remove("active-academy");
-    clubSide.classList.add("is-active");
-    clubSide.classList.remove("is-inactive");
-    academySide.classList.add("is-inactive");
-    academySide.classList.remove("is-active");
-  } else if (activeSide === "academy") {
-    gateway.classList.add("active-academy");
-    gateway.classList.remove("active-club");
-    academySide.classList.add("is-active");
-    academySide.classList.remove("is-inactive");
-    clubSide.classList.add("is-inactive");
-    clubSide.classList.remove("is-active");
-  } else {
-    gateway.classList.remove("active-club", "active-academy");
-    clubSide.classList.remove("is-active", "is-inactive");
-    academySide.classList.remove("is-active", "is-inactive");
-  }
-}
-
-window.addEventListener(
-  "scroll",
-  () => {
-    if (!scrollSplitTicking) {
-      window.requestAnimationFrame(updateScrollSplit);
-      scrollSplitTicking = true;
-    }
-  },
-  { passive: true }
-);
-
-window.addEventListener(
-  "resize",
-  () => {
-    if (!scrollSplitTicking) {
-      window.requestAnimationFrame(updateScrollSplit);
-      scrollSplitTicking = true;
-    }
-  },
-  { passive: true }
-);
-
-// Obsługa dotyku i kliknięcia w sekcję powitalną (Split Screen)
+// Obsługa dotyku i kliknięcia w sekcję powitalną (Split Screen) na telefonach i komputerach
 function handlePortalSideClick(event, mode) {
+  const isTouchOrMobile =
+    window.innerWidth <= 1024 ||
+    window.matchMedia("(max-width: 1024px)").matches ||
+    window.matchMedia("(hover: none)").matches ||
+    ("ontouchstart" in window) ||
+    (navigator.maxTouchPoints > 0);
+
   // Bezpośrednie kliknięcie w przycisk przejścia (CTA) natychmiast otwiera daną strefę
   if (event && event.target && event.target.closest(".portal-cta")) {
     enterWorld(mode);
     return;
   }
 
-  const track = document.getElementById("portalScrollyTrack");
-  if (!track) {
-    enterWorld(mode);
+  // Na urządzeniach dotykowych / mobilnych
+  if (isTouchOrMobile) {
+    // Jeśli dana strefa jest JUŻ powiększona (aktywna), ponowne kliknięcie wchodzi do niej
+    if (currentActivePortalSide === mode) {
+      enterWorld(mode);
+      return;
+    }
+
+    // Pierwsze kliknięcie: powiększ tę strefę, pomniejsz drugą i przesuń linię podziału
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    activatePortalSide(mode);
     return;
   }
 
-  const scrollableDist = track.offsetHeight - window.innerHeight;
-  const trackTop = track.offsetTop;
+  // Na desktopie z myszką: bezpośrednie wejście
+  enterWorld(mode);
+}
+
+function activatePortalSide(mode) {
+  currentActivePortalSide = mode;
+  const gateway = document.getElementById("portalGateway");
+  const clubSide = document.querySelector(".portal-side--club");
+  const academySide = document.querySelector(".portal-side--academy");
+
+  if (!gateway || !clubSide || !academySide) return;
+
+  gateway.classList.remove("active-club", "active-academy");
+  clubSide.classList.remove("is-active", "is-inactive");
+  academySide.classList.remove("is-active", "is-inactive");
 
   if (mode === "club") {
-    // Przewiń do zakresu, w którym Klub jest w pełni powiększony (p = 0.35)
-    const targetY = trackTop + scrollableDist * 0.35;
-    window.scrollTo({ top: targetY, behavior: "smooth" });
+    gateway.classList.add("active-club");
+    clubSide.classList.add("is-active");
+    academySide.classList.add("is-inactive");
   } else if (mode === "academy") {
-    // Przewiń do zakresu, w którym Szkółka jest w pełni powiększona (p = 0.75)
-    const targetY = trackTop + scrollableDist * 0.75;
-    window.scrollTo({ top: targetY, behavior: "smooth" });
+    gateway.classList.add("active-academy");
+    academySide.classList.add("is-active");
+    clubSide.classList.add("is-inactive");
   }
 }
 
 function enterWorld(mode) {
   closeMobileMenu();
-  switchMode(mode);
-  const track = document.getElementById("portalScrollyTrack");
-  if (track) {
-    // Płynny scroll poza sekcję sticky bezpośrednio do treści wybranego świata
-    const targetEl =
-      mode === "academy"
-        ? document.getElementById("akademia-start") || document.getElementById("top")
-        : document.getElementById("top");
-    if (targetEl) {
-      targetEl.scrollIntoView({ behavior: "smooth" });
-    } else {
-      const trackEnd = track.offsetTop + track.offsetHeight;
-      window.scrollTo({ top: trackEnd, behavior: "smooth" });
-    }
-  } else {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  const gateway = document.getElementById("portalGateway");
+  if (gateway) {
+    gateway.classList.add("is-hidden");
   }
+  switchMode(mode);
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 function openPortalGateway() {
   closeMobileMenu();
-  // Płynny powrót na samą górę do sekcji powitalnej w stanie 50% / 50%
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  const gateway = document.getElementById("portalGateway");
+  if (gateway) {
+    gateway.classList.remove("is-hidden");
+    // Przy ponownym otwarciu przywracamy równowagę 50/50
+    gateway.classList.remove("active-club", "active-academy");
+    document.querySelector(".portal-side--club")?.classList.remove("is-active", "is-inactive");
+    document.querySelector(".portal-side--academy")?.classList.remove("is-active", "is-inactive");
+    currentActivePortalSide = null;
+  }
 }
 
 // 5. Przełączanie trybu: KLUB (Seniorzy) vs SZKÓŁKA PIŁKARSKA (Akademia)
@@ -1541,7 +1446,6 @@ document.addEventListener("DOMContentLoaded", () => {
   renderPhotoGallery("all");
   updateAcademyFinder(8);
   updateScrollBackground();
-  updateScrollSplit();
   syncLiveFrom90Minut(false);
 
   const observer = new IntersectionObserver(

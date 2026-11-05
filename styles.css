@@ -222,31 +222,31 @@ body {
 }
 
 /* ==========================================================================
-   SCROLLYTELLING STICKY TRACK FOR SPLIT-SCREEN ("WYBIERZ ŚWIAT: KLUB ALBO SZKÓŁKA")
+   SPLIT-SCREEN PORTAL GATEWAY ("WYBIERZ ŚWIAT: KLUB ALBO SZKÓŁKA")
    ========================================================================== */
-.portal-scrolly-track {
-  position: relative;
-  width: 100%;
-  height: 250vh;
-  background: #050608;
-}
-
 .portal-gateway {
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 100%;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
   height: 100vh;
   height: 100dvh;
-  z-index: 100;
+  z-index: 2000;
   display: flex;
   overflow: hidden;
   background: #050608;
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.65s;
+}
+
+.portal-gateway.is-hidden {
+  opacity: 0;
+  transform: scale(1.06);
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .portal-side {
   position: relative;
-  flex: var(--club-flex, 50) 1 0%;
+  flex: 1;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -254,15 +254,7 @@ body {
   padding: 1.5rem 5vw 2.75rem;
   cursor: pointer;
   overflow: hidden;
-  transition: flex 0.28s ease-out, filter 0.3s ease;
-}
-
-.portal-side--club {
-  flex: var(--club-flex, 50) 1 0%;
-}
-
-.portal-side--academy {
-  flex: var(--academy-flex, 50) 1 0%;
+  transition: flex 0.65s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
 }
 
 .portal-gateway:hover .portal-side {
@@ -270,6 +262,7 @@ body {
 }
 
 .portal-gateway .portal-side:hover {
+  flex: 1.45;
   filter: brightness(1.05);
 }
 
@@ -485,51 +478,29 @@ body {
 
 @media (min-width: 1025px) {
   .portal-gateway.active-club .portal-side--club {
-    flex: var(--club-flex, 85) 1 0%;
+    flex: 1.45;
     filter: brightness(1.05);
   }
   .portal-gateway.active-club .portal-side--academy {
-    flex: var(--academy-flex, 15) 1 0%;
-    filter: brightness(0.65);
+    flex: 1;
+    filter: brightness(0.75);
   }
-  .portal-gateway.active-club .portal-center-badge {
-    left: var(--divider-left, 85%);
+  .portal-gateway.active-club .portal-center-badge,
+  .portal-gateway:has(.portal-side--club:hover) .portal-center-badge {
+    left: 59%;
   }
 
   .portal-gateway.active-academy .portal-side--academy {
-    flex: var(--academy-flex, 85) 1 0%;
+    flex: 1.45;
     filter: brightness(1.05);
   }
   .portal-gateway.active-academy .portal-side--club {
-    flex: var(--club-flex, 15) 1 0%;
-    filter: brightness(0.65);
+    flex: 1;
+    filter: brightness(0.75);
   }
-  .portal-gateway.active-academy .portal-center-badge {
-    left: var(--divider-left, 15%);
-  }
-
-  /* Eleganckie zwinięcie zbędnych elementów w wąskim pasku (15%) na desktopie */
-  .portal-side.is-inactive {
-    filter: brightness(0.62) saturate(0.85);
-  }
-  .portal-side.is-inactive .portal-desc,
-  .portal-side.is-inactive .portal-tags,
-  .portal-side.is-inactive .portal-cta {
-    display: none !important;
-  }
-  .portal-side.is-inactive .portal-side-logo,
-  .portal-side.is-inactive .portal-side-logo--academy {
-    width: 44px !important;
-    height: 48px !important;
-    margin-bottom: 0.25rem !important;
-  }
-  .portal-side.is-inactive .portal-kicker {
-    font-size: 0.65rem !important;
-    padding: 0.2rem 0.55rem !important;
-  }
-  .portal-side.is-inactive .portal-title {
-    font-size: clamp(1.4rem, 2vw, 2.1rem) !important;
-    margin-bottom: 0 !important;
+  .portal-gateway.active-academy .portal-center-badge,
+  .portal-gateway:has(.portal-side--academy:hover) .portal-center-badge {
+    left: 41%;
   }
 }
 
@@ -585,66 +556,6 @@ body {
   color: #f8fafc;
   white-space: nowrap;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-}
-
-/* Subtelny wskaźnik 'Przewiń w dół' (Scrollytelling indicator) */
-.portal-scroll-hint {
-  position: absolute;
-  bottom: 22px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 30;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  padding: 0.38rem 1.05rem;
-  border-radius: 999px;
-  background: rgba(9, 10, 15, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  color: #f8fafc;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  pointer-events: auto;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.75);
-  transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s;
-  animation: scrollHintFloat 2.2s ease-in-out infinite;
-}
-
-.portal-scroll-hint-arrow {
-  color: var(--turf-bright);
-  font-size: 0.95rem;
-  font-weight: 900;
-  display: inline-block;
-  animation: scrollArrowBounce 1.5s ease-in-out infinite;
-}
-
-.portal-scroll-hint.is-faded {
-  opacity: 0;
-  visibility: hidden;
-  transform: translate(-50%, 12px);
-}
-
-@keyframes scrollHintFloat {
-  0%, 100% {
-    transform: translate(-50%, 0);
-  }
-  50% {
-    transform: translate(-50%, -4px);
-  }
-}
-
-@keyframes scrollArrowBounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(3px);
-  }
 }
 
 .portal-skip-bottom {
@@ -2846,130 +2757,90 @@ body.mode-club .academy-only {
     display: none;
   }
 
-  /* Split-Screen Portal Gateway on Tablet & Mobile — scrollytelling sticky track */
-  .portal-scrolly-track {
-    position: relative;
-    width: 100%;
-    height: 260vh;
-  }
-
+  /* Split-Screen Portal Gateway on Tablet & Mobile — Fits 100dvh with zero scroll */
   .portal-gateway {
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 100%;
+    flex-direction: column;
     height: 100vh;
     height: 100dvh;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
     overflow: hidden;
   }
 
   .portal-side {
+    flex: 1 1 0%;
     height: auto;
     min-height: 0;
     padding: 0.85rem 1.5rem;
     align-items: center !important;
     text-align: center !important;
     justify-content: center;
-    transition: flex 0.25s ease-out, filter 0.3s ease, padding 0.3s ease;
+    transition: flex 0.65s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease, padding 0.5s ease;
   }
 
   .portal-side--club {
-    flex: var(--club-flex, 50) 1 0%;
     border-right: none;
     border-bottom: 2px solid rgba(255, 255, 255, 0.2);
     padding: 0.85rem 1.5rem 2.2rem;
   }
 
   .portal-side--academy {
-    flex: var(--academy-flex, 50) 1 0%;
     border-left: none;
     border-top: 2px solid rgba(163, 230, 53, 0.35);
     padding: 2.2rem 1.5rem 0.85rem;
   }
 
-  .portal-center-badge {
-    top: var(--divider-top, 50%);
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: top 0.25s ease-out;
-  }
-
-  /* Dotykowe i scrollowane stany aktywne (Powiększenie sekcji i przesunięcie linii podziału) */
+  /* Dotykowe stany aktywne (Powiększenie sekcji i przesunięcie linii podziału) */
   .portal-gateway.active-club .portal-side--club {
-    flex: var(--club-flex, 85) 1 0%;
+    flex: 1.85 1 0%;
     filter: brightness(1.06);
     padding: 1.1rem 1.5rem 2.85rem;
   }
 
   .portal-gateway.active-club .portal-side--academy {
-    flex: var(--academy-flex, 15) 1 0%;
-    filter: brightness(0.62) saturate(0.85);
-    padding: 2.2rem 1.5rem 0.85rem;
+    flex: 0.85 1 0%;
+    filter: brightness(0.65);
+    padding: 2.4rem 1.5rem 0.85rem;
   }
 
   .portal-gateway.active-club .portal-center-badge {
-    top: var(--divider-top, 85%);
+    top: 67%;
   }
 
   .portal-gateway.active-academy .portal-side--academy {
-    flex: var(--academy-flex, 85) 1 0%;
+    flex: 1.85 1 0%;
     filter: brightness(1.06);
     padding: 2.85rem 1.5rem 1.1rem;
   }
 
   .portal-gateway.active-academy .portal-side--club {
-    flex: var(--club-flex, 15) 1 0%;
-    filter: brightness(0.62) saturate(0.85);
-    padding: 0.85rem 1.5rem 2.2rem;
+    flex: 0.85 1 0%;
+    filter: brightness(0.65);
+    padding: 0.85rem 1.5rem 2.4rem;
   }
 
   .portal-gateway.active-academy .portal-center-badge {
-    top: var(--divider-top, 15%);
+    top: 33%;
   }
 
-  /* Zwinięcie zbędnych elementów w nieaktywnej sekcji (pasek ~15%) */
-  .portal-side.is-inactive {
-    filter: brightness(0.62) saturate(0.85);
-    cursor: pointer;
-  }
-
+  /* Zwinięcie zbędnych elementów w nieaktywnej sekcji */
   .portal-side.is-inactive .portal-desc,
-  .portal-side.is-inactive .portal-tags,
+  .portal-side.is-inactive .portal-tags {
+    display: none;
+  }
+
   .portal-side.is-inactive .portal-cta {
-    display: none !important;
-  }
-
-  .portal-side.is-inactive .portal-side-logo,
-  .portal-side.is-inactive .portal-side-logo--academy {
-    width: 32px !important;
-    height: 36px !important;
-    margin-bottom: 0.15rem !important;
-  }
-
-  .portal-side.is-inactive .portal-kicker {
-    font-size: 0.58rem !important;
-    padding: 0.15rem 0.5rem !important;
-    margin-bottom: 0.2rem !important;
-  }
-
-  .portal-side.is-inactive .portal-title {
-    font-size: clamp(1.15rem, 3.8vw, 1.55rem) !important;
-    margin-bottom: 0 !important;
+    display: none;
   }
 
   .portal-side.is-inactive .portal-tap-hint {
-    display: inline-flex !important;
+    display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    margin-top: 0.25rem;
-    padding: 0.18rem 0.65rem;
+    margin-top: 0.35rem;
+    padding: 0.25rem 0.75rem;
     background: rgba(255, 255, 255, 0.08);
-    border: 1px dashed rgba(255, 255, 255, 0.25);
+    border: 1px dashed rgba(255, 255, 255, 0.3);
     border-radius: 999px;
-    font-size: 0.62rem;
+    font-size: 0.68rem;
     font-weight: 700;
     color: #e2e8f0;
     letter-spacing: 0.03em;
@@ -2977,7 +2848,7 @@ body.mode-club .academy-only {
   }
 
   .portal-side.is-active .portal-tap-hint {
-    display: none !important;
+    display: none;
   }
 
   .portal-tap-hint {
