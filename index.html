@@ -385,7 +385,7 @@
         <div id="spotlightClubContent" class="club-only">
           <div class="spotlight-header" style="margin-bottom: 0.55rem;">
             <span>⏱️ ODLICZANIE DO NASTĘPNEGO MECZU</span>
-            <span style="color: var(--turf-bright);" id="spotlightMatchBadge">KOLEJKA 14 • 07.11, 14:00</span>
+            <span style="color: var(--turf-bright);" id="spotlightMatchBadge">KOLEJKA 14 • NIEDZIELA 08.11, 14:00</span>
           </div>
 
           <div class="countdown-grid" id="matchCountdown" style="margin: 0 0 1rem 0;">
@@ -411,18 +411,18 @@
             <div>
               <div class="team-badge-circle" style="width: 56px; height: 56px; font-size: 1.15rem;" id="nextMatchHomeBadge">LŁ</div>
               <div style="font-weight: 800; font-size: 0.9rem;" id="nextMatchHome">Leśnik Łącza</div>
-              <div style="font-size: 0.7rem; color: var(--text-muted);" id="nextMatchHomeDesc">Gospodarz (15. msc)</div>
+              <div style="font-size: 0.7rem; color: var(--text-muted);" id="nextMatchHomeDesc">Gospodarz (16. msc • 5 pkt)</div>
             </div>
             <div>
               <div class="vs-score-box" style="font-size: 1.8rem; padding: 0.2rem 0.75rem;">VS</div>
-              <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem;" id="nextMatchDateBadge">7 lis, 14:00</div>
+              <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.25rem;" id="nextMatchDateBadge">Niedziela, 8 lis 14:00</div>
             </div>
             <div>
               <div class="team-badge-circle team-badge-logo" style="width: 56px; height: 56px;" id="nextMatchAwayBadge">
                 <img src="assets/logo-klub.png" alt="Herb LKS Naprzód Świbie" />
               </div>
               <div style="font-weight: 800; font-size: 0.9rem;" id="nextMatchAway">Naprzód Świbie</div>
-              <div style="font-size: 0.7rem; color: var(--turf-bright);" id="nextMatchAwayDesc">Goście (9. msc • 16 pkt)</div>
+              <div style="font-size: 0.7rem; color: var(--turf-bright);" id="nextMatchAwayDesc">Goście (9. msc • 17 pkt)</div>
             </div>
           </div>
 
@@ -627,7 +627,7 @@
         <div class="sync-header-actions">
           <div style="display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap;">
             <span id="syncStatusBadge" style="font-size: 0.78rem; color: var(--turf-bright); background: rgba(163,230,53,0.12); border: 1px solid rgba(163,230,53,0.35); padding: 0.4rem 0.85rem; border-radius: 999px; font-weight: 700;">
-              ✅ Dane zgodne z 90minut.pl (Po 11. kolejce)
+              ✅ Dane zgodne z 90minut.pl (Po 13. kolejce)
             </span>
             <button type="button" class="btn btn-outline" style="padding: 0.5rem 1rem; font-size: 0.76rem;" onclick="syncLiveFrom90Minut(true)">
               🔄 Odśwież z 90minut.pl
@@ -680,15 +680,15 @@
           <div class="panel-card-title" style="flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.85rem;">
             <span>⚡ Mecze Naprzodu Świbie</span>
             <div class="filter-tabs" style="gap: 0.35rem;">
-              <button type="button" class="filter-tab active" style="padding: 0.32rem 0.8rem; font-size: 0.74rem;" id="tabPlayedMatches" onclick="setMatchesTab('played', this)">Rozegrane (1–11)</button>
-              <button type="button" class="filter-tab" style="padding: 0.32rem 0.8rem; font-size: 0.74rem;" id="tabUpcomingMatches" onclick="setMatchesTab('upcoming', this)">Terminarz (12–30)</button>
+              <button type="button" class="filter-tab active" style="padding: 0.32rem 0.8rem; font-size: 0.74rem;" id="tabPlayedMatches" onclick="setMatchesTab('played', this)">Rozegrane (1–13)</button>
+              <button type="button" class="filter-tab" style="padding: 0.32rem 0.8rem; font-size: 0.74rem;" id="tabUpcomingMatches" onclick="setMatchesTab('upcoming', this)">Terminarz (14–30)</button>
               <button type="button" class="filter-tab" style="padding: 0.32rem 0.8rem; font-size: 0.74rem;" id="tabAllLeagueRound" onclick="setMatchesTab('round', this)">Cała Kolejka Ligi</button>
             </div>
           </div>
 
           <!-- Sub-toolbar: Sort order for Swibie matches OR Round selector for full league -->
           <div id="matchesSubToolbar" style="display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; font-size: 0.78rem; color: var(--text-muted); background: rgba(9,10,15,0.55); padding: 0.55rem 0.85rem; border-radius: 10px;">
-            <span id="matchesSubInfo">Kolejność: <strong>Od najnowszego (Kolejka 11 → 1)</strong></span>
+            <span id="matchesSubInfo">Kolejność: <strong>Od najnowszego (Kolejka 13 → 1)</strong></span>
             <button type="button" id="btnToggleSortOrder" onclick="togglePlayedSortOrder()" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); color: #fff; padding: 0.28rem 0.7rem; border-radius: 6px; font-size: 0.74rem; font-weight: 700; cursor: pointer;">
               ⇅ Odwróć kolejność (1 → 11)
             </button>

@@ -6,22 +6,22 @@
 
 // 1. Pełna tabela 16 drużyn: Eurotech Klasa B 2026/2027, grupa: Zabrze (stan z 90minut.pl po 11. kolejce)
 let LEAGUE_TABLE_DATA = [
-  { pos: 1, clubId: 4229, team: "LKS 45 Bujaków (Mikołów)", matches: 11, points: 24, w: 8, d: 0, l: 3, goals: "40:19", homeW: 5, homeD: 0, homeL: 0, homeGoals: "24:3", awayW: 3, awayD: 0, awayL: 3, awayGoals: "16:16" },
-  { pos: 2, clubId: 54, team: "Czarni Pyskowice", matches: 11, points: 22, w: 7, d: 1, l: 3, goals: "27:15", homeW: 3, homeD: 0, homeL: 3, homeGoals: "13:10", awayW: 4, awayD: 1, awayL: 0, awayGoals: "14:5" },
-  { pos: 3, clubId: 23247, team: "KS Zabrze-Grzybowice", matches: 11, points: 22, w: 7, d: 1, l: 3, goals: "27:14", homeW: 2, homeD: 1, homeL: 2, homeGoals: "10:6", awayW: 5, awayD: 0, awayL: 1, awayGoals: "17:8" },
-  { pos: 4, clubId: 3971, team: "Orzeł Paczyna", matches: 11, points: 21, w: 6, d: 3, l: 2, goals: "35:18", homeW: 3, homeD: 2, homeL: 1, homeGoals: "23:12", awayW: 3, awayD: 1, awayL: 1, awayGoals: "12:6" },
-  { pos: 5, clubId: 5238, team: "Drama Kamieniec", matches: 11, points: 21, w: 7, d: 0, l: 4, goals: "38:25", homeW: 3, homeD: 0, homeL: 3, homeGoals: "19:15", awayW: 4, awayD: 0, awayL: 1, awayGoals: "19:10" },
-  { pos: 6, clubId: 15666, team: "MKS Zabrze-Kończyce", matches: 11, points: 18, w: 5, d: 3, l: 3, goals: "22:24", homeW: 3, homeD: 2, homeL: 1, homeGoals: "15:12", awayW: 2, awayD: 1, awayL: 2, awayGoals: "7:12" },
-  { pos: 7, clubId: 3972, team: "Gwiazda Chudów", matches: 11, points: 17, w: 5, d: 2, l: 4, goals: "25:20", homeW: 4, homeD: 0, homeL: 1, homeGoals: "15:8", awayW: 1, awayD: 2, awayL: 3, awayGoals: "10:12" },
-  { pos: 8, clubId: 5256, team: "Naprzód Łubie", matches: 11, points: 17, w: 5, d: 2, l: 4, goals: "23:20", homeW: 4, homeD: 1, homeL: 1, homeGoals: "17:7", awayW: 1, awayD: 1, awayL: 3, awayGoals: "6:13" },
-  { pos: 9, clubId: 5257, team: "Naprzód Świbie", matches: 11, points: 16, w: 5, d: 1, l: 5, goals: "23:31", homeW: 3, homeD: 1, homeL: 1, homeGoals: "13:9", awayW: 2, awayD: 0, awayL: 4, awayGoals: "10:22" },
-  { pos: 10, clubId: 8616, team: "Quo Vadis Makoszowy (Zabrze)", matches: 10, points: 14, w: 4, d: 2, l: 4, goals: "14:24", homeW: 3, homeD: 1, homeL: 0, homeGoals: "9:4", awayW: 1, awayD: 1, awayL: 4, awayGoals: "5:20" },
-  { pos: 11, clubId: 3969, team: "Zamkowiec Toszek", matches: 11, points: 13, w: 4, d: 1, l: 6, goals: "28:33", homeW: 2, homeD: 0, homeL: 4, homeGoals: "12:17", awayW: 2, awayD: 1, awayL: 2, awayGoals: "16:16" },
-  { pos: 12, clubId: 6604, team: "Tempo II Paniówki", matches: 11, points: 13, w: 3, d: 4, l: 4, goals: "8:16", homeW: 2, homeD: 0, homeL: 3, homeGoals: "4:7", awayW: 1, awayD: 4, awayL: 1, awayGoals: "4:9" },
-  { pos: 13, clubId: 3975, team: "Amator Rudziniec", matches: 11, points: 12, w: 3, d: 3, l: 5, goals: "22:26", homeW: 1, homeD: 3, homeL: 1, homeGoals: "10:10", awayW: 2, awayD: 0, awayL: 4, awayGoals: "12:16" },
-  { pos: 14, clubId: 5235, team: "Pogoń Ziemięcice", matches: 11, points: 8, w: 2, d: 2, l: 7, goals: "26:35", homeW: 1, homeD: 1, homeL: 3, homeGoals: "12:12", awayW: 1, awayD: 1, awayL: 4, awayGoals: "14:23" },
-  { pos: 15, clubId: 5247, team: "Leśnik Łącza", matches: 10, points: 5, w: 1, d: 2, l: 7, goals: "15:34", homeW: 1, homeD: 1, homeL: 4, homeGoals: "13:22", awayW: 0, awayD: 1, awayL: 3, awayGoals: "2:12" },
-  { pos: 16, clubId: 5255, team: "Olimpia Pławniowice", matches: 11, points: 4, w: 1, d: 1, l: 9, goals: "7:26", homeW: 1, homeD: 1, homeL: 4, homeGoals: "5:12", awayW: 0, awayD: 0, awayL: 5, awayGoals: "2:14" }
+  { pos: 1, clubId: 4229, team: "LKS 45 Bujaków (Mikołów)", matches: 13, points: 30, w: 10, d: 0, l: 3, goals: "50:20", homeW: 6, homeD: 0, homeL: 0, homeGoals: "30:3", awayW: 4, awayD: 0, awayL: 3, awayGoals: "20:17" },
+  { pos: 2, clubId: 54, team: "Czarni Pyskowice", matches: 13, points: 28, w: 9, d: 1, l: 3, goals: "31:15", homeW: 4, homeD: 0, homeL: 3, homeGoals: "15:10", awayW: 5, awayD: 1, awayL: 0, awayGoals: "16:5" },
+  { pos: 3, clubId: 5238, team: "Drama Kamieniec", matches: 13, points: 27, w: 9, d: 0, l: 4, goals: "45:26", homeW: 4, homeD: 0, homeL: 3, homeGoals: "21:15", awayW: 5, awayD: 0, awayL: 1, awayGoals: "24:11" },
+  { pos: 4, clubId: 23247, team: "KS Zabrze-Grzybowice", matches: 13, points: 25, w: 8, d: 1, l: 4, goals: "28:17", homeW: 2, homeD: 1, homeL: 3, homeGoals: "10:9", awayW: 6, awayD: 0, awayL: 1, awayGoals: "18:8" },
+  { pos: 5, clubId: 3971, team: "Orzeł Paczyna", matches: 13, points: 24, w: 7, d: 3, l: 3, goals: "46:23", homeW: 3, homeD: 2, homeL: 2, homeGoals: "24:16", awayW: 4, awayD: 1, awayL: 1, awayGoals: "22:7" },
+  { pos: 6, clubId: 15666, team: "MKS Zabrze-Kończyce", matches: 13, points: 21, w: 6, d: 3, l: 4, goals: "25:27", homeW: 3, homeD: 2, homeL: 2, homeGoals: "16:14", awayW: 3, awayD: 1, awayL: 2, awayGoals: "9:13" },
+  { pos: 7, clubId: 5256, team: "Naprzód Łubie", matches: 13, points: 20, w: 6, d: 2, l: 5, goals: "24:24", homeW: 4, homeD: 1, homeL: 2, homeGoals: "17:11", awayW: 2, awayD: 1, awayL: 3, awayGoals: "7:13" },
+  { pos: 8, clubId: 3972, team: "Gwiazda Chudów", matches: 13, points: 17, w: 5, d: 2, l: 6, goals: "26:24", homeW: 4, homeD: 0, homeL: 2, homeGoals: "16:10", awayW: 1, awayD: 2, awayL: 4, awayGoals: "10:14" },
+  { pos: 9, clubId: 5257, team: "Naprzód Świbie", matches: 13, points: 17, w: 5, d: 2, l: 6, goals: "24:34", homeW: 3, homeD: 1, homeL: 2, homeGoals: "13:11", awayW: 2, awayD: 1, awayL: 4, awayGoals: "11:23" },
+  { pos: 10, clubId: 3975, team: "Amator Rudziniec", matches: 13, points: 16, w: 4, d: 4, l: 5, goals: "28:28", homeW: 1, homeD: 4, homeL: 1, homeGoals: "12:12", awayW: 3, awayD: 0, awayL: 4, awayGoals: "16:16" },
+  { pos: 11, clubId: 6604, team: "Tempo II Paniówki", matches: 13, points: 16, w: 4, d: 4, l: 5, goals: "10:18", homeW: 2, homeD: 0, homeL: 4, homeGoals: "4:8", awayW: 2, awayD: 4, awayL: 1, awayGoals: "6:10" },
+  { pos: 12, clubId: 3969, team: "Zamkowiec Toszek", matches: 13, points: 15, w: 4, d: 3, l: 6, goals: "31:36", homeW: 2, homeD: 1, homeL: 4, homeGoals: "13:18", awayW: 2, awayD: 2, awayL: 2, awayGoals: "18:18" },
+  { pos: 13, clubId: 8616, team: "Quo Vadis Makoszowy (Zabrze)", matches: 12, points: 14, w: 4, d: 2, l: 6, goals: "14:31", homeW: 3, homeD: 1, homeL: 1, homeGoals: "9:5", awayW: 1, awayD: 1, awayL: 5, awayGoals: "5:26" },
+  { pos: 14, clubId: 5235, team: "Pogoń Ziemięcice", matches: 13, points: 11, w: 3, d: 2, l: 8, goals: "30:40", homeW: 1, homeD: 1, homeL: 4, homeGoals: "13:17", awayW: 2, awayD: 1, awayL: 4, awayGoals: "17:23" },
+  { pos: 15, clubId: 5255, team: "Olimpia Pławniowice", matches: 13, points: 7, w: 2, d: 1, l: 10, goals: "14:28", homeW: 2, homeD: 1, homeL: 4, homeGoals: "12:12", awayW: 0, awayD: 0, awayL: 6, awayGoals: "2:16" },
+  { pos: 16, clubId: 5247, team: "Leśnik Łącza", matches: 12, points: 5, w: 1, d: 2, l: 9, goals: "16:51", homeW: 1, homeD: 1, homeL: 5, homeGoals: "14:32", awayW: 0, awayD: 1, awayL: 4, awayGoals: "2:19" }
 ];
 
 // 2. Pełny, chronologiczny wykaz meczów LKS Naprzód Świbie z 90minut.pl (Kolejki 1–30)
@@ -116,11 +116,25 @@ let SWIBIE_MATCHES_DATA = [
     score: "2:0",
     reportUrl: "https://www.laczynaspilka.pl/rozgrywki/mecz/1c51f445-4f28-44b2-9307-ec3d863821db"
   },
-  // TERMINARZ NADCHODZĄCYCH SPOTKAŃ (KOLEJKI 12–30)
-  { roundNum: 12, date: "24 października, 14:00", home: "Zamkowiec Toszek", away: "Naprzód Świbie", score: "-" },
-  { roundNum: 13, date: "31 października", home: "Naprzód Świbie", away: "Czarni Pyskowice", score: "-" },
-  { roundNum: 14, date: "7-8 listopada", home: "Leśnik Łącza", away: "Naprzód Świbie", score: "-" },
-  { roundNum: 15, date: "14-15 listopada", home: "Naprzód Świbie", away: "Orzeł Paczyna", score: "-" },
+  {
+    roundNum: 12,
+    date: "24 października, 14:00",
+    home: "Zamkowiec Toszek",
+    away: "Naprzód Świbie",
+    score: "1:1",
+    reportUrl: "https://www.laczynaspilka.pl/rozgrywki/mecz/4a9fa5f8-4bfe-4d3f-b549-06a0382333d8"
+  },
+  {
+    roundNum: 13,
+    date: "31 października, 11:00",
+    home: "Naprzód Świbie",
+    away: "Czarni Pyskowice",
+    score: "0:2",
+    reportUrl: "https://www.laczynaspilka.pl/rozgrywki/mecz/7ed64e6a-765f-42a4-9976-3aa87ea29454"
+  },
+  // TERMINARZ NADCHODZĄCYCH SPOTKAŃ (KOLEJKI 14–30)
+  { roundNum: 14, date: "8 listopada, 14:00", home: "Leśnik Łącza", away: "Naprzód Świbie", score: "-" },
+  { roundNum: 15, date: "15 listopada, 14:00", home: "Naprzód Świbie", away: "Orzeł Paczyna", score: "-" },
   { roundNum: 16, date: "Runda wiosenna", home: "Naprzód Świbie", away: "Olimpia Pławniowice", score: "-" },
   { roundNum: 17, date: "Runda wiosenna", home: "Naprzód Świbie", away: "LKS 45 Bujaków (Mikołów)", score: "-" },
   { roundNum: 18, date: "Runda wiosenna", home: "Amator Rudziniec", away: "Naprzód Świbie", score: "-" },
@@ -1496,25 +1510,25 @@ const GALLERY_ITEMS = [
     cat: "senior",
     title: "Zwycięskie Derby Gminy: Naprzód Świbie 2:0 Naprzód Łubie",
     subtitle: "Eurotech Klasa B • Kolejka 11 • Stadion „Kęp Noł”",
-    img: "assets/hero-senior.png"
+    img: "assets/hero-senior.png?v=2"
   },
   {
     cat: "academy",
     title: "Turniej Naprzód Świbie Kids Cup – Emocje najmłodszych!",
     subtitle: "Skrzaty, Żaki, Orliki i Młodziki przy ul. Sportowej 51",
-    img: "assets/hero-academy.png"
+    img: "assets/hero-academy.png?v=2"
   },
   {
     cat: "stadium",
     title: "Twierdza „Kęp Noł” w Świbiu (Płyta 100m × 60m)",
     subtitle: "Domowe boisko Biało-Czarnych od 1952 roku",
-    img: "assets/hero-senior.png"
+    img: "assets/hero-senior.png?v=2"
   },
   {
     cat: "academy",
     title: "Trening techniki i koordynacji w Szkółce Piłkarskiej",
     subtitle: "Nabór otwarty dla chłopców i dziewczynek (4–14 lat)",
-    img: "assets/hero-academy.png"
+    img: "assets/hero-academy.png?v=2"
   }
 ];
 
@@ -1650,58 +1664,94 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
-  // Dynamiczne odliczanie do najbliższego meczu ligowego Eurotech Klasy B
+  // Dynamiczne odliczanie do najbliższego meczu ligowego Eurotech Klasy B (z obsługą dat z 90minut.pl)
   const UPCOMING_FIXTURES = [
     {
       roundNum: 14,
-      targetDate: new Date("2026-11-07T14:00:00+01:00").getTime(),
-      headerBadge: "KOLEJKA 14 • 07.11, 14:00",
-      dateBadge: "7 lis, 14:00",
+      targetDate: new Date("2026-11-08T14:00:00+01:00").getTime(),
+      headerBadge: "KOLEJKA 14 • NIEDZIELA 08.11, 14:00",
+      dateBadge: "Niedziela, 8 lis 14:00",
       home: "Leśnik Łącza",
       homeBadge: "LŁ",
-      homeDesc: "Gospodarz (15. msc)",
+      homeDesc: "Gospodarz (16. msc • 5 pkt)",
       away: "Naprzód Świbie",
-      awayDesc: "Goście (9. msc • 16 pkt)"
+      awayDesc: "Goście (9. msc • 17 pkt)"
     },
     {
       roundNum: 15,
-      targetDate: new Date("2026-11-14T14:00:00+01:00").getTime(),
-      headerBadge: "KOLEJKA 15 • 14.11, 14:00",
-      dateBadge: "14 lis, 14:00",
+      targetDate: new Date("2026-11-15T14:00:00+01:00").getTime(),
+      headerBadge: "KOLEJKA 15 • NIEDZIELA 15.11, 14:00",
+      dateBadge: "Niedziela, 15 lis 14:00",
       home: "Naprzód Świbie",
       homeBadge: "NŚ",
       homeDesc: "Gospodarz • „Kęp Noł”",
       away: "Orzeł Paczyna",
-      awayDesc: "Goście (4. msc • 21 pkt)"
+      awayDesc: "Goście (5. msc • 24 pkt)"
     },
     {
       roundNum: 16,
-      targetDate: new Date("2027-03-20T15:00:00+01:00").getTime(),
-      headerBadge: "KOLEJKA 16 • 20.03.2027",
-      dateBadge: "20 mar, 15:00",
+      targetDate: new Date("2027-03-21T15:00:00+01:00").getTime(),
+      headerBadge: "KOLEJKA 16 • NIEDZIELA 21.03.2027",
+      dateBadge: "Niedziela, 21 mar 15:00",
       home: "Naprzód Świbie",
       homeBadge: "NŚ",
       homeDesc: "Gospodarz • „Kęp Noł”",
       away: "Olimpia Pławniowice",
-      awayDesc: "Goście (16. msc)"
+      awayDesc: "Goście (15. msc)"
     }
   ];
 
+  const MONTHS_PL_MAP = {
+    stycznia: 1, lutego: 2, marca: 3, kwietnia: 4, maja: 5, czerwca: 6,
+    lipca: 7, sierpnia: 8, "września": 9, wrzesnia: 9, "października": 10, pazdziernika: 10,
+    listopada: 11, grudnia: 12
+  };
+
+  function parseLive90MinutDate(dateStr) {
+    if (!dateStr) return null;
+    const m = /(\d{1,2})(?:\s*-\s*(\d{1,2}))?\s+([a-ząćęłńóśźż]+)(?:,\s*(\d{1,2}):(\d{2}))?/i.exec(dateStr);
+    if (!m) return null;
+    // Gdy w 90minut.pl podany jest zakres weekendu (np. "7-8 listopada" lub "14-15 listopada"),
+    // bierzemy drugi dzień (niedzielę), aby uniknąć przesunięcia o 1 dzień wstecz na sobotę.
+    const day = m[2] ? parseInt(m[2], 10) : parseInt(m[1], 10);
+    const monthName = m[3].toLowerCase();
+    const month = MONTHS_PL_MAP[monthName];
+    if (!month) return null;
+    const year = month >= 7 ? 2026 : 2027;
+    const hour = m[4] ? parseInt(m[4], 10) : 14;
+    const minute = m[5] ? parseInt(m[5], 10) : 0;
+    const iso = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}:00+01:00`;
+    const ts = new Date(iso).getTime();
+    return isNaN(ts) ? null : { ts, day, month, hour, minute };
+  }
+
   function updateMatchCountdown() {
     const now = Date.now();
+
+    // Aktualizuj daty z na żywo pobranych danych 90minut.pl (SWIBIE_MATCHES_DATA)
+    for (const f of UPCOMING_FIXTURES) {
+      const liveMatch = SWIBIE_MATCHES_DATA.find((m) => m.roundNum === f.roundNum);
+      if (liveMatch && liveMatch.date) {
+        const parsed = parseLive90MinutDate(liveMatch.date);
+        if (parsed && parsed.ts > 0) {
+          f.targetDate = parsed.ts;
+        }
+      }
+    }
+
     let fixture = UPCOMING_FIXTURES.find((f) => f.targetDate > now);
     if (!fixture) {
-      const nextSat = new Date();
-      nextSat.setDate(nextSat.getDate() + ((6 - nextSat.getDay() + 7) % 7 || 7));
-      nextSat.setHours(14, 0, 0, 0);
+      const nextSun = new Date();
+      nextSun.setDate(nextSun.getDate() + ((7 - nextSun.getDay()) % 7 || 7));
+      nextSun.setHours(14, 0, 0, 0);
       fixture = {
         headerBadge: "NAJBLIŻSZY MECZ LIGOWY",
-        dateBadge: "Sobota, 14:00",
+        dateBadge: "Niedziela, 14:00",
         home: "Leśnik Łącza",
         homeDesc: "Gospodarz",
         away: "Naprzód Świbie",
         awayDesc: "Eurotech Klasa B",
-        targetDate: nextSat.getTime()
+        targetDate: nextSun.getTime()
       };
     }
 

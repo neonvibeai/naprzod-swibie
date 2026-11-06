@@ -295,17 +295,19 @@ body {
 }
 
 .portal-side--club .portal-bg {
+  background-position: center 28%;
   background-image:
-    linear-gradient(125deg, rgba(6, 7, 11, 0.92) 15%, rgba(12, 15, 24, 0.62) 60%, rgba(6, 7, 11, 0.92) 100%),
+    linear-gradient(125deg, rgba(6, 7, 11, 0.84) 12%, rgba(12, 15, 24, 0.46) 55%, rgba(6, 7, 11, 0.86) 100%),
     repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 40px, transparent 40px, transparent 80px),
-    url('assets/hero-senior.png');
+    url('assets/hero-senior.png?v=2');
 }
 
 .portal-side--academy .portal-bg {
+  background-position: center 25%;
   background-image:
-    linear-gradient(235deg, rgba(6, 22, 14, 0.88) 15%, rgba(10, 35, 22, 0.55) 60%, rgba(6, 15, 11, 0.92) 100%),
+    linear-gradient(235deg, rgba(6, 22, 14, 0.82) 12%, rgba(10, 35, 22, 0.42) 55%, rgba(6, 15, 11, 0.86) 100%),
     radial-gradient(circle at 70% 30%, rgba(163, 230, 53, 0.22), transparent 60%),
-    url('assets/hero-academy.png');
+    url('assets/hero-academy.png?v=2');
 }
 
 /* Diagonal stripes overlay */
@@ -850,15 +852,17 @@ body {
 }
 
 body.mode-club .hero-bg-layer {
+  background-position: center 25%;
   background-image:
-    linear-gradient(95deg, rgba(9, 10, 15, 0.96) 28%, rgba(9, 10, 15, 0.72) 65%, rgba(9, 10, 15, 0.92) 100%),
-    url('assets/hero-senior.png');
+    linear-gradient(95deg, rgba(9, 10, 15, 0.90) 24%, rgba(9, 10, 15, 0.55) 62%, rgba(9, 10, 15, 0.85) 100%),
+    url('assets/hero-senior.png?v=2');
 }
 
 body.mode-academy .hero-bg-layer {
+  background-position: center 25%;
   background-image:
-    linear-gradient(95deg, rgba(7, 17, 12, 0.95) 28%, rgba(9, 25, 16, 0.68) 65%, rgba(7, 17, 12, 0.92) 100%),
-    url('assets/hero-academy.png');
+    linear-gradient(95deg, rgba(7, 17, 12, 0.88) 24%, rgba(9, 25, 16, 0.52) 62%, rgba(7, 17, 12, 0.85) 100%),
+    url('assets/hero-academy.png?v=2');
 }
 
 /* Biało-czarne pasy dekoracyjne */

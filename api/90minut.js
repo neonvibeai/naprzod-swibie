@@ -57,21 +57,25 @@ function parse90MinutHtml(html) {
     const chunk = html.slice(startIdx, endIdx);
 
     const matches = [];
-    const matchRowRegex = /<tr align="left">\s*<td[^>]* width="180"><b>([^<]+)<\/b><\/td>\s*<td[^>]* width="50">([\s\S]*?)<\/td>\s*<td[^>]* width="180"><b>([^<]+)<\/b><\/td>\s*<td[^>]* width="190">([^<]*)<\/td>\s*<\/tr>/gi;
+    const headerDatePart = headers[i].title.includes(' - ')
+      ? headers[i].title.split(' - ')[1].trim()
+      : (headers[i].roundNum >= 16 ? 'Runda wiosenna' : '');
+    const matchRowRegex = /<tr align="left">\s*<td[^>]* width="180">\s*(?:<b>)?([^<]+?)(?:<\/b>)?\s*<\/td>\s*<td[^>]* width="50">([\s\S]*?)<\/td>\s*<td[^>]* width="180">\s*(?:<b>)?([^<]+?)(?:<\/b>)?\s*<\/td>\s*<td[^>]* width="190">([^<]*)<\/td>\s*<\/tr>/gi;
     let mr;
     while ((mr = matchRowRegex.exec(chunk)) !== null) {
       const home = stripTags(mr[1]);
       const scoreHtml = mr[2];
-      const scoreText = stripTags(scoreHtml).replace('-', ':');
+      const rawScore = stripTags(scoreHtml);
+      const scoreText = rawScore && rawScore !== '-' ? rawScore.replace('-', ':') : '-';
       const linkMatch = /href="([^"]+)"/i.exec(scoreHtml);
       const away = stripTags(mr[3]);
-      const dateStr = stripTags(mr[4]);
+      const dateStr = stripTags(mr[4]) || headerDatePart;
       matches.push({
         roundNum: headers[i].roundNum,
         roundTitle: headers[i].title,
         home,
         away,
-        score: scoreText || '-',
+        score: scoreText,
         reportUrl: linkMatch ? linkMatch[1] : null,
         date: dateStr
       });
