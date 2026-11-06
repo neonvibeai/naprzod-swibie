@@ -1,0 +1,11 @@
+{
+  "name": "naprzod-swibie",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "resend": "^4.1.2"
+  }
+}

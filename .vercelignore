@@ -1,2 +1,4 @@
 extract-pdf.js
 node_modules
+.env
+.env.*

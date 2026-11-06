@@ -1,3 +1,5 @@
+import { Resend } from 'resend';
+
 function escapeHtml(str) {
   return String(str || '')
     .replace(/&/g, '&amp;')
@@ -34,7 +36,7 @@ async function parseJsonBody(req) {
   });
 }
 
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -60,21 +62,23 @@ module.exports = async (req, res) => {
 
   const topic = String(body.topic || 'Zgłoszenie ze strony naprzodswibie.pl').trim();
   const name = String(body.name || '').trim();
-  const contact = String(body.contact || '').trim();
+  const email = String(
+    body.email || (String(body.contact || '').includes('@') ? body.contact : '') || ''
+  ).trim();
+  const phone = String(body.phone || body.contact || '').trim();
   const notes = String(body.notes || '').trim();
 
-  if (!name || !contact) {
+  if (!name || (!email && !phone)) {
     res.statusCode = 400;
     return res.end(
       JSON.stringify({
         ok: false,
-        error: 'Proszę podać imię i nazwisko oraz numer telefonu lub adres e-mail.'
+        error: 'Proszę podać imię i nazwisko oraz adres e-mail lub numer telefonu.'
       })
     );
   }
 
-  const apiKey = (process.env.RESEND_API_KEY || '').trim();
-  if (!apiKey) {
+  if (!process.env.RESEND_API_KEY) {
     res.statusCode = 500;
     return res.end(
       JSON.stringify({
@@ -84,6 +88,8 @@ module.exports = async (req, res) => {
     );
   }
 
+  const resend = new Resend(process.env.RESEND_API_KEY);
+
   const nowFormatted = new Intl.DateTimeFormat('pl-PL', {
     dateStyle: 'full',
     timeStyle: 'medium',
@@ -92,7 +98,8 @@ module.exports = async (req, res) => {
 
   const safeTopic = escapeHtml(topic);
   const safeName = escapeHtml(name);
-  const safeContact = escapeHtml(contact);
+  const safeEmail = escapeHtml(email || 'Nie podano');
+  const safePhone = escapeHtml(phone || 'Nie podano');
   const safeNotes = notes ? escapeHtml(notes).replace(/\r?\n/g, '<br />') : '<em>Brak dodatkowych uwag</em>';
 
   const html = `
@@ -116,8 +123,12 @@ module.exports = async (req, res) => {
             <td style="padding: 10px 0; color: #ffffff; font-weight: 700;">${safeName}</td>
           </tr>
           <tr style="border-top: 1px solid rgba(255,255,255,0.08);">
-            <td style="padding: 10px 0; color: #94a3b8; vertical-align: top;">Kontakt (tel. / e-mail):</td>
-            <td style="padding: 10px 0; color: #fbbf24; font-weight: 700; font-size: 16px;">${safeContact}</td>
+            <td style="padding: 10px 0; color: #94a3b8; vertical-align: top;">Adres e-mail:</td>
+            <td style="padding: 10px 0; color: #fbbf24; font-weight: 700; font-size: 15px;">${safeEmail}</td>
+          </tr>
+          <tr style="border-top: 1px solid rgba(255,255,255,0.08);">
+            <td style="padding: 10px 0; color: #94a3b8; vertical-align: top;">Telefon / kontakt:</td>
+            <td style="padding: 10px 0; color: #fbbf24; font-weight: 700; font-size: 15px;">${safePhone}</td>
           </tr>
           <tr style="border-top: 1px solid rgba(255,255,255,0.08);">
             <td style="padding: 10px 0; color: #94a3b8; vertical-align: top;">Dodatkowe informacje:</td>
@@ -140,49 +151,37 @@ module.exports = async (req, res) => {
     '=========================================================',
     `Temat zgłoszenia: ${topic}`,
     `Imię i nazwisko: ${name}`,
-    `Kontakt (tel. / e-mail): ${contact}`,
+    `Adres e-mail: ${email || 'Nie podano'}`,
+    `Telefon / kontakt: ${phone || 'Nie podano'}`,
     `Dodatkowe informacje: ${notes || 'Brak dodatkowych uwag'}`,
     `Data wysłania: ${nowFormatted}`,
     '',
     'Wiadomość wysłana ze strony https://www.naprzodswibie.pl'
   ].join('\n');
 
-  const emailPayload = {
-    from: 'LKS Naprzód Świbie <formularz@naprzodswibie.pl>',
-    to: ['naprzodswibie@o2.pl'],
-    subject: `[Naprzód Świbie] ${topic} — ${name}`,
-    html,
-    text
-  };
-
-  if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact)) {
-    emailPayload.reply_to = contact;
-  }
-
   try {
-    const resendResp = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(emailPayload)
+    const { data, error } = await resend.emails.send({
+      from: 'LKS Naprzód Świbie <kontakt@naprzodswibie.pl>',
+      to: 'naprzodswibie@o2.pl',
+      reply_to: email || undefined,
+      replyTo: email || undefined,
+      subject: `[Naprzód Świbie] ${topic} — ${name}`,
+      html,
+      text
     });
 
-    const resendData = await resendResp.json().catch(() => ({}));
-
-    if (!resendResp.ok) {
+    if (error) {
       res.statusCode = 502;
       return res.end(
         JSON.stringify({
           ok: false,
-          error: resendData.message || 'Nie udało się wysłać wiadomości przez serwer pocztowy.'
+          error: error.message || 'Nie udało się wysłać wiadomości przez serwer pocztowy.'
         })
       );
     }
 
     res.statusCode = 200;
-    return res.end(JSON.stringify({ ok: true, id: resendData.id }));
+    return res.end(JSON.stringify({ ok: true, id: data?.id }));
   } catch (err) {
     res.statusCode = 500;
     return res.end(
@@ -192,4 +191,4 @@ module.exports = async (req, res) => {
       })
     );
   }
-};
+}

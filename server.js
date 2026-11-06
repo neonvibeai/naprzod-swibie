@@ -186,7 +186,8 @@ async function requestHandler(req, res) {
   }
 
   if (reqUrl === '/api/contact') {
-    const contactHandler = require('./api/contact');
+    const mod = await import('./api/contact.js');
+    const contactHandler = mod.default || mod;
     return contactHandler(req, res);
   }
 

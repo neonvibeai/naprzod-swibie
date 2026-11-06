@@ -1111,6 +1111,7 @@ async function handleFormSubmit(e) {
   const formEl = e.target;
   const formTopic = document.getElementById("formTopic")?.value || "Wiadomość z formularza";
   const formName = document.getElementById("formName")?.value || "";
+  const formEmail = document.getElementById("formEmail")?.value || "";
   const formPhone = document.getElementById("formPhone")?.value || "";
   const formNotes = document.getElementById("formNotes")?.value || "";
 
@@ -1135,7 +1136,9 @@ async function handleFormSubmit(e) {
       body: JSON.stringify({
         topic: formTopic,
         name: formName,
-        contact: formPhone,
+        email: formEmail,
+        phone: formPhone,
+        contact: formPhone || formEmail,
         notes: formNotes
       })
     });
