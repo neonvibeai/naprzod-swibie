@@ -221,6 +221,21 @@ body {
   will-change: transform;
 }
 
+/* Nieruchoma powłoka światła stadionowego 3D i cienia sferycznego na kuli */
+.bg-ball-3d-shade {
+  position: absolute;
+  inset: 5%;
+  border-radius: 50%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 30% 26%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.16) 24%, transparent 52%),
+    radial-gradient(circle at 34% 30%, transparent 48%, rgba(6, 9, 16, 0.52) 79%, rgba(3, 5, 10, 0.84) 100%);
+  box-shadow:
+    inset 4px 6px 16px rgba(255, 255, 255, 0.35),
+    inset -6px -8px 18px rgba(5, 7, 12, 0.7),
+    inset 0 0 12px rgba(163, 230, 53, 0.22);
+}
+
 /* ==========================================================================
    SPLIT-SCREEN PORTAL GATEWAY ("WYBIERZ ŚWIAT: KLUB ALBO SZKÓŁKA")
    ========================================================================== */

@@ -64,55 +64,85 @@
       <div class="bg-ball-glow"></div>
       <svg class="bg-ball-svg" id="bgRollingBallMainSvg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <radialGradient id="ballShade" cx="35%" cy="30%" r="70%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
-            <stop offset="55%" stop-color="#cbd5e1" stop-opacity="0.82" />
-            <stop offset="100%" stop-color="#1e293b" stop-opacity="0.92" />
+          <clipPath id="ballSphereClipMain">
+            <circle cx="100" cy="100" r="90" />
+          </clipPath>
+          <radialGradient id="ballSymBaseMain" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#ffffff" />
+            <stop offset="60%" stop-color="#f1f5f9" />
+            <stop offset="85%" stop-color="#cbd5e1" />
+            <stop offset="100%" stop-color="#64748b" />
           </radialGradient>
+          <radialGradient id="pentagonGradMain" cx="50%" cy="50%" r="55%">
+            <stop offset="0%" stop-color="#1e293b" />
+            <stop offset="65%" stop-color="#0f172a" />
+            <stop offset="100%" stop-color="#05070b" />
+          </radialGradient>
+          <!-- Idealnie symetryczny sektor sferyczny 3D (powielany 5x co 72 stopnie) -->
+          <g id="ballSectorMain">
+            <!-- Wgłębienie szwu (efekt wypukłych skórzanych łat) -->
+            <path d="M 100 67.9 L 100 40.0 M 123.7 27.2 Q 145.4 38.6 161.9 55.0 M 117.6 13.4 L 139.5 19.1 M 82.4 13.4 L 60.5 19.1" stroke="rgba(15,23,42,0.22)" stroke-width="5.5" stroke-linecap="round" fill="none" />
+            <!-- Wyraźna linia łączenia paneli heksagonalnych -->
+            <path d="M 100 67.9 L 100 40.0 M 123.7 27.2 Q 145.4 38.6 161.9 55.0 M 117.6 13.4 L 139.5 19.1 M 82.4 13.4 L 60.5 19.1" stroke="#0f172a" stroke-width="2.4" stroke-linecap="round" fill="none" />
+            <!-- Subtelne przeszycie nicią -->
+            <path d="M 100 65.5 L 100 42.5 M 125.5 28.4 Q 145.4 38.6 160.2 53.3" stroke="rgba(255,255,255,0.45)" stroke-width="1" stroke-dasharray="2 3" stroke-linecap="round" fill="none" />
+            <!-- Zaokrąglony sferycznie zewnętrzny pięciokąt -->
+            <path d="M 100.0 40.0 Q 112.6 34.1 123.7 27.2 Q 121.6 19.8 117.6 13.4 Q 100.0 9.6 82.4 13.4 Q 78.4 19.8 76.3 27.2 Q 87.4 34.1 100.0 40.0 Z" fill="url(#pentagonGradMain)" stroke="#090a0f" stroke-width="2.2" stroke-linejoin="round" />
+            <path d="M 100.0 38.2 Q 111.5 32.8 121.5 26.5 Q 119.6 20.0 116.2 14.6 Q 100.0 11.2 83.8 14.6 Q 80.4 20.0 78.5 26.5 Q 88.5 32.8 100.0 38.2 Z" fill="none" stroke="rgba(163,230,53,0.42)" stroke-width="1" stroke-linejoin="round" />
+          </g>
         </defs>
-        <!-- Outer 3D Pearl-White Sphere -->
-        <circle cx="100" cy="100" r="90" fill="url(#ballShade)" stroke="#a3e635" stroke-width="4" />
-        <circle cx="100" cy="100" r="83" stroke="rgba(9,10,15,0.35)" stroke-width="1.5" stroke-dasharray="6 4" />
-        <!-- Seam Lines connecting Pentagons -->
-        <g stroke="#090a0f" stroke-width="3.2">
-          <line x1="100" y1="68" x2="100" y2="22" />
-          <line x1="130" y1="90" x2="174" y2="68" />
-          <line x1="119" y1="126" x2="155" y2="164" />
-          <line x1="81" y1="126" x2="45" y2="164" />
-          <line x1="70" y1="90" x2="26" y2="68" />
-          <path d="M 65 30 Q 100 42 135 30" fill="none" />
-          <path d="M 168 55 Q 152 95 172 132" fill="none" />
-          <path d="M 140 172 Q 100 156 60 172" fill="none" />
-          <path d="M 32 55 Q 48 95 28 132" fill="none" />
+
+        <!-- Wnętrze kuli przycięte idealnym okręgiem r=90 -->
+        <g clip-path="url(#ballSphereClipMain)">
+          <circle cx="100" cy="100" r="90" fill="url(#ballSymBaseMain)" />
+          <!-- 5 identycznych sektorów obróconych dokładnie co 72 stopnie -->
+          <use href="#ballSectorMain" />
+          <use href="#ballSectorMain" transform="rotate(72 100 100)" />
+          <use href="#ballSectorMain" transform="rotate(144 100 100)" />
+          <use href="#ballSectorMain" transform="rotate(216 100 100)" />
+          <use href="#ballSectorMain" transform="rotate(288 100 100)" />
+          <!-- Centralny sferyczny pięciokąt z zaokrąglonymi łukami -->
+          <path d="M 100.0 67.9 Q 116.2 77.7 130.5 90.1 Q 126.2 108.5 118.9 126.0 Q 100.0 127.6 81.1 126.0 Q 73.8 108.5 69.5 90.1 Q 83.8 77.7 100.0 67.9 Z" fill="none" stroke="rgba(15,23,42,0.24)" stroke-width="5.5" stroke-linejoin="round" />
+          <path d="M 100.0 67.9 Q 116.2 77.7 130.5 90.1 Q 126.2 108.5 118.9 126.0 Q 100.0 127.6 81.1 126.0 Q 73.8 108.5 69.5 90.1 Q 83.8 77.7 100.0 67.9 Z" fill="url(#pentagonGradMain)" stroke="#090a0f" stroke-width="2.4" stroke-linejoin="round" />
+          <path d="M 100.0 70.4 Q 114.8 79.3 127.8 90.7 Q 123.9 107.4 117.2 123.5 Q 100.0 125.0 82.8 123.5 Q 76.1 107.4 72.2 90.7 Q 85.2 79.3 100.0 70.4 Z" fill="none" stroke="rgba(163,230,53,0.55)" stroke-width="1.2" stroke-linejoin="round" />
         </g>
-        <!-- Classic Pitch-Black Pentagon Panels with Neon Turf Rim -->
-        <polygon points="100,68 130,90 119,126 81,126 70,90" fill="#090a0f" stroke="#a3e635" stroke-width="2.5" />
-        <polygon points="100,11 128,25 117,43 83,43 72,25" fill="#090a0f" stroke="#a3e635" stroke-width="2" />
-        <polygon points="185,61 179,95 161,88 155,63 170,47" fill="#090a0f" stroke="#a3e635" stroke-width="2" />
-        <polygon points="163,159 135,179 129,160 147,141 167,144" fill="#090a0f" stroke="#a3e635" stroke-width="2" />
-        <polygon points="37,159 65,179 71,160 53,141 33,144" fill="#090a0f" stroke="#a3e635" stroke-width="2" />
-        <polygon points="15,61 21,95 39,88 45,63 30,47" fill="#090a0f" stroke="#a3e635" stroke-width="2" />
+        <!-- Gładki obrys kuli -->
+        <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(163,230,53,0.65)" stroke-width="2.5" />
       </svg>
+      <!-- Nieruchoma warstwa światła 3D i cienia sferycznego (nie wiruje razem z łatami) -->
+      <div class="bg-ball-3d-shade"></div>
     </div>
 
     <!-- Secondary Depth Parallax Football (Opposite side) -->
     <div class="bg-rolling-ball bg-rolling-ball--secondary" id="bgRollingBallSecondary">
       <svg class="bg-ball-svg" id="bgRollingBallSecondarySvg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="100" cy="100" r="88" fill="rgba(248,250,252,0.22)" stroke="#a3e635" stroke-width="3" />
-        <g stroke="rgba(255,255,255,0.48)" stroke-width="2.5">
-          <line x1="100" y1="68" x2="100" y2="14" />
-          <line x1="130" y1="90" x2="182" y2="64" />
-          <line x1="119" y1="126" x2="160" y2="168" />
-          <line x1="81" y1="126" x2="40" y2="168" />
-          <line x1="70" y1="90" x2="18" y2="64" />
+        <defs>
+          <clipPath id="ballSphereClipSec">
+            <circle cx="100" cy="100" r="90" />
+          </clipPath>
+          <radialGradient id="ballSymBaseSec" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#f8fafc" stop-opacity="0.9" />
+            <stop offset="68%" stop-color="#cbd5e1" stop-opacity="0.8" />
+            <stop offset="100%" stop-color="#475569" stop-opacity="0.88" />
+          </radialGradient>
+          <g id="ballSectorSec">
+            <path d="M 100 67.9 L 100 40.0 M 123.7 27.2 Q 145.4 38.6 161.9 55.0 M 117.6 13.4 L 139.5 19.1 M 82.4 13.4 L 60.5 19.1" stroke="rgba(15,23,42,0.2)" stroke-width="5" stroke-linecap="round" fill="none" />
+            <path d="M 100 67.9 L 100 40.0 M 123.7 27.2 Q 145.4 38.6 161.9 55.0 M 117.6 13.4 L 139.5 19.1 M 82.4 13.4 L 60.5 19.1" stroke="#0f172a" stroke-width="2.2" stroke-linecap="round" fill="none" />
+            <path d="M 100.0 40.0 Q 112.6 34.1 123.7 27.2 Q 121.6 19.8 117.6 13.4 Q 100.0 9.6 82.4 13.4 Q 78.4 19.8 76.3 27.2 Q 87.4 34.1 100.0 40.0 Z" fill="#0b0f19" stroke="rgba(163,230,53,0.48)" stroke-width="1.6" stroke-linejoin="round" />
+          </g>
+        </defs>
+        <g clip-path="url(#ballSphereClipSec)">
+          <circle cx="100" cy="100" r="90" fill="url(#ballSymBaseSec)" />
+          <use href="#ballSectorSec" />
+          <use href="#ballSectorSec" transform="rotate(72 100 100)" />
+          <use href="#ballSectorSec" transform="rotate(144 100 100)" />
+          <use href="#ballSectorSec" transform="rotate(216 100 100)" />
+          <use href="#ballSectorSec" transform="rotate(288 100 100)" />
+          <path d="M 100.0 67.9 Q 116.2 77.7 130.5 90.1 Q 126.2 108.5 118.9 126.0 Q 100.0 127.6 81.1 126.0 Q 73.8 108.5 69.5 90.1 Q 83.8 77.7 100.0 67.9 Z" fill="#0b0f19" stroke="rgba(163,230,53,0.55)" stroke-width="1.8" stroke-linejoin="round" />
         </g>
-        <polygon points="100,68 130,90 119,126 81,126 70,90" fill="#090a0f" stroke="#a3e635" stroke-width="2.5" />
-        <polygon points="100,12 126,26 116,42 84,42 74,26" fill="#090a0f" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" />
-        <polygon points="184,62 178,94 162,88 156,64 170,48" fill="#090a0f" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" />
-        <polygon points="162,158 136,178 130,160 148,142 166,144" fill="#090a0f" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" />
-        <polygon points="38,158 64,178 70,160 52,142 34,144" fill="#090a0f" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" />
-        <polygon points="16,62 22,94 38,88 44,64 30,48" fill="#090a0f" stroke="rgba(255,255,255,0.5)" stroke-width="1.8" />
+        <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(163,230,53,0.5)" stroke-width="2" />
       </svg>
+      <div class="bg-ball-3d-shade"></div>
     </div>
   </div>
 
