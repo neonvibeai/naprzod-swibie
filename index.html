@@ -152,7 +152,7 @@
   <section class="portal-gateway" id="portalGateway" aria-label="Wybór strefy: Klub Piłkarski lub Szkółka Piłkarska">
     <!-- Left Side: KLUB PIŁKARSKI (Seniorzy / Klasa B) -->
     <div class="portal-side portal-side--club" onclick="handlePortalSideClick(event, 'club')" onkeydown="if(event.key==='Enter'||event.key===' '){handlePortalSideClick(event, 'club')}" role="button" tabindex="0" aria-label="Wybierz Strefę Klubu">
-      <div class="portal-bg"></div>
+      <div class="portal-bg"><img src="assets/hero-senior.png?v=3" alt="Drużyna LKS Naprzód Świbie" class="portal-bg-img portal-bg-img--club" /></div>
       <div class="portal-stripes"></div>
       <div class="portal-content">
         <img src="assets/logo-klub.png" alt="Herb LKS Naprzód Świbie" class="portal-side-logo" />
@@ -187,7 +187,7 @@
 
     <!-- Right Side: SZKÓŁKA PIŁKARSKA (Akademia / Kids Cup) -->
     <div class="portal-side portal-side--academy" onclick="handlePortalSideClick(event, 'academy')" onkeydown="if(event.key==='Enter'||event.key===' '){handlePortalSideClick(event, 'academy')}" role="button" tabindex="0" aria-label="Wybierz Szkółkę Piłkarską">
-      <div class="portal-bg"></div>
+      <div class="portal-bg"><img src="assets/hero-academy.png?v=3" alt="Szkółka Piłkarska LKS Naprzód Świbie" class="portal-bg-img portal-bg-img--academy" /></div>
       <div class="portal-stripes"></div>
       <div class="portal-content">
         <img src="assets/logo-szkolka.png" alt="Logo Szkółki Piłkarskiej LKS Naprzód Świbie" class="portal-side-logo portal-side-logo--academy" />
@@ -308,7 +308,10 @@
        DYNAMIC HERO SECTION (CHANGES CONTENT & VIBE FOR KLUB VS SZKÓŁKA)
        ======================================================================== -->
   <section class="hero" id="top">
-    <div class="hero-bg-layer" id="heroBgLayer"></div>
+    <div class="hero-bg-layer" id="heroBgLayer">
+      <img src="assets/hero-senior.png?v=3" alt="Drużyna LKS Naprzód Świbie" class="hero-bg-img hero-bg-img--club club-only" />
+      <img src="assets/hero-academy.png?v=3" alt="Szkółka Piłkarska LKS Naprzód Świbie" class="hero-bg-img hero-bg-img--academy academy-only" />
+    </div>
     <div class="hero-stripes-accent"></div>
 
     <div class="hero-container">

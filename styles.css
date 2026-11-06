@@ -283,31 +283,43 @@ body {
 
 .portal-bg {
   position: absolute;
-  inset: -4%;
+  inset: 0;
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1;
+  overflow: hidden;
+}
+
+.portal-bg-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  opacity: 1;
+  filter: none;
+}
+
+.portal-bg-img--club {
+  object-position: 50% 20%;
+}
+
+.portal-bg-img--academy {
+  object-position: 50% 15%;
 }
 
 .portal-side:hover .portal-bg {
-  transform: scale(1.08);
+  transform: scale(1.04);
 }
 
 .portal-side--club .portal-bg {
-  background-position: center 28%;
-  background-image:
-    linear-gradient(125deg, rgba(6, 7, 11, 0.84) 12%, rgba(12, 15, 24, 0.46) 55%, rgba(6, 7, 11, 0.86) 100%),
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 40px, transparent 40px, transparent 80px),
-    url('assets/hero-senior.png?v=2');
+  background-position: 50% 20%;
+  background-image: url('assets/hero-senior.png?v=3');
 }
 
 .portal-side--academy .portal-bg {
-  background-position: center 25%;
-  background-image:
-    linear-gradient(235deg, rgba(6, 22, 14, 0.82) 12%, rgba(10, 35, 22, 0.42) 55%, rgba(6, 15, 11, 0.86) 100%),
-    radial-gradient(circle at 70% 30%, rgba(163, 230, 53, 0.22), transparent 60%),
-    url('assets/hero-academy.png?v=2');
+  background-position: 50% 15%;
+  background-image: url('assets/hero-academy.png?v=3');
 }
 
 /* Diagonal stripes overlay */
@@ -846,23 +858,36 @@ body {
   position: absolute;
   inset: 0;
   background-size: cover;
-  background-position: center;
+  background-position: center top;
   z-index: 1;
+  overflow: hidden;
   transition: background-image 0.6s ease, transform 0.2s ease-out;
 }
 
+.hero-bg-img {
+  width: 100%;
+  height: 100%;
+   object-fit: cover;
+  opacity: 1;
+  filter: none;
+}
+
+.hero-bg-img--club {
+  object-position: 50% 20%;
+}
+
+.hero-bg-img--academy {
+  object-position: 50% 15%;
+}
+
 body.mode-club .hero-bg-layer {
-  background-position: center 25%;
-  background-image:
-    linear-gradient(95deg, rgba(9, 10, 15, 0.90) 24%, rgba(9, 10, 15, 0.55) 62%, rgba(9, 10, 15, 0.85) 100%),
-    url('assets/hero-senior.png?v=2');
+  background-position: 50% 20%;
+  background-image: url('assets/hero-senior.png?v=3');
 }
 
 body.mode-academy .hero-bg-layer {
-  background-position: center 25%;
-  background-image:
-    linear-gradient(95deg, rgba(7, 17, 12, 0.88) 24%, rgba(9, 25, 16, 0.52) 62%, rgba(7, 17, 12, 0.85) 100%),
-    url('assets/hero-academy.png?v=2');
+  background-position: 50% 15%;
+  background-image: url('assets/hero-academy.png?v=3');
 }
 
 /* Biało-czarne pasy dekoracyjne */
@@ -3241,6 +3266,66 @@ body.mode-club .academy-only {
 
 /* 3. Small Tablets & Large Phones (<= 768px) */
 @media (max-width: 768px) {
+  /* Poprawione kadrowanie zdjęć w tle na urządzeniach mobilnych (< 768px) bez dodatkowego przyciemniania */
+  .hero {
+    min-height: max(650px, 85vh);
+  }
+
+  .hero-bg-layer {
+    inset: 0;
+    min-height: max(650px, 85vh);
+    background-size: cover !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+
+  body.mode-club .hero-bg-layer,
+  .portal-side--club .portal-bg {
+    background-image: url('assets/hero-senior.png?v=3') !important;
+    background-size: cover !important;
+    background-position: 50% 20% !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+
+  body.mode-academy .hero-bg-layer,
+  .portal-side--academy .portal-bg {
+    background-image: url('assets/hero-academy.png?v=3') !important;
+    background-size: cover !important;
+    background-position: 50% 15% !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+
+  .portal-bg-img--club,
+  .hero-bg-img--club {
+    object-fit: cover !important;
+    object-position: 50% 20% !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+
+  .portal-bg-img--academy,
+  .hero-bg-img--academy {
+    object-fit: cover !important;
+    object-position: 50% 15% !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+
+  .portal-side,
+  .portal-gateway:hover .portal-side,
+  .portal-gateway.active-club .portal-side--club,
+  .portal-gateway.active-club .portal-side--academy,
+  .portal-gateway.active-academy .portal-side--academy,
+  .portal-gateway.active-academy .portal-side--club {
+    filter: none !important;
+  }
+
+  .portal-stripes,
+  .hero-stripes-accent {
+    display: none !important;
+  }
   .navbar-inner {
     flex-wrap: wrap;
     padding: 0.55rem 0.9rem;

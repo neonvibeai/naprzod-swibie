@@ -1234,10 +1234,14 @@ function updateScrollBackground() {
   if (bar) bar.style.width = `${progressPct}%`;
   if (ball) ball.style.transform = `rotate(${scrollTop * 0.65}deg)`;
 
-  // Parallax w sekcji Hero
+  // Parallax w sekcji Hero (wyłączony na telefonach < 768px, aby nie ucinać kadru zdjęć)
   const heroBg = document.getElementById("heroBgLayer");
-  if (heroBg && scrollTop < 900) {
-    heroBg.style.transform = `translateY(${scrollTop * 0.22}px) scale(1.04)`;
+  if (heroBg) {
+    if (vw > 768 && scrollTop < 900) {
+      heroBg.style.transform = `translateY(${scrollTop * 0.16}px)`;
+    } else {
+      heroBg.style.transform = "none";
+    }
   }
 
   // Główna piłka 3D tocząca się w dół ekranu po łuku (S-curve) i obracająca się podczas scrollowania
