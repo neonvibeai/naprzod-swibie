@@ -2,6 +2,16 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
+try {
+  const envFile = fs.readFileSync(path.join(__dirname, '.env'), 'utf8');
+  envFile.split(/\r?\n/).forEach((line) => {
+    const m = /^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)\s*$/.exec(line);
+    if (m && !process.env[m[1]]) {
+      process.env[m[1]] = m[2].replace(/^['"]|['"]$/g, '').trim();
+    }
+  });
+} catch (_) {}
+
 const PORT = 8090;
 const ROOT = __dirname;
 const LIGA_90MINUT_URL = 'http://www.90minut.pl/liga/1/liga15135.html';
@@ -173,6 +183,11 @@ async function requestHandler(req, res) {
     });
     res.end(JSON.stringify(data));
     return;
+  }
+
+  if (reqUrl === '/api/contact') {
+    const contactHandler = require('./api/contact');
+    return contactHandler(req, res);
   }
 
   let reqPath = reqUrl === '/' ? '/index.html' : reqUrl;

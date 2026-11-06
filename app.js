@@ -1106,30 +1106,85 @@ function closeEnrollModal() {
   if (modal) modal.classList.remove("is-open");
 }
 
-function handleFormSubmit(e) {
+async function handleFormSubmit(e) {
   e.preventDefault();
+  const formEl = e.target;
   const formTopic = document.getElementById("formTopic")?.value || "Wiadomość z formularza";
   const formName = document.getElementById("formName")?.value || "";
   const formPhone = document.getElementById("formPhone")?.value || "";
   const formNotes = document.getElementById("formNotes")?.value || "";
 
+  const submitBtn = formEl.querySelector('button[type="submit"]');
+  const originalBtnHtml = submitBtn ? submitBtn.innerHTML : "🚀 Wyślij Zgłoszenie";
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = "⏳ Wysyłanie zgłoszenia...";
+  }
+
   const successMsg = document.getElementById("formSuccessMsg");
   if (successMsg) {
-    successMsg.innerHTML = `
-      ✅ <strong>Dziękujemy za przesłanie zgłoszenia!</strong><br />
-      Wiadomość została skierowana do klubu na adres: <strong>naprzodswibie@o2.pl</strong>.<br />
-      Skontaktujemy się z Tobą najszybciej jak to możliwe.<br /><br />
-      <div style="font-size: 0.82rem; color: #cbd5e1; text-align: left; background: rgba(0,0,0,0.35); padding: 0.6rem 0.85rem; border-radius: 8px;">
-        📞 <strong>Zarząd / kontakt ogólny:</strong> 796 129 276 (Piotr Chodkiewicz - Wiceprezes)<br />
-        📞 <strong>Zapisy do Szkółki Piłkarskiej:</strong> 511 956 923 (Tomasz Janoszka - Koordynator)
-      </div>
-    `;
-    successMsg.style.display = "block";
+    successMsg.style.display = "none";
   }
-  setTimeout(() => {
-    closeEnrollModal();
-    e.target.reset();
-  }, 4500);
+
+  try {
+    const resp = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        topic: formTopic,
+        name: formName,
+        contact: formPhone,
+        notes: formNotes
+      })
+    });
+
+    const result = await resp.json().catch(() => ({}));
+
+    if (!resp.ok || !result.ok) {
+      throw new Error(result.error || "Wystąpił błąd podczas wysyłania formularza.");
+    }
+
+    if (successMsg) {
+      successMsg.style.background = "rgba(16, 185, 129, 0.2)";
+      successMsg.style.borderColor = "var(--turf-bright)";
+      successMsg.innerHTML = `
+        ✅ <strong>Dziękujemy za przesłanie zgłoszenia!</strong><br />
+        Wiadomość została wysłana do klubu na adres: <strong>naprzodswibie@o2.pl</strong>.<br />
+        Skontaktujemy się z Tobą najszybciej jak to możliwe.<br /><br />
+        <div style="font-size: 0.82rem; color: #cbd5e1; text-align: left; background: rgba(0,0,0,0.35); padding: 0.6rem 0.85rem; border-radius: 8px;">
+          📞 <strong>Zarząd / kontakt ogólny:</strong> 796 129 276 (Piotr Chodkiewicz - Wiceprezes)<br />
+          📞 <strong>Zapisy do Szkółki Piłkarskiej:</strong> 511 956 923 (Tomasz Janoszka - Koordynator)
+        </div>
+      `;
+      successMsg.style.display = "block";
+    }
+
+    formEl.reset();
+    setTimeout(() => {
+      closeEnrollModal();
+    }, 4500);
+  } catch (err) {
+    if (successMsg) {
+      successMsg.style.background = "rgba(239, 68, 68, 0.2)";
+      successMsg.style.borderColor = "#ef4444";
+      successMsg.innerHTML = `
+        ⚠️ <strong>Nie udało się wysłać zgłoszenia automatycznie:</strong> ${err.message || "Błąd sieci"}<br /><br />
+        <div style="font-size: 0.82rem; color: #cbd5e1; text-align: left; background: rgba(0,0,0,0.35); padding: 0.6rem 0.85rem; border-radius: 8px;">
+          Skontaktuj się bezpośrednio:<br />
+          ✉️ <strong>E-mail:</strong> naprzodswibie@o2.pl<br />
+          📞 <strong>Zarząd:</strong> 796 129 276 • <strong>Szkółka:</strong> 511 956 923
+        </div>
+      `;
+      successMsg.style.display = "block";
+    }
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHtml;
+    }
+  }
 }
 
 // Kopiowanie numeru konta bankowego klubu
